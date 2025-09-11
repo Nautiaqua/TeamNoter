@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamNoter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/TeamNoter Login BG.png"/>
+    </Window.Background>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="139*"/>
-            <ColumnDefinition Width="661*"/>
-        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" Background="White" Margin="497,106,497,106" CornerRadius="30,30,30,30"/>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <TextBox x:Name="emailBox" TextWrapping="Wrap" Text="TextBox" Margin="530,342,560,422" FontSize="16"/>
+        </Border>
+
 
     </Grid>
 </Window>

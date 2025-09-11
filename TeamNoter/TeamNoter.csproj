@@ -8,4 +8,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\TeamNoter Login BG.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\TeamNoter Login BG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
