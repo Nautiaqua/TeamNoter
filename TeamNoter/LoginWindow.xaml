@@ -5,16 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamNoter"
         mc:Ignorable="d"
-        Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Images/Icons/NoterLogo (16x16).ico" UseLayoutRounding="True">
     <Window.Background>
         <ImageBrush ImageSource="/Images/TeamNoter Login BG.png"/>
     </Window.Background>
     <Grid>
-        <Border BorderBrush="Black" Background="White" Margin="497,106,497,106" CornerRadius="30,30,30,30"/>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <TextBox x:Name="emailBox" TextWrapping="Wrap" Text="TextBox" Margin="530,342,560,422" FontSize="16"/>
+        <Border BorderBrush="Black" Background="White" Margin="497,106,497,106" CornerRadius="30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="141*"/>
+                    <RowDefinition Height="278*"/>
+                    <RowDefinition Height="163*"/>
+                </Grid.RowDefinitions>
+                <Label Content="TeamNoter" Style="{StaticResource Leixo}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Width="320" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="databaseBox" HorizontalAlignment="Center" Margin="0,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Database URI" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
+                <TextBox x:Name="emailBox" HorizontalAlignment="Center" Margin="0,66,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
+                <TextBox x:Name="passwordBox" HorizontalAlignment="Center" Margin="0,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
+                <Button Content="PROCEED" Margin="0,134,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="32" FontWeight="Bold" BorderThickness="0,0,0,0" Foreground="White" Background="#FFFDBA53"/>
+                <Label Content="If you have a compatible database:" Margin="0,8,0,0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370"/>
+            </Grid>
         </Border>
-
-
     </Grid>
 </Window>

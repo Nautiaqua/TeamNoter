@@ -6,13 +6,34 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Leixo.ttf" />
+    <None Remove="Fonts\Oughter.otf" />
+    <None Remove="Images\Icons\NoterLogo %2816x16%29.ico" />
+    <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
+    <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
     <None Remove="Images\TeamNoter Login BG.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Leixo.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Oughter.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (16x16).ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (24x24).ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (32x32).ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

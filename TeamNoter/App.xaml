@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:TeamNoter"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="Oughter">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/#Oughter">
+            </Setter>
+        </Style>
+        <Style x:Key="Leixo">
+            <Setter Property="TextElement.FontFamily"
+            Value="/Fonts/#LEIXO DEMO">
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

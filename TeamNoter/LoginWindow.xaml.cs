@@ -20,5 +20,10 @@ namespace TeamNoter
         {
             InitializeComponent();
         }
+
+        private void emailBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
