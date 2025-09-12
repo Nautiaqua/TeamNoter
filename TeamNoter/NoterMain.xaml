@@ -13,39 +13,64 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61"/>
+            <ColumnDefinition Width="171"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" Background="White">
             <StackPanel>
-                <ListBox Height="747" HorizontalContentAlignment="Center" BorderThickness="0,0,0,0" Padding="0,20,0,0">
-                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
-                        <Image x:Name="accountBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Account.svg, AppName=TeamNoter}"/>
-                    </Button>
+                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}">
 
-                    <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="2">
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="databaseBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Database.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Database Info"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                        
+                    </ListBoxItem>
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="1">
                         <Label Content=""  FontWeight="Bold"/>
                     </ListBoxItem>
                     
-                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
-                        <Image x:Name="databaseBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Database.svg, AppName=TeamNoter}"/>
-                    </Button>
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="accountBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Account.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Account"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
 
                     <ListBoxItem IsHitTestVisible="False" Focusable="False">
-                        <Label Content="———" FontWeight="Bold"/>
+                        <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
                     </ListBoxItem>
-                    
-                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
-                        <Image x:Name="listBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/List.svg, AppName=TeamNoter}"/>
-                    </Button>
-                    
+
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="listBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/List.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Task List"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
                     <ListBoxItem IsHitTestVisible="False" Focusable="False">
-                        <Label Content="———" FontWeight="Bold"/>
+                        <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
                     </ListBoxItem>
-                    
-                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
-                        <Image x:Name="settingsBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Settings.svg, AppName=TeamNoter}"/>
-                    </Button>
+
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="settingsBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Settings.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Settings"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
 
                 </ListBox>
             </StackPanel>
