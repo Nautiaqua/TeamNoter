@@ -80,11 +80,21 @@
                 <Border Background="#FFECECEC">
                     <DataGrid ItemsSource="{Binding tasks}" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Deadline" Binding="{Binding deadline}" Width="150" />
-                            <DataGridTextColumn Header="Title" Binding="{Binding title}" Width="160" />
-                            <DataGridTextColumn Header="Details" Binding="{Binding details}" Width="*" />
-                            <DataGridTextColumn Header="Assigned Users" Binding="{Binding assignedUsers}" Width="*" />
-                            <DataGridTextColumn Header="Status" Binding="{Binding status}" Width="100" />
+                            <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline}" Width="150" />
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="160" />
+                            <DataGridTextColumn Header="Details" Binding="{Binding Details}" Width="*" />
+                            <DataGridTextColumn Header="Assigned Users" Binding="{Binding Users}" Width="*" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Complete"
+                                        Click="CompleteButton_Click"
+                                        Tag="{Binding}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
 

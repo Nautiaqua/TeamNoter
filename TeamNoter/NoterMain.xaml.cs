@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static TeamNoter.DataStorage;
 
 namespace TeamNoter
 {
@@ -22,6 +23,7 @@ namespace TeamNoter
         public NoterMain()
         {
             InitializeComponent();
+            DataContext = new DataStorage();
         }
 
         private void sidebarListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -32,6 +34,14 @@ namespace TeamNoter
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is Item task)
+            {
+                task.Status = "Completed";
+            }
         }
     }
 }
