@@ -22,13 +22,16 @@
             <Label Grid.Row="0" Content="TeamNoter" Style="{StaticResource Leixo}" Margin="99,46,99,35" FontSize="24"/>
             <Label Grid.Row="0" Content="Track &amp; Manage Your Team's Tasks" HorizontalAlignment="Left" Margin="99,68,0,0" VerticalAlignment="Top" Foreground="#FF5D5D5D" Height="26" Width="193"/>
             <Image Grid.Row="0" Source="/Images/Icons/NoterLogo (50x50).png" HorizontalAlignment="Left" Height="50" Margin="44,46,0,0" VerticalAlignment="Top" Width="50"/>
-            <Label Content="Welcome" HorizontalAlignment="Left" Margin="44,9,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
-            <Label Grid.Row="1" Content="Connect to a TeamNoter-compatible database or create one" HorizontalAlignment="Left" Margin="44,39,0,0" VerticalAlignment="Top" Foreground="#FF5D5D5D" Height="26" Width="366"/>
-            <Label Content="If you've got a compatible database:" HorizontalAlignment="Left" Margin="44,82,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,112,0,0"/>
-            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,150,0,0"/>
-            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,189,0,0"/>
-            <Label Content="If you've got a compatible database:" HorizontalAlignment="Center" Margin="0,289,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label Content="Welcome" HorizontalAlignment="Left" Margin="44,10,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
+            <Label Grid.Row="1" Content="Connect to a TeamNoter-compatible database or create one" HorizontalAlignment="Left" Margin="44,40,0,0" VerticalAlignment="Top" Foreground="#FF5D5D5D" Height="26" Width="366"/>
+            <Label Content="If you've got a compatible database:" HorizontalAlignment="Left" Margin="44,87,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Database URI" VerticalAlignment="Top" Width="340" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="0,113,0,0"/>
+            <TextBox HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="0,151,0,0"/>
+            <TextBox HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="0,190,0,0"/>
+            <Label Content="Create a MySQL database that works with TeamNoter" HorizontalAlignment="Left" Margin="44,308,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Button Content="PROCEED" HorizontalAlignment="Center" Margin="0,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF3C86A" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
+            <Label Content="———————————— OR ————————————" HorizontalAlignment="Center" Margin="0,277,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF9A9A9A"/>
+            <Button Content="GET STARTED" HorizontalAlignment="Center" Margin="0,334,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF3C86A" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
 
         </Grid>
     </Border>
