@@ -9,21 +9,27 @@
     <Window.Background>
         <ImageBrush ImageSource="/Images/TeamNoter Login BG.png"/>
     </Window.Background>
-    <Grid>
-        <Border BorderBrush="Black" Background="White" Margin="497,106,497,106" CornerRadius="30">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="141*"/>
-                    <RowDefinition Height="278*"/>
-                    <RowDefinition Height="163*"/>
-                </Grid.RowDefinitions>
-                <Label Content="TeamNoter" Style="{StaticResource Leixo}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Width="320" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="databaseBox" HorizontalAlignment="Center" Margin="0,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Database URI" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
-                <TextBox x:Name="emailBox" HorizontalAlignment="Center" Margin="0,66,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
-                <TextBox x:Name="passwordBox" HorizontalAlignment="Center" Margin="0,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="370" Height="27" FontSize="14" Padding="10,0,0,0" VerticalContentAlignment="Center" Background="White" Foreground="#FFA4A0A0"/>
-                <Button Content="PROCEED" Margin="0,134,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="32" FontWeight="Bold" BorderThickness="0,0,0,0" Foreground="White" Background="#FFFDBA53"/>
-                <Label Content="If you have a compatible database:" Margin="0,8,0,0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370"/>
-            </Grid>
-        </Border>
-    </Grid>
+    <Border BorderBrush="Black" Background="White" Margin="497,106,497,106" CornerRadius="30">
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="115"/>
+                <!--Title Bar-->
+                <RowDefinition Height="*"/>
+                <!--Content Area-->
+
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="TeamNoter" Style="{StaticResource Leixo}" Margin="99,46,99,35" FontSize="24"/>
+            <Label Grid.Row="0" Content="Track &amp; Manage Your Team's Tasks" HorizontalAlignment="Left" Margin="99,68,0,0" VerticalAlignment="Top" Foreground="#FF5D5D5D" Height="26" Width="193"/>
+            <Image Grid.Row="0" Source="/Images/Icons/NoterLogo (50x50).png" HorizontalAlignment="Left" Height="50" Margin="44,46,0,0" VerticalAlignment="Top" Width="50"/>
+            <Label Content="Welcome" HorizontalAlignment="Left" Margin="44,9,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
+            <Label Grid.Row="1" Content="Connect to a TeamNoter-compatible database or create one" HorizontalAlignment="Left" Margin="44,39,0,0" VerticalAlignment="Top" Foreground="#FF5D5D5D" Height="26" Width="366"/>
+            <Label Content="If you've got a compatible database:" HorizontalAlignment="Left" Margin="44,82,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,112,0,0"/>
+            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,150,0,0"/>
+            <TextBox HorizontalAlignment="Left"  Grid.Row="1" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="44,189,0,0"/>
+            <Label Content="If you've got a compatible database:" HorizontalAlignment="Center" Margin="0,289,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        </Grid>
+    </Border>
 </Window>

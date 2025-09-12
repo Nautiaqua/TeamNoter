@@ -15,6 +15,7 @@
     <None Remove="Images\Icons\NoterLogo %2816x16%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
+    <None Remove="Images\Icons\NoterLogo %2850x50%29.png" />
     <None Remove="Images\TeamNoter Login BG.png" />
   </ItemGroup>
 
@@ -32,6 +33,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Icons\NoterLogo (32x32).ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (50x50).png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
