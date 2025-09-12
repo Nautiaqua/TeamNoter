@@ -29,9 +29,9 @@
             <TextBox HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="0,151,0,0"/>
             <TextBox HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="340" Height="34" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FFA2A2A2" Margin="0,190,0,0"/>
             <Label Content="Create a MySQL database that works with TeamNoter" HorizontalAlignment="Left" Margin="44,308,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Button Content="PROCEED" HorizontalAlignment="Center" Margin="0,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF3C86A" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
+            <Button Content="PROCEED" HorizontalAlignment="Center" Margin="0,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF7C659" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
             <Label Content="———————————— OR ————————————" HorizontalAlignment="Center" Margin="0,277,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF9A9A9A"/>
-            <Button Content="GET STARTED" HorizontalAlignment="Center" Margin="0,334,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF3C86A" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
+            <Button Content="GET STARTED" HorizontalAlignment="Center" Margin="0,334,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340" Height="29" Background="#FFF7C659" BorderThickness="0,0,0,0" Foreground="White" FontWeight="Bold"/>
 
         </Grid>
     </Border>

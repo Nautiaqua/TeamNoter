@@ -1,0 +1,105 @@
+﻿<Window x:Class="TeamNoter.NoterMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:local="clr-namespace:TeamNoter"
+        mc:Ignorable="d"
+        Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" Icon="/Images/Icons/NoterLogo (16x16).ico">
+    <Grid Background="#FFEFEFEF">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="171"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" Background="White">
+            <StackPanel>
+                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}" SelectionChanged="sidebarListbox_SelectionChanged" >
+
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="databaseBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Database.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Database Info"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+
+                    </ListBoxItem>
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="1">
+                        <Label Content=""  FontWeight="Bold"/>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Focusable="True">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="accountBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Account.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Account"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False">
+                        <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="listBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/List.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Task List"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False">
+                        <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                                <Image x:Name="settingsBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Settings.svg, AppName=TeamNoter}"/>
+                            </Button>
+
+                            <Label Content="Settings"  Foreground="#FF313131" Padding="11,5,5,5"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                </ListBox>
+            </StackPanel>
+        </Border>
+        <TabControl Grid.Column="1" BorderThickness="0,0,0,0" SelectedIndex="0" Margin="0,-8,0,0">
+            <TabItem>
+                <Border Background="#FFECECEC">
+                    <DataGrid ItemsSource="{Binding tasks}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline}" Width="150" />
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="160" />
+                            <DataGridTextColumn Header="Details" Binding="{Binding Details}" Width="*" />
+                            <DataGridTextColumn Header="Assigned Users" Binding="{Binding Users}" Width="*" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Complete"
+                                        Click="CompleteButton_Click"
+                                        Tag="{Binding}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

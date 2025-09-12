@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:TeamNoter"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
+        
+        <!--Sets the custom fonts-->
         <Style x:Key="Oughter">
             <Setter Property="TextElement.FontFamily"
                     Value="/Fonts/#Oughter">
@@ -14,5 +16,66 @@
             Value="/Fonts/#LEIXO DEMO">
             </Setter>
         </Style>
+
+        <!--Basically handles the entire highlight thing-->
+        <Style x:Key="sidebarItem"  TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="10"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="selectBackground" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter />
+                        </Border>
+                        
+                        <ControlTemplate.Triggers>
+                            
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="selectBackground" Property="Background" Value="#FFF7C659"/>
+                                <Setter Property="BorderBrush" Value="#FFF7C659"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="selectBackground" Property="Background" Value="#FFFFF080"/>
+                                <Setter Property="BorderBrush" Value="#FFFFF080"/>
+                            </Trigger>
+                            
+                        </ControlTemplate.Triggers>
+                        
+                    </ControlTemplate>
+                </Setter.Value>
+                
+            </Setter>
+        </Style>
+
+        <Style x:Key="panelless" TargetType="TabControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    
+                    <!--kinda just removes the tab panel / the top control buttons thingy-->
+                    <ControlTemplate TargetType="TabControl">
+                        <Border x:Name="ContentPanel"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="0,2,0,0">
+                            <ContentPresenter/>
+                        </Border>    
+                        
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </Application.Resources>
 </Application>
