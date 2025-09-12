@@ -17,6 +17,12 @@
     <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2850x50%29.png" />
     <None Remove="Images\TeamNoter Login BG.png" />
+    <None Remove="Images\UI Icons\Account Icon Selected.png" />
+    <None Remove="Images\UI Icons\Account Icon.png" />
+    <None Remove="Images\UI Icons\List Icon Selected.png" />
+    <None Remove="Images\UI Icons\List Icon.png" />
+    <None Remove="Images\UI Icons\Settings Icon Selected.png" />
+    <None Remove="Images\UI Icons\Settings Icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +45,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Account Icon Selected.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Account Icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\List Icon Selected.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\List Icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Settings Icon Selected.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Settings Icon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

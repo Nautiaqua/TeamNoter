@@ -1,0 +1,25 @@
+﻿<Window x:Class="TeamNoter.NoterMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeamNoter"
+        mc:Ignorable="d"
+        Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" Icon="/Images/Icons/NoterLogo (16x16).ico">
+    <Grid Background="#FFEFEFEF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Background="White">
+            <StackPanel>
+                <ListBox Height="747" HorizontalContentAlignment="Center" Padding="0,10,0,0">
+                    <Button Height="40" Width="40" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <Image Source="/Images/UI Icons/Account Icon.png" Stretch="Uniform"/>
+                    </Button>
+                </ListBox>
+            </StackPanel>
+        </Border>
+        <ContentControl Grid.Column="1" Content="ContentControl" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    </Grid>
+</Window>
