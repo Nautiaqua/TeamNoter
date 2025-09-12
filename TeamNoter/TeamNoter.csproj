@@ -19,13 +19,26 @@
     <None Remove="Images\Icons\NoterLogo %28Full Size%29.png" />
     <None Remove="Images\TeamNoter Login BG.png" />
     <None Remove="Images\UI Icons\Account.png" />
+    <None Remove="Images\UI Icons\Account.svg" />
     <None Remove="Images\UI Icons\Database.png" />
+    <None Remove="Images\UI Icons\Database.svg" />
+    <None Remove="Images\UI Icons\DatabaseIcon.png" />
     <None Remove="Images\UI Icons\List.png" />
+    <None Remove="Images\UI Icons\List.svg" />
+    <None Remove="Images\UI Icons\ListIcon.png" />
     <None Remove="Images\UI Icons\Settings.png" />
+    <None Remove="Images\UI Icons\Settings.svg" />
+    <None Remove="Images\UI Icons\SettingsIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\Icons\NoterLogo (Full Size).png" />
+    <PackageReference Include="SharpVectors" Version="1.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Icons\NoterLogo (Full Size).png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,31 +48,55 @@
     <Resource Include="Fonts\Oughter.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <EmbeddedResource Include="Images\Icons\NoterLogo (16x16).ico">
+    <Resource Include="Images\Icons\NoterLogo (16x16).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Icons\NoterLogo (24x24).ico">
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (24x24).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Icons\NoterLogo (32x32).ico">
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (32x32).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\Icons\NoterLogo (50x50).png">
+    </Resource>
+    <Resource Include="Images\Icons\NoterLogo (50x50).png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI Icons\Account.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\UI Icons\Account.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\AccountIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\UI Icons\Database.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Database.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\DatabaseIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI Icons\List.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\UI Icons\List.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\ListIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\UI Icons\Settings.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\Settings.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI Icons\SettingsIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

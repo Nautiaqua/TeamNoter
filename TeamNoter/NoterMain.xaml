@@ -3,35 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:TeamNoter"
         mc:Ignorable="d"
         Title="TeamNoter" Height="810" Width="1440" ResizeMode="CanMinimize" Icon="/Images/Icons/NoterLogo (16x16).ico">
     <Grid Background="#FFEFEFEF">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Background="White">
+        <Border BorderBrush="Black" Background="White">
             <StackPanel>
-                <Label Content="" FontSize="8"/>
-                <Image Height="30" Width="30" Source="/Images/Icons/NoterLogo (Full Size).png"/>
-                <ListBox Height="747" HorizontalContentAlignment="Center" BorderThickness="0,0,0,0">
-                    <Label Content="———"/>
-                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
-                        <Image Source="/Images/UI Icons/Account.png" Stretch="Uniform"/>
+                <ListBox Height="747" HorizontalContentAlignment="Center" BorderThickness="0,0,0,0" Padding="0,20,0,0">
+                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                        <Image x:Name="accountBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Account.svg, AppName=TeamNoter}"/>
                     </Button>
 
-                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
-                        <Image Source="/Images/UI Icons/Database.png" Stretch="Uniform"/>
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="2">
+                        <Label Content=""  FontWeight="Bold"/>
+                    </ListBoxItem>
+                    
+                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                        <Image x:Name="databaseBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Database.svg, AppName=TeamNoter}"/>
                     </Button>
 
-                    <Label Content="———"/>
-                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
-                        <Image Source="/Images/UI Icons/List.png" Stretch="Uniform"/>
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False">
+                        <Label Content="———" FontWeight="Bold"/>
+                    </ListBoxItem>
+                    
+                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                        <Image x:Name="listBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/List.svg, AppName=TeamNoter}"/>
                     </Button>
-                    <Label Content="———"/>
-                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
-                        <Image Source="/Images/UI Icons/Settings.png" Stretch="Uniform"/>
+                    
+                    <ListBoxItem IsHitTestVisible="False" Focusable="False">
+                        <Label Content="———" FontWeight="Bold"/>
+                    </ListBoxItem>
+                    
+                    <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                        <Image x:Name="settingsBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Settings.svg, AppName=TeamNoter}"/>
                     </Button>
 
                 </ListBox>
