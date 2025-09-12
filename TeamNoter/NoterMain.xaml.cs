@@ -20,15 +20,41 @@ namespace TeamNoter
     /// </summary>
     public partial class NoterMain : Window
     {
+        public bool initializing;
         public NoterMain()
         {
+            initializing = true;
             InitializeComponent();
             DataContext = new DataStorage();
+
+            dateLabel.Content = DateTime.Today;
+
+            initializing = false;
         }
 
         private void sidebarListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!initializing)
+            {
+                switch (sidebarListbox.SelectedIndex)
+                {
+                    case 0:
+                        mainTab.SelectedIndex = 0;
+                        break;
 
+                    case 2:
+                        mainTab.SelectedIndex = 1;
+                        break;
+
+                    case 4:
+                        mainTab.SelectedIndex = 2;
+                        break;
+
+                    case 6:
+                        mainTab.SelectedIndex = 3;
+                        break;
+                }
+            }
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,6 +68,11 @@ namespace TeamNoter
             {
                 task.Status = "Completed";
             }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
