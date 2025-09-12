@@ -13,10 +13,27 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" BorderThickness="1" Background="White">
             <StackPanel>
-                <ListBox Height="747" HorizontalContentAlignment="Center" Padding="0,10,0,0">
-                    <Button Height="40" Width="40" Background="{x:Null}" BorderBrush="{x:Null}">
-                        <Image Source="/Images/UI Icons/Account Icon.png" Stretch="Uniform"/>
+                <Label Content="" FontSize="8"/>
+                <Image Height="30" Width="30" Source="/Images/Icons/NoterLogo (Full Size).png"/>
+                <ListBox Height="747" HorizontalContentAlignment="Center" BorderThickness="0,0,0,0">
+                    <Label Content="———"/>
+                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
+                        <Image Source="/Images/UI Icons/Account.png" Stretch="Uniform"/>
                     </Button>
+
+                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
+                        <Image Source="/Images/UI Icons/Database.png" Stretch="Uniform"/>
+                    </Button>
+
+                    <Label Content="———"/>
+                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
+                        <Image Source="/Images/UI Icons/List.png" Stretch="Uniform"/>
+                    </Button>
+                    <Label Content="———"/>
+                    <Button Height="30" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1">
+                        <Image Source="/Images/UI Icons/Settings.png" Stretch="Uniform"/>
+                    </Button>
+
                 </ListBox>
             </StackPanel>
         </Border>

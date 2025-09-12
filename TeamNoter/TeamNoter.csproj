@@ -16,13 +16,16 @@
     <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2850x50%29.png" />
+    <None Remove="Images\Icons\NoterLogo %28Full Size%29.png" />
     <None Remove="Images\TeamNoter Login BG.png" />
-    <None Remove="Images\UI Icons\Account Icon Selected.png" />
-    <None Remove="Images\UI Icons\Account Icon.png" />
-    <None Remove="Images\UI Icons\List Icon Selected.png" />
-    <None Remove="Images\UI Icons\List Icon.png" />
-    <None Remove="Images\UI Icons\Settings Icon Selected.png" />
-    <None Remove="Images\UI Icons\Settings Icon.png" />
+    <None Remove="Images\UI Icons\Account.png" />
+    <None Remove="Images\UI Icons\Database.png" />
+    <None Remove="Images\UI Icons\List.png" />
+    <None Remove="Images\UI Icons\Settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Icons\NoterLogo (Full Size).png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,37 +35,31 @@
     <Resource Include="Fonts\Oughter.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Icons\NoterLogo (16x16).ico">
+    <EmbeddedResource Include="Images\Icons\NoterLogo (16x16).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (24x24).ico">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Icons\NoterLogo (24x24).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (32x32).ico">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Icons\NoterLogo (32x32).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (50x50).png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Icons\NoterLogo (50x50).png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account Icon Selected.png">
+    <Resource Include="Images\UI Icons\Account.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account Icon.png">
+    <Resource Include="Images\UI Icons\Database.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\List Icon Selected.png">
+    <Resource Include="Images\UI Icons\List.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\List Icon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\Settings Icon Selected.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\Settings Icon.png">
+    <Resource Include="Images\UI Icons\Settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
