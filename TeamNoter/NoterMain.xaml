@@ -18,11 +18,11 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" Background="White">
             <StackPanel>
-                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}">
+                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}" >
 
-                    <ListBoxItem>
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
                                 <Image x:Name="databaseBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Database.svg, AppName=TeamNoter}"/>
                             </Button>
 
@@ -33,10 +33,10 @@
                     <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="1">
                         <Label Content=""  FontWeight="Bold"/>
                     </ListBoxItem>
-                    
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Focusable="True">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
                                 <Image x:Name="accountBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Account.svg, AppName=TeamNoter}"/>
                             </Button>
 
@@ -48,9 +48,9 @@
                         <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
                     </ListBoxItem>
 
-                    <ListBoxItem>
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
                                 <Image x:Name="listBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/List.svg, AppName=TeamNoter}"/>
                             </Button>
 
@@ -62,9 +62,9 @@
                         <Label Content="—————————" FontWeight="Bold" Foreground="#FF313131"/>
                     </ListBoxItem>
 
-                    <ListBoxItem>
+                    <ListBoxItem Style="{StaticResource sidebarItem}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button Style="{StaticResource IconButton}" Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
+                            <Button Height="24" Width="24" Background="{x:Null}" BorderBrush="{x:Null}" Padding="1,1,1,1" Focusable="False">
                                 <Image x:Name="settingsBtn" Source="{svgc:SvgImage Source=/Images/UI Icons/Settings.svg, AppName=TeamNoter}"/>
                             </Button>
 
