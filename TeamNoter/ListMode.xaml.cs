@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace TeamNoter
 {
     /// <summary>
-    /// Interaction logic for NoterMain.xaml
+    /// Interaction logic for ListMode.xaml
     /// </summary>
-    public partial class NoterMain : Window
+    public partial class ListMode : Window
     {
-        public NoterMain()
+        public ListMode()
         {
             InitializeComponent();
-        }
-
-        private void sidebarListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" Background="White">
             <StackPanel>
-                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}" >
+                <ListBox x:Name="sidebarListbox" Height="747" BorderThickness="0,0,0,0" Padding="20,20,20,0" SelectedIndex="4" Background="{x:Null}" SelectionChanged="sidebarListbox_SelectionChanged" >
 
                     <ListBoxItem Style="{StaticResource sidebarItem}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -28,7 +28,7 @@
 
                             <Label Content="Database Info"  Foreground="#FF313131" Padding="11,5,5,5"/>
                         </StackPanel>
-                        
+
                     </ListBoxItem>
                     <ListBoxItem IsHitTestVisible="False" Focusable="False" FontSize="1">
                         <Label Content=""  FontWeight="Bold"/>
@@ -75,6 +75,21 @@
                 </ListBox>
             </StackPanel>
         </Border>
-        <ContentControl Grid.Column="1" Content="ContentControl" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <TabControl Grid.Column="1" BorderThickness="0,0,0,0" SelectedIndex="0" Margin="0,-8,0,0">
+            <TabItem>
+                <Border Background="#FFECECEC">
+                    <DataGrid ItemsSource="{Binding tasks}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Deadline" Binding="{Binding deadline}" Width="150" />
+                            <DataGridTextColumn Header="Title" Binding="{Binding title}" Width="160" />
+                            <DataGridTextColumn Header="Details" Binding="{Binding details}" Width="*" />
+                            <DataGridTextColumn Header="Assigned Users" Binding="{Binding assignedUsers}" Width="*" />
+                            <DataGridTextColumn Header="Status" Binding="{Binding status}" Width="100" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Border>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

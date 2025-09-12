@@ -55,6 +55,27 @@
                 
             </Setter>
         </Style>
+
+        <Style x:Key="panelless" TargetType="TabControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    
+                    <!--kinda just removes the tab panel / the top control buttons thingy-->
+                    <ControlTemplate TargetType="TabControl">
+                        <Border x:Name="ContentPanel"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="0,2,0,0">
+                            <ContentPresenter/>
+                        </Border>    
+                        
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
     </Application.Resources>
 </Application>
