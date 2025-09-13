@@ -26,7 +26,7 @@ namespace TeamNoter
         { 
             if (entering) // Code to run if the user clicks on the box.
             {
-                if (box.Text != defaultText) // Prevents accidental clear of user inputs
+                if (box.Text == defaultText) // Prevents accidental clear of user inputs
                 {
                     box.Text = "";
                     box.Foreground = HexConvert("#FF000000");
