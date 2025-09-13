@@ -12,10 +12,7 @@
   <ItemGroup>
     <None Remove="Fonts\Leixo.ttf" />
     <None Remove="Fonts\Oughter.otf" />
-    <None Remove="Images\Icons\NoterLogo %2816x16%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %28Full Size%29.png" />
+    <None Remove="Images\Icons\NoterIcon.ico" />
     <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoter Login BG.png" />
     <None Remove="Images\UI Icons\Account.svg" />
@@ -29,25 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Icons\NoterLogo (Full Size).png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Fonts\Leixo.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\Oughter.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Icons\NoterLogo (16x16).ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (24x24).ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (32x32).ico">
+    <Resource Include="Images\Icons\NoterIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Icons\NoterLogo.svg">

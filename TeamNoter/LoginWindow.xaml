@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-        Title="TeamNoter" Height="810" Width="1440" WindowStartupLocation="CenterScreen" Icon="/Images/Icons/NoterLogo (16x16).ico" UseLayoutRounding="True" MinWidth="1440" MinHeight="810">
+        Title="TeamNoter" Height="810" Width="1440" WindowStartupLocation="CenterScreen" Icon="/Images/Icons/NoterIcon.ico" UseLayoutRounding="True" MinWidth="1440" MinHeight="810">
     <Window.Background>
         <ImageBrush ImageSource="/Images/TeamNoter Login BG.png"/>
     </Window.Background>
