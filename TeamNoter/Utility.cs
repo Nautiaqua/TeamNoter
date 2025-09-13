@@ -4,17 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TeamNoter
 {
-    class Utility
+    public static class Utility
     {
         // This class contains methods to be used throughout the entire app.
         // ~ Nautia
 
-        public void PlaceholderText(TextBox box, string defaultText)
-        { // Does placeholder text behaviour for TextBoxes, dunno why this isn't a base feature.
+        // Use this if you're gonna change the colors of ANY element. Trust me, WPF handles colors weirdly.
+        public static SolidColorBrush HexConvert(string hexcode)
+        {
+            // Our "color" value is simply paint. This is like putting paint on a paintbrush so we can use it.
+            var Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(hexcode));
+            return Color;
+        }
 
+        // Does placeholder text behaviour for TextBoxes, dunno why this isn't a base feature.
+        public static void PlaceholderText(TextBox box, string defaultText, bool entering)
+        { 
+            if (entering) // Code to run if the user clicks on the box.
+            {
+                if (box.Text != defaultText) // Prevents accidental clear of user inputs
+                {
+                    box.Text = "";
+                    box.Foreground = HexConvert("#FF000000");
+                }
+                
+            }
+            else // Code to run when the user clicks out of the box.
+            {
+                // Returns to default text is nothing has been inputted
+                if (string.IsNullOrWhiteSpace(box.Text) || box.Text == defaultText) 
+                {
+                    box.Text = defaultText;
+                    box.Foreground = HexConvert("#FFA7A7A7");
+                }
+            }
 
         }
     }

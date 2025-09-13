@@ -15,20 +15,13 @@
     <None Remove="Images\Icons\NoterLogo %2816x16%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
     <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2850x50%29.png" />
     <None Remove="Images\Icons\NoterLogo %28Full Size%29.png" />
+    <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoter Login BG.png" />
-    <None Remove="Images\UI Icons\Account.png" />
     <None Remove="Images\UI Icons\Account.svg" />
-    <None Remove="Images\UI Icons\Database.png" />
     <None Remove="Images\UI Icons\Database.svg" />
-    <None Remove="Images\UI Icons\DatabaseIcon.png" />
-    <None Remove="Images\UI Icons\List.png" />
     <None Remove="Images\UI Icons\List.svg" />
-    <None Remove="Images\UI Icons\ListIcon.png" />
-    <None Remove="Images\UI Icons\Settings.png" />
     <None Remove="Images\UI Icons\Settings.svg" />
-    <None Remove="Images\UI Icons\SettingsIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,46 +50,22 @@
     <Resource Include="Images\Icons\NoterLogo (32x32).ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Icons\NoterLogo (50x50).png">
+    <Resource Include="Images\Icons\NoterLogo.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\UI Icons\Account.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\AccountIcon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\Database.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI Icons\Database.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\DatabaseIcon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\List.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\UI Icons\List.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\ListIcon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\Settings.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\UI Icons\Settings.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\SettingsIcon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
