@@ -9,6 +9,9 @@ namespace TeamNoter
 {
     public class DataStorage
     {
+        // This class is placeholder data for NoterMain's Task List display
+        // pls delete this later when we've got the database up and workin'
+        // ~ Nautia
         public class Item
         {
             public DateTime Deadline { get; set; }
