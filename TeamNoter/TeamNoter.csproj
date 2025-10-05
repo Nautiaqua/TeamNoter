@@ -15,10 +15,16 @@
     <None Remove="Images\Icons\NoterIcon.ico" />
     <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoter Login BG.png" />
-    <None Remove="Images\UI Icons\Account.svg" />
-    <None Remove="Images\UI Icons\Database.svg" />
-    <None Remove="Images\UI Icons\List.svg" />
-    <None Remove="Images\UI Icons\Settings.svg" />
+    <None Remove="Images\UI_Icons\Close_MD.svg" />
+    <None Remove="Images\UI_Icons\Data.svg" />
+    <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
+    <None Remove="Images\UI_Icons\List_Remove.svg" />
+    <None Remove="Images\UI_Icons\List_Unordered.svg" />
+    <None Remove="Images\UI_Icons\Log_Out.svg" />
+    <None Remove="Images\UI_Icons\Log_Out_RED.svg" />
+    <None Remove="Images\UI_Icons\Settings.svg" />
+    <None Remove="Images\UI_Icons\Users_Group.svg" />
+    <None Remove="Images\UI_Icons\User_01.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,16 +47,34 @@
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account.svg">
+    <Resource Include="Images\UI_Icons\Close_MD.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Database.svg">
+    <Resource Include="Images\UI_Icons\Data.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\List.svg">
+    <Resource Include="Images\UI_Icons\Hamburger_MD.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Settings.svg">
+    <Resource Include="Images\UI_Icons\List_Remove.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\List_Unordered.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Log_Out.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Log_Out_RED.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Settings.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Users_Group.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\User_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
