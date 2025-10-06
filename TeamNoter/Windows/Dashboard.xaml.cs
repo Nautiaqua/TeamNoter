@@ -31,7 +31,6 @@ namespace TeamNoter
             contentPane.Content = new tasksContent(); 
         }
 
-
         private void expandBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!sidebarExpanded) // Sidebar ISN'T expanded
@@ -76,6 +75,26 @@ namespace TeamNoter
                 logoutLabel.Visibility = Visibility.Hidden;
                 logoutBtn.Width = collapsedSize;
             }
+        }
+
+        private void accBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contentPane.Content = new profileContent();
+        }
+
+        private void dbBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contentPane.Content = new databaseContent();
+        }
+
+        private void manageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contentPane.Content = new manageContent();
+        }
+
+        private void taskBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contentPane.Content = new tasksContent();
         }
     }
 }

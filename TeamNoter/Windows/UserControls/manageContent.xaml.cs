@@ -18,9 +18,9 @@ namespace TeamNoter.Windows.UserControls
     /// <summary>
     /// Interaction logic for ContentTemplate.xaml
     /// </summary>
-    public partial class ContentTemplate : UserControl
+    public partial class manageContent : UserControl
     {
-        public ContentTemplate()
+        public manageContent()
         {
             InitializeComponent();
         }
