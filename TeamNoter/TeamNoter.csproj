@@ -12,33 +12,22 @@
   <ItemGroup>
     <None Remove="Fonts\Leixo.ttf" />
     <None Remove="Fonts\Oughter.otf" />
-    <None Remove="Images\Icons\NoterLogo %2816x16%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2824x24%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2832x32%29.ico" />
-    <None Remove="Images\Icons\NoterLogo %2850x50%29.png" />
-    <None Remove="Images\Icons\NoterLogo %28Full Size%29.png" />
+    <None Remove="Images\Icons\NoterIcon.ico" />
+    <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoter Login BG.png" />
-    <None Remove="Images\UI Icons\Account.png" />
-    <None Remove="Images\UI Icons\Account.svg" />
-    <None Remove="Images\UI Icons\Database.png" />
-    <None Remove="Images\UI Icons\Database.svg" />
-    <None Remove="Images\UI Icons\DatabaseIcon.png" />
-    <None Remove="Images\UI Icons\List.png" />
-    <None Remove="Images\UI Icons\List.svg" />
-    <None Remove="Images\UI Icons\ListIcon.png" />
-    <None Remove="Images\UI Icons\Settings.png" />
-    <None Remove="Images\UI Icons\Settings.svg" />
-    <None Remove="Images\UI Icons\SettingsIcon.png" />
+    <None Remove="Images\UI_Icons\Close_MD.svg" />
+    <None Remove="Images\UI_Icons\Data.svg" />
+    <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
+    <None Remove="Images\UI_Icons\List_Remove.svg" />
+    <None Remove="Images\UI_Icons\List_Unordered.svg" />
+    <None Remove="Images\UI_Icons\Log_Out.svg" />
+    <None Remove="Images\UI_Icons\Settings.svg" />
+    <None Remove="Images\UI_Icons\Users_Group.svg" />
+    <None Remove="Images\UI_Icons\User_01.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SharpVectors" Version="1.8.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\Icons\NoterLogo (Full Size).png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -48,57 +37,57 @@
     <Resource Include="Fonts\Oughter.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Icons\NoterLogo (16x16).ico">
+    <Resource Include="Images\Icons\NoterIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Icons\NoterLogo (24x24).ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (32x32).ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Icons\NoterLogo (50x50).png">
+    <Resource Include="Images\Icons\NoterLogo.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TeamNoter Login BG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account.png">
+    <Resource Include="Images\UI_Icons\Close_MD.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Account.svg">
+    <Resource Include="Images\UI_Icons\Data.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\AccountIcon.png">
+    <Resource Include="Images\UI_Icons\Hamburger_MD.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Database.png">
+    <Resource Include="Images\UI_Icons\List_Remove.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Database.svg">
+    <Resource Include="Images\UI_Icons\List_Unordered.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\DatabaseIcon.png">
+    <Resource Include="Images\UI_Icons\Log_Out.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\List.png">
+    <Resource Include="Images\UI_Icons\Settings.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\List.svg">
+    <Resource Include="Images\UI_Icons\Users_Group.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\ListIcon.png">
+    <Resource Include="Images\UI_Icons\User_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\UI Icons\Settings.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\Settings.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\UI Icons\SettingsIcon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Windows\UserControls\manageContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\tasksContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\databaseContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\profileContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>
