@@ -15,36 +15,38 @@
         </Grid.ColumnDefinitions>
         <Border x:Name="sidebarBorder" BorderBrush="Black" Background="White">
             <StackPanel x:Name="sidebarStack" Margin="0,0,-1,0">
-                <Button x:Name="expandBtn" Style="{StaticResource expandBtn}" Click="expandBtn_Click" HorizontalAlignment="Left" Width="40" Height="40" Margin="5,3,5,0" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0">
-                    <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Hamburger_MD.svg}" Stretch="Uniform" HorizontalAlignment="Left" Width="20" Height="18"/>
+                <Button x:Name="expandBtn" Style="{StaticResource sideBtn}" Click="expandBtn_Click" HorizontalAlignment="Left" Width="40" Height="40" Margin="5,3,5,0" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0">
+                    <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Hamburger_MD.svg}" Stretch="Uniform" HorizontalAlignment="Left" Width="20" Height="18" Margin="9,0,0,0"/>
                 </Button>
-                <Button x:Name="accBtn" Style="{StaticResource dashboardButton}" Width="45" Height="45" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0" Margin="2,20,0,0" HorizontalAlignment="Left">
-                    <StackPanel x:Name="accBtnStack" Width="40" Height="40">
-                        <Image x:Name="accLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_01.svg}" Stretch="Uniform" Width="15" Height="20" Margin="0,5,0,0"/>
-                        <Label x:Name="btnLabel" Content="Account" FontSize="9" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </StackPanel>
+                <Button x:Name="accBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" Margin="5,10,5,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
+                    <DockPanel x:Name="accDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="accLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_01.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Label x:Name="accLabel" Content="My Profile" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
+                    </DockPanel>
                 </Button>
-                <Button x:Name="databaseBtn" Style="{StaticResource dashboardButton}" Width="45" Height="45" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0" Margin="2,3,0,0" HorizontalAlignment="Left">
-                    <StackPanel x:Name="databaseBtnStack" Width="40" Height="40">
-                        <Image x:Name="accLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Data.svg}" Stretch="Uniform" Width="15" Height="20" Margin="0,5,0,0"/>
-                        <Label x:Name="btnLabel1" Content="Database" FontSize="9" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </StackPanel>
+                <Button x:Name="dbBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
+                    <DockPanel x:Name="dbDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="dbLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Data.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Label x:Name="dbLabel" Content="Database Information" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
+                    </DockPanel>
                 </Button>
-                <Button x:Name="usermanagementBtn" Style="{StaticResource dashboardButton}" Width="45" Height="45" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,3,0,0">
-                    <StackPanel x:Name="usmanBtnStack" Width="40" Height="40">
-                        <Image x:Name="usmanLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Users_Group.svg}" Stretch="Uniform" Width="21" Height="18"/>
-                        <Label x:Name="btnLabel2" Content="Manage" FontSize="9" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <Label x:Name="btnLabel2_Copy" Content="Users" FontSize="9" Padding="0,0,0,5" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,10"/>
-                    </StackPanel>
+                <Button x:Name="manageBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
+                    <DockPanel x:Name="manageDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="manageLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Users_Group.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Label x:Name="manageLabel" Content="User Management" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
+                    </DockPanel>
                 </Button>
-                <Button x:Name="tasksBtn" Style="{StaticResource dashboardButton}" Width="45" Height="45" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" Margin="2,3,0,20">
-                    <StackPanel x:Name="tasksBtnStack" Width="40" Height="40">
-                        <Image x:Name="accLogo3" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/List_Unordered.svg}" Stretch="Uniform" Width="21" Height="20" Margin="0,5,0,0"/>
-                        <Label x:Name="btnLabel3" Content="Tasks" FontSize="9" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </StackPanel>
+                <Button x:Name="taskBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
+                    <DockPanel x:Name="taskDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/List_Unordered.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Label x:Name="taskLabel" Content="Tasks" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
+                    </DockPanel>
                 </Button>
-                <Button x:Name="logoutBtn" Style="{StaticResource expandBtn}" Click="expandBtn_Click" Width="40" Height="40" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0" Margin="5,0,6,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                    <Image x:Name="noterLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Log_Out.svg}" Stretch="Uniform" HorizontalAlignment="Left" Width="20" Height="18"/>
+                <Button x:Name="logoutBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
+                    <DockPanel x:Name="logoutDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="logoutLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Log_Out.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Label x:Name="logoutLabel" Content="Log Out" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
+                    </DockPanel>
                 </Button>
             </StackPanel>
         </Border>
