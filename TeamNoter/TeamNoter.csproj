@@ -75,4 +75,19 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Windows\UserControls\manageContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\tasksContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\databaseContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\UserControls\profileContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

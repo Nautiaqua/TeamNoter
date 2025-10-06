@@ -50,8 +50,8 @@
                 </Button>
             </StackPanel>
         </Border>
-        <Border x:Name="contentBorder" BorderBrush="Black" Grid.Column="1" Background="#FFECECEC" Margin="0,0,0,3">
-            <ContentControl Content="ContentControl"/>
+        <Border x:Name="contentBorder" BorderBrush="Black" Grid.Column="1" Background="#FFECECEC">
+            <ContentControl x:Name="contentPane" Content="ContentControl"/>
         </Border>
     </Grid>
 </Window>

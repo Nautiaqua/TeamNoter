@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeamNoter.Windows.UserControls;
 
 namespace TeamNoter
 {
@@ -25,11 +26,17 @@ namespace TeamNoter
         public Dashboard()
         {
             InitializeComponent();
+
+            // Sets the content pane (THE RIGHT ONE) to tasks, which should be the default.
+            contentPane.Content = new tasksContent(); 
         }
+
+
         private void expandBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!sidebarExpanded) // Sidebar ISN'T expanded
             {
+                // Expands the buttons and reveals their respective titles.
                 mainGrid.ColumnDefinitions[0].Width = new GridLength(200);
                 sidebarExpanded = true;
 
@@ -50,6 +57,7 @@ namespace TeamNoter
             }
             else // Sidebar IS expanded
             {
+                // Hides the buttons and their respective titles.
                 mainGrid.ColumnDefinitions[0].Width = new GridLength(50);
                 sidebarExpanded = false;
 
