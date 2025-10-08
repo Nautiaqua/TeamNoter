@@ -7,7 +7,7 @@
         xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="Dashboard" Height="810" Width="1440" WindowStartupLocation="CenterScreen" MinWidth="1440" MinHeight="810">
+        Title="Dashboard" Height="810" Width="1440" WindowStartupLocation="CenterScreen" MinWidth="960" MinHeight="540" WindowState="Maximized">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="50"/>
@@ -44,7 +44,7 @@
                 </Button>
                 <Button x:Name="logoutBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch">
                     <DockPanel x:Name="logoutDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Image x:Name="logoutLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Log_Out.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
+                        <Image x:Name="logoutLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Log_Out.svg}" Stretch="Uniform" Width="20" Height="18" Margin="7,0,0,0"/>
                         <Label x:Name="logoutLabel" Content="Log Out" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
                     </DockPanel>
                 </Button>

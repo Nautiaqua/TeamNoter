@@ -6,10 +6,13 @@
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="mainGrid">
-        <Border x:Name="background" Background="#FFECECEC">
-            <Label x:Name="titleLabel" Content="Profile" FontSize="20" Padding="0,0,0,0" Margin="25,20,0,392" HorizontalAlignment="Left"/>
-        </Border>
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
+        <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Border x:Name="background" Background="#FFECECEC"/>
+            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label x:Name="titleLabel" Content="Template" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0"/>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
