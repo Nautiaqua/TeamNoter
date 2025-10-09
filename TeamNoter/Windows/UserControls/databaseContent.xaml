@@ -10,7 +10,7 @@
         <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Border x:Name="background" Background="#FFECECEC"/>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="titleLabel" Content="Database Information" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0"/>
+                <Label x:Name="titleLabel" Content="Database Information" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold"/>
                 <Label x:Name="databaseName" Content="Database Name" Margin="25,20,0,0" Padding="3,0,0,3" FontSize="16"/>
                 <TextBox x:Name="databaseName_Box" TextWrapping="Wrap" Text="Database Name" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="300" Height="30" HorizontalAlignment="Left" Margin="25,0,0,0" IsReadOnly="True"/>
                 <Label x:Name="databaseURILabel" Content="Database URI" Padding="3,0,0,3" Margin="25,10,0,0" FontSize="16"/>

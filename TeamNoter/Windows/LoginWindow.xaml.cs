@@ -24,6 +24,16 @@ namespace TeamNoter
 
         }
 
+        public void debugCheck()
+        {
+            if (databaseURI_Box.Text == "debugmode" && emailBox.Text == "debugmode@gmail.com" && passwordBox.Text == "beholdTESTMODE123")
+            {
+                Dashboard dashboard = new Dashboard(this);
+                dashboard.Show();
+                this.Hide();
+            }
+        }
+
         public void ProceedUnlock()
         {
             if (!Initializing)
@@ -68,6 +78,11 @@ namespace TeamNoter
         private void generalTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ProceedUnlock();
+        }
+
+        private void proceedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            debugCheck();
         }
     }
 }

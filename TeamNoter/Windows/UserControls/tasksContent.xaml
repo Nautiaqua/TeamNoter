@@ -6,10 +6,33 @@
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="mainGrid">
-        <Border x:Name="background" Background="#FFECECEC">
-            <Label x:Name="titleLabel" Content="Tasks" FontSize="20" Padding="0,0,0,0" Margin="25,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </Border>
-
-    </Grid>
+    <UserControl.Resources>
+        
+        <!--THIS IS THE TEMPLATE FOR HOW EACH ITEM WILL LOOK. DON'T TOUCH THIS WITHOUT TELLING ME. PLEASE.-->
+        <DataTemplate x:Key="TaskItem">
+            <Border Background="DarkGray" HorizontalAlignment="Stretch" Width="400">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Deadline}" FontSize="10"/>
+                        <TextBlock Text="{Binding Title}" FontSize="14"/>
+                        <TextBlock Text="{Binding Details}" FontSize="12"/>
+                        <TextBlock Text="{Binding Users}" FontSize="12"/>
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding IsCompleted}" Margin="250,0,10,0"/>
+                </StackPanel>
+            </Border>
+            
+        </DataTemplate>
+        
+    </UserControl.Resources>
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
+        <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Border x:Name="background" Background="#FFECECEC"/>
+            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label x:Name="mainLabel" Content="Tasks" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold"/>
+                <ListBox ItemTemplate="{DynamicResource TaskItem}" Height="234" ItemsSource="{Binding tasks}" Width="760"/>
+                
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

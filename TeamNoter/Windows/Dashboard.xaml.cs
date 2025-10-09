@@ -23,12 +23,19 @@ namespace TeamNoter
         bool sidebarExpanded;
         int expandedSize = 190;
         int collapsedSize = 40;
-        public Dashboard()
+
+        MainWindow Origin;
+        public Dashboard(MainWindow LoginWindow)
         {
             InitializeComponent();
 
-            // Sets the content pane (THE RIGHT ONE) to tasks, which should be the default.
-            contentPane.Content = new tasksContent(); 
+            // Let's us track the original instance of the app this dashboard came from.
+            this.Origin = LoginWindow;
+
+            // Sets the content pane (THE RIGHT SIDE) to tasks, which should be the default.
+            contentPane.Content = new tasksContent();
+
+            this.DataContext = new DataStorage();
         }
 
         private void expandBtn_Click(object sender, RoutedEventArgs e)
@@ -95,6 +102,11 @@ namespace TeamNoter
         private void taskBtn_Click(object sender, RoutedEventArgs e)
         {
             contentPane.Content = new tasksContent();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Origin.Close();
         }
     }
 }
