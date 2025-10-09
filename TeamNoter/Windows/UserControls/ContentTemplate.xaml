@@ -10,7 +10,7 @@
         <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Border x:Name="background" Background="#FFECECEC"/>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="titleLabel" Content="Template" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0"/>
+                <Label x:Name="mainLabel" Content="Template" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0"/>
             </StackPanel>
 
         </Grid>

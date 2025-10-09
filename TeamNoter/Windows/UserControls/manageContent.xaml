@@ -6,10 +6,24 @@
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="mainGrid">
-        <Border x:Name="background" Background="#FFECECEC">
-            <Label x:Name="titleLabel" Content="User Management" FontSize="20" Padding="0,0,0,0" Margin="25,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165"/>
-        </Border>
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
+        <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Border x:Name="background" Background="#FFECECEC"/>
+            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label x:Name="mainLabel" Content="User Management" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0"/>
+                <DataGrid Height="100" ItemsSource="{x:Null}" AutoGenerateColumns="False" Width="596" Margin="25,20,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="User ID" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Username" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Email" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Account Creation Date" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Tasks Completed" Binding="{Binding Name}" Width="100" />
+                        <DataGridTextColumn Header="Tasks Assigned" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Account Type" Binding="{Binding Name}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
