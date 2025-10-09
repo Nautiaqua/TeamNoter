@@ -29,7 +29,7 @@ namespace TeamNoter
                 if (box.Text == defaultText) // Prevents accidental clear of user inputs
                 {
                     box.Text = "";
-                    box.Foreground = HexConvert("#FF000000");
+                    box.Foreground = HexConvert("#FFFFFFFF");
                 }
                 
             }
@@ -39,7 +39,7 @@ namespace TeamNoter
                 if (string.IsNullOrWhiteSpace(box.Text) || box.Text == defaultText) 
                 {
                     box.Text = defaultText;
-                    box.Foreground = HexConvert("#FFA7A7A7");
+                    box.Foreground = HexConvert("#FF777777");
                 }
             }
 

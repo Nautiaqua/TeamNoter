@@ -22,7 +22,7 @@ namespace TeamNoter
     {
         bool sidebarExpanded;
         int expandedSize = 190;
-        int collapsedSize = 40;
+        int collapsedSize = 60;
 
         MainWindow Origin;
         public Dashboard(MainWindow LoginWindow)

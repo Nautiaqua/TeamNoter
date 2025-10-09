@@ -14,7 +14,7 @@
     <None Remove="Fonts\Oughter.otf" />
     <None Remove="Images\Icons\NoterIcon.ico" />
     <None Remove="Images\Icons\NoterLogo.svg" />
-    <None Remove="Images\TeamNoter Login BG.png" />
+    <None Remove="Images\TeamNoterDarkBG.png" />
     <None Remove="Images\UI_Icons\Close_MD.svg" />
     <None Remove="Images\UI_Icons\Data.svg" />
     <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
@@ -24,6 +24,7 @@
     <None Remove="Images\UI_Icons\Settings.svg" />
     <None Remove="Images\UI_Icons\Users_Group.svg" />
     <None Remove="Images\UI_Icons\User_01.svg" />
+    <None Remove="Windows\TeamNoterDarkBG.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +44,7 @@
     <Resource Include="Images\Icons\NoterLogo.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\TeamNoter Login BG.png">
+    <Resource Include="Images\TeamNoterDarkBG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Close_MD.svg">
@@ -73,6 +74,7 @@
     <Resource Include="Images\UI_Icons\User_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Windows\TeamNoterDarkBG.png" />
   </ItemGroup>
 
   <ItemGroup>

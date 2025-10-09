@@ -10,15 +10,15 @@
         Title="Dashboard" Height="810" Width="1440" WindowStartupLocation="CenterScreen" MinWidth="960" MinHeight="540" WindowState="Maximized" Closed="Window_Closed">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="50"/>
+            <ColumnDefinition Width="Auto" MinWidth="60"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border x:Name="sidebarBorder" BorderBrush="Black" Background="White">
             <StackPanel x:Name="sidebarStack" Margin="0,0,-1,0">
-                <Button x:Name="expandBtn" Style="{StaticResource sideBtn}" Click="expandBtn_Click" HorizontalAlignment="Left" Width="40" Height="40" Margin="5,3,5,0" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0">
+                <Button x:Name="expandBtn" Style="{StaticResource sideBtn}" Click="expandBtn_Click" Width="40" Height="40" Margin="5,10,6,0" BorderBrush="White" Background="{x:Null}" BorderThickness="0,0,0,0">
                     <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Hamburger_MD.svg}" Stretch="Uniform" HorizontalAlignment="Left" Width="20" Height="18" Margin="9,0,0,0"/>
                 </Button>
-                <Button x:Name="accBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" Margin="5,10,5,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Click="accBtn_Click">
+                <Button x:Name="accBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="White" Background="White" BorderThickness="0,0,0,0" Margin="5,10,5,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Click="accBtn_Click">
                     <DockPanel x:Name="accDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <Image x:Name="accLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_01.svg}" Stretch="Uniform" Width="20" Height="18" Margin="9,0,0,0"/>
                         <Label x:Name="accLabel" Content="My Profile" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden"/>
