@@ -4,7 +4,9 @@
              xmlns:local="clr-namespace:TeamNoter"
              StartupUri="Windows/LoginWindow.xaml">
     <Application.Resources>
+
         
+
         <!--Sets the custom fonts-->
         <Style x:Key="Oughter">
             <Setter Property="TextElement.FontFamily"
@@ -38,10 +40,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="LightGray"/>
+                                <Setter TargetName="border" Property="Background" Value="#383837"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="DarkGray"/>
+                                <Setter TargetName="border" Property="Background" Value="#30302f"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
@@ -52,27 +54,5 @@
             </Setter>
         </Style>
 
-
-        <Style x:Key="panelless" TargetType="TabControl">
-            <Setter Property="Template">
-                <Setter.Value>
-                    
-                    <!--kinda just removes the tab panel / the top control buttons thingy-->
-                    <ControlTemplate TargetType="TabControl">
-                        <Border x:Name="ContentPanel"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Padding="{TemplateBinding Padding}"
-                            Margin="0,2,0,0">
-                            <ContentPresenter/>
-                        </Border>    
-                        
-
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
     </Application.Resources>
 </Application>

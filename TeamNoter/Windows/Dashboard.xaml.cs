@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SharpVectors.Converters;
+using SharpVectors.Renderers.Utils;
+using SharpVectors.Renderers.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +24,14 @@ namespace TeamNoter
     public partial class Dashboard : Window
     {
         bool sidebarExpanded;
-        int expandedSize = 190;
-        int collapsedSize = 60;
+
+        // Sizing for the sidebar itself
+        static int expandedSidebarSize = 190;
+        static int collapsedSidebarSize = 50;
+
+        // Sizing for the sidebar buttons
+        static int expandedSize = expandedSidebarSize - 10;
+        static int collapsedSize = collapsedSidebarSize - 10;
 
         MainWindow Origin;
         public Dashboard(MainWindow LoginWindow)
@@ -34,8 +43,28 @@ namespace TeamNoter
 
             // Sets the content pane (THE RIGHT SIDE) to tasks, which should be the default.
             contentPane.Content = new tasksContent();
+            taskBtn.Background = Utility.HexConvert("#FF403F3D");
+
 
             this.DataContext = new DataStorage();
+        }
+
+        
+
+        private void selectedHighlight(object sender)
+        {
+            Button[] sidebarButtons = new Button[] { accBtn, dbBtn, manageBtn, taskBtn, logoutBtn };
+
+            if (sender is Button target)
+            {
+                foreach (Button button in sidebarButtons)
+                {
+                    if (button == target)
+                        button.Background = Utility.HexConvert("#FF403F3D");
+                    else
+                        button.Background = sidebarDock.Background;
+                }
+            }
         }
 
         private void expandBtn_Click(object sender, RoutedEventArgs e)
@@ -43,7 +72,7 @@ namespace TeamNoter
             if (!sidebarExpanded) // Sidebar ISN'T expanded
             {
                 // Expands the buttons and reveals their respective titles.
-                mainGrid.ColumnDefinitions[0].Width = new GridLength(200);
+                mainGrid.ColumnDefinitions[0].Width = new GridLength(expandedSidebarSize);
                 sidebarExpanded = true;
 
                 accLabel.Visibility = Visibility.Visible;
@@ -64,7 +93,7 @@ namespace TeamNoter
             else // Sidebar IS expanded
             {
                 // Hides the buttons and their respective titles.
-                mainGrid.ColumnDefinitions[0].Width = new GridLength(50);
+                mainGrid.ColumnDefinitions[0].Width = new GridLength(collapsedSidebarSize);
                 sidebarExpanded = false;
 
                 accLabel.Visibility = Visibility.Hidden;
@@ -87,21 +116,27 @@ namespace TeamNoter
         private void accBtn_Click(object sender, RoutedEventArgs e)
         {
             contentPane.Content = new profileContent();
+            selectedHighlight(sender);
         }
 
         private void dbBtn_Click(object sender, RoutedEventArgs e)
         {
             contentPane.Content = new databaseContent();
+            selectedHighlight(sender);
+
         }
 
         private void manageBtn_Click(object sender, RoutedEventArgs e)
         {
             contentPane.Content = new manageContent();
+            selectedHighlight(sender);
+
         }
 
         private void taskBtn_Click(object sender, RoutedEventArgs e)
         {
             contentPane.Content = new tasksContent();
+            selectedHighlight(sender);
         }
 
         private void Window_Closed(object sender, EventArgs e)

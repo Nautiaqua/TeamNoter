@@ -84,5 +84,12 @@ namespace TeamNoter
         {
             debugCheck();
         }
+
+        private void guideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Dashboard dashboard = new Dashboard(this);
+            dashboard.Show();
+            this.Hide();
+        }
     }
 }

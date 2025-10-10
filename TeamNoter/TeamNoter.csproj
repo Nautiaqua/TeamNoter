@@ -24,7 +24,6 @@
     <None Remove="Images\UI_Icons\Settings.svg" />
     <None Remove="Images\UI_Icons\Users_Group.svg" />
     <None Remove="Images\UI_Icons\User_01.svg" />
-    <None Remove="Windows\TeamNoterDarkBG.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,7 +73,6 @@
     <Resource Include="Images\UI_Icons\User_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Windows\TeamNoterDarkBG.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -46,7 +46,7 @@
                         <Button x:Name="proceedBtn" Content="Proceed" Width="350" Height="29" Background="#FFCD9B53" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" IsEnabled="False" Click="proceedBtn_Click" FontWeight="Bold"/>
                         <Label x:Name="dividerLabel" Content="—————————————— OR ——————————————" FontSize="11" Padding="5,8,5,5" HorizontalAlignment="Center" Foreground="#FF777777" Margin="0,5,0,0" FontStyle="Italic"/>
                         <Label x:Name="createLabel" Content="If not, click this button to get started:" Padding="0,8,5,5" Margin="6,5,0,0" HorizontalAlignment="Left" Foreground="White"/>
-                        <Button x:Name="guideBtn" Content="View Guide" Width="350" Height="29" Background="#FFCD9B53" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <Button x:Name="guideBtn" Content="View Guide" Width="350" Height="29" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Click="guideBtn_Click"/>
 
                     </StackPanel>
                 </Grid>
