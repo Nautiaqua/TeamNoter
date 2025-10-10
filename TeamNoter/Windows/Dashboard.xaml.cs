@@ -27,7 +27,7 @@ namespace TeamNoter
         bool sidebarExpanded;
 
         // Sizing for the sidebar itself
-        static int expandedSidebarSize = 190;
+        static int expandedSidebarSize = 210;
         static int collapsedSidebarSize = 50;
 
         // Sizing for the sidebar buttons
