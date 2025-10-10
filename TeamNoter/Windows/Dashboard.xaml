@@ -51,7 +51,7 @@
             </Button>
         </DockPanel>
         <Border x:Name="contentBorder" BorderBrush="Black" Grid.Column="1" Background="#FF333131">
-            <ContentControl x:Name="contentPane" Content="ContentControl"/>
+            <ContentControl x:Name="contentPane" Content="" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         </Border>
     </Grid>
 </Window>

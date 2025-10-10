@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer Style="{DynamicResource DarkScroll}" x:Name="mainScroller" HorizontalContentAlignment="Stretch">
         <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border x:Name="background" Background="#FFECECEC"/>
+            <Border x:Name="background" Background="#FF333131"/>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Label x:Name="titleLabel" Content="Database Information" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold"/>
                 <Label x:Name="databaseName" Content="Database Name" Margin="25,20,0,0" Padding="3,0,0,3" FontSize="16"/>
