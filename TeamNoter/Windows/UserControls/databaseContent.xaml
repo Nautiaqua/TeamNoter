@@ -7,26 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border x:Name="background" Background="#FF333131"/>
+        <Grid x:Name="mainGrid" Background="#FF333131">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="titleLabel" Content="Database Information" FontSize="24" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold" Background="{x:Null}" Foreground="White"/>
-                <Label x:Name="databaseName" Content="Database Name" Margin="25,20,0,0" Padding="3,0,0,3" FontSize="16"/>
-                <TextBox x:Name="databaseName_Box" TextWrapping="Wrap" Text="Database Name" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="300" Height="30" HorizontalAlignment="Left" Margin="25,0,0,0" IsReadOnly="True"/>
-                <Label x:Name="databaseURILabel" Content="Database URI" Padding="3,0,0,3" Margin="25,10,0,0" FontSize="16"/>
-                <TextBox x:Name="databaseURI_Box" TextWrapping="Wrap" Text="Database URI" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="300" Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0" IsReadOnly="True"/>
-                <Label x:Name="tasksLabel" Content="Task Counts" Padding="3,0,0,3" FontSize="16" Margin="25,11,0,0"/>
-                <StackPanel x:Name="vertBox1" Orientation="Horizontal">
-                    <Label Content="Active Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,2,0,0" FontSize="13" HorizontalContentAlignment="Right"/>
-                    <TextBox x:Name="activeTaskBox" TextWrapping="Wrap" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="80" Height="30" VerticalContentAlignment="Center" IsReadOnly="True" Margin="5,0,0,0"/>
+                <Label x:Name="titleLabel" Content="Database Information" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+                <StackPanel x:Name="detailsStack" Margin="20,10,0,0">
+                    <Label x:Name="usernameLabel" Content="Schema Name" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                    <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True"/>
+                    <Label x:Name="emailLabel" Content="Current URI" Padding="3,0,10,3" FontSize="14" Foreground="White" Margin="0,10,0,0"/>
+                    <TextBox x:Name="databaseURI_Box_Copy" TextWrapping="Wrap" Text="N/A"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True"/>
                 </StackPanel>
-                <StackPanel x:Name="vertBox2" Orientation="Horizontal" Margin="0,5,0,0">
-                    <Label Content="Completed Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,2,0,0" FontSize="13"/>
-                    <TextBox x:Name="completeTaskBox" TextWrapping="Wrap" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="80" Height="30" VerticalContentAlignment="Center" IsReadOnly="True" Margin="5,0,0,0"/>
-                </StackPanel>
-                <StackPanel x:Name="vertBox3" Orientation="Horizontal" Margin="0,5,0,0">
-                    <Label Content="Total Tasks" VerticalAlignment="Top" Margin="61,2,0,0" FontSize="13"/>
-                    <TextBox x:Name="totalTaskBox" TextWrapping="Wrap" Padding="10,0,0,0" Foreground="Black" BorderBrush="#FFA7A7A7" Width="80" Height="30" VerticalContentAlignment="Center" IsReadOnly="True" Margin="5,0,0,0"/>
+                <StackPanel x:Name="actionStack" Margin="20,10,0,0">
+                    <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                    <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
+                        <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
+                        <Button x:Name="changeBtn" Content="Recover Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
 

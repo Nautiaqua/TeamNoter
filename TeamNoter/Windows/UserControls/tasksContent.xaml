@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1920" Height="1080">
     <UserControl.Resources>
-        
+
         <!--THIS IS THE TEMPLATE FOR HOW EACH ITEM WILL LOOK. DON'T TOUCH THIS WITHOUT TELLING ME. PLEASE.-->
         <DataTemplate x:Key="TaskItem">
             <Border Background="DarkGray" HorizontalAlignment="Stretch" Width="400">
@@ -21,17 +21,19 @@
                     <CheckBox IsChecked="{Binding IsCompleted}" Margin="250,0,10,0"/>
                 </StackPanel>
             </Border>
-            
+
         </DataTemplate>
-        
+
     </UserControl.Resources>
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
         <Grid x:Name="mainGrid">
             <Border x:Name="background" Background="#FF333131"/>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Label x:Name="mainLabel" Content="Tasks" FontSize="24" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold" Foreground="White"/>
-                <ListBox ItemTemplate="{DynamicResource TaskItem}" Height="234" ItemsSource="{Binding tasks}" Width="760"/>
-                
+                <ListBox Height="234" Width="760">
+                    <PasswordBox Width="120"/>
+                </ListBox>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>
