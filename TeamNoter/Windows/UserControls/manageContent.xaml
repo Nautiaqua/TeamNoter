@@ -22,6 +22,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+            <DataGrid HorizontalAlignment="Left" Height="285" Margin="21,123,0,0" VerticalAlignment="Top" Width="526" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged"/>
 
         </Grid>
     </ScrollViewer>

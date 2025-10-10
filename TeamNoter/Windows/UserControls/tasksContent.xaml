@@ -10,29 +10,35 @@
 
         <!--THIS IS THE TEMPLATE FOR HOW EACH ITEM WILL LOOK. DON'T TOUCH THIS WITHOUT TELLING ME. PLEASE.-->
         <DataTemplate x:Key="TaskItem">
-            <Border Background="DarkGray" HorizontalAlignment="Stretch" Width="400">
+            <Border Background="#FFF7BB64" HorizontalAlignment="Left" Margin="0,0,0,0" Width="400" CornerRadius="7">
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Deadline}" FontSize="10"/>
-                        <TextBlock Text="{Binding Title}" FontSize="14"/>
-                        <TextBlock Text="{Binding Details}" FontSize="12"/>
-                        <TextBlock Text="{Binding Users}" FontSize="12"/>
+                    <StackPanel Margin="5,0,10,0">
+                        <TextBlock Text="{Binding Deadline}" FontSize="12" Margin="0,0,0,1"/>
+                        <TextBlock Text="{Binding Title}" FontSize="16" FontWeight="Bold" Margin="0,0,0,1"/>
+                        <TextBlock Text="{Binding Details}" FontSize="12" Margin="0,0,0,1"/>
+                        <TextBlock Text="{Binding Users}" FontSize="10" Margin="0,0,0,1"/>
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding IsCompleted}" Margin="250,0,10,0"/>
+                    <CheckBox IsChecked="{Binding IsCompleted}" Margin="300,0,10,0"/>
                 </StackPanel>
             </Border>
 
         </DataTemplate>
 
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+
     </UserControl.Resources>
-    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450">
-        <Grid x:Name="mainGrid" Background="#FF333131">
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" >
+        <Grid x:Name="mainGrid" Background="#FF333131" Height="468">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
-                <ListBox ItemTemplate="{DynamicResource TaskItem}" Height="234" ItemsSource="{Binding tasks}" Width="760"/>
+            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="5,15,0,5" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+                <ListBox ItemTemplate="{DynamicResource TaskItem}" Height="411" Background="#FF333131" d:ItemsSource="{d:SampleData ItemCount=3}" Width="760"/>
+                
             </StackPanel>
 
         </Grid>
