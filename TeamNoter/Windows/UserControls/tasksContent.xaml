@@ -26,15 +26,17 @@
 
     </UserControl.Resources>
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid">
-            <Border x:Name="background" Background="#FF333131"/>
-            <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="mainLabel" Content="Tasks" FontSize="24" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold" Foreground="White"/>
-                <ListBox Height="234" Width="760">
-                    <PasswordBox Width="120"/>
-                </ListBox>
+        <ScrollViewer x:Name="mainScroller_Copy" HorizontalContentAlignment="Stretch" Height="450" Width="800">
+            <Grid x:Name="mainGrid" Background="#FF333131">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+                    <ListBox ItemTemplate="{DynamicResource TaskItem}" Height="234" ItemsSource="{Binding tasks}" Width="760"/>
+                </StackPanel>
 
-            </StackPanel>
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </ScrollViewer>
 </UserControl>

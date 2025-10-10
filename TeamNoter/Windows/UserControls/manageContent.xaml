@@ -8,27 +8,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border x:Name="background" Background="#FF333131"/>
+        <Grid x:Name="mainGrid" Background="#FF333131">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="mainLabel" Content="User Management" FontSize="24" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold" Foreground="White"/>
-                <DataGrid Height="311" ItemsSource="{x:Null}" AutoGenerateColumns="False" Width="733" Margin="25,20,0,0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="User ID" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Username" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Email" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Account Creation Date" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Tasks Completed" Binding="{Binding Name}" Width="100" />
-                        <DataGridTextColumn Header="Tasks Assigned" Binding="{Binding Name}" />
-                        <DataGridTextColumn Header="Account Type" Binding="{Binding Name}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-                <StackPanel x:Name="actionStack" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button x:Name="removeBtn" Content="Remove User" Background="#FFFBC753" BorderThickness="0,0,0,0" Foreground="Black" Height="25" Width="145" Margin="0,10,20,0"/>
-                    <Button x:Name="addBtn" Content="Add User" Background="#FFFBC753" BorderThickness="0,0,0,0" Foreground="Black" Height="25" Width="145" Margin="0,10,1,0"/>
+                <Label x:Name="titleLabel" Content="Manage Users" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+                <StackPanel x:Name="actionStack" Margin="20,10,0,0">
+                    <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                    <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
+                        <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
+                        <Button x:Name="changeBtn" Content="Recover Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <ScrollBar HorizontalAlignment="Left" Margin="-123,259,0,0" VerticalAlignment="Top"/>
 
         </Grid>
     </ScrollViewer>
