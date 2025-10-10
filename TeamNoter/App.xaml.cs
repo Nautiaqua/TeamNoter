@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using Dark.Net;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -9,6 +10,11 @@ namespace TeamNoter
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            DarkNet.Instance.SetCurrentProcessTheme(Theme.Dark);
+        }
     }
 
 }

@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DarkNet" Version="2.3.0" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="SharpVectors" Version="1.8.5" />
   </ItemGroup>
 

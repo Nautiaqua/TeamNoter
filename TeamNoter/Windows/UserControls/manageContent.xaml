@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="TeamNoter.Windows.UserControls.manageContent"
+             Style="{DynamicResource windowStyle}"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +11,7 @@
         <Grid x:Name="mainGrid" Height="450" Width="800" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Border x:Name="background" Background="#FF333131"/>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label x:Name="mainLabel" Content="User Management" FontSize="20" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold"/>
+                <Label x:Name="mainLabel" Content="User Management" FontSize="24" Padding="0,0,0,0" Margin="25,25,0,0" FontWeight="Bold" Foreground="White"/>
                 <DataGrid Height="311" ItemsSource="{x:Null}" AutoGenerateColumns="False" Width="733" Margin="25,20,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="User ID" Binding="{Binding Name}" />
@@ -27,6 +28,7 @@
                     <Button x:Name="addBtn" Content="Add User" Background="#FFFBC753" BorderThickness="0,0,0,0" Foreground="Black" Height="25" Width="145" Margin="0,10,1,0"/>
                 </StackPanel>
             </StackPanel>
+            <ScrollBar HorizontalAlignment="Left" Margin="-123,259,0,0" VerticalAlignment="Top"/>
 
         </Grid>
     </ScrollViewer>

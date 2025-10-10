@@ -1,4 +1,5 @@
-﻿using SharpVectors.Converters;
+﻿using Dark.Net;
+using SharpVectors.Converters;
 using SharpVectors.Renderers.Utils;
 using SharpVectors.Renderers.Wpf;
 using System;
@@ -37,6 +38,7 @@ namespace TeamNoter
         public Dashboard(MainWindow LoginWindow)
         {
             InitializeComponent();
+            DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             // Let's us track the original instance of the app this dashboard came from.
             this.Origin = LoginWindow;

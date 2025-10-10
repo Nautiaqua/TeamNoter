@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Dark.Net;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,12 +17,15 @@ namespace TeamNoter
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public bool Initializing = true;
         public MainWindow()
         {
-            InitializeComponent();
-            Initializing = false;
 
+            InitializeComponent();
+            DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
+
+            Initializing = false;
         }
 
         public void debugCheck()
