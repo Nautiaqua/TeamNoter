@@ -23,6 +23,8 @@ namespace TeamNoter
         {
 
             InitializeComponent();
+
+            // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             Initializing = false;

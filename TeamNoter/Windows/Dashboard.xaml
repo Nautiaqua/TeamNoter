@@ -43,8 +43,14 @@
                         <Label x:Name="taskLabel" Content="Tasks" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
                     </DockPanel>
                 </Button>
+                <Button x:Name="addTaskBtn" Style="{StaticResource roundBtn}" Width="40" Height="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Margin="0,30,0,0" Click="addTaskBtn_Click">
+                    <DockPanel x:Name="taskDock1" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Image x:Name="taskLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Add_Plus.svg}" Stretch="Uniform" Width="20" Height="20" Margin="9,0,0,0"/>
+                        <Label x:Name="taskLabel1" Content="Tasks" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
+                    </DockPanel>
+                </Button>
             </StackPanel>
-            <Button x:Name="logoutBtn" Style="{StaticResource sideBtn}" DockPanel.Dock="Bottom" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Click="taskBtn_Click" Foreground="#FFFF2A2A" Height="40" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,10">
+            <Button x:Name="logoutBtn" Style="{StaticResource sideBtn}" DockPanel.Dock="Bottom" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,10" Click="logoutBtn_Click">
                 <DockPanel x:Name="logoutDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <Image x:Name="logoutLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Log_Out.svg}" Stretch="Uniform" Width="20" Height="20" Margin="7,0,0,0"/>
                     <Label x:Name="logoutLabel" Content="Log Out" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
