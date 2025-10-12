@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Hidden">
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
         <Grid x:Name="mainGrid" Background="#FF333131" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition/>

@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800" Width="1920" Height="1080" VerticalContentAlignment="Top">
     <UserControl.Resources>
 
-        <!--THIS IS THE TEMPLATE FOR HOW EACH ITEM WILL LOOK. DON'T TOUCH THIS WITHOUT TELLING ME. PLEASE.-->
+        <!--Item template-->
         <DataTemplate x:Key="TaskItem">
             <Border Background="#FFF7BB64" HorizontalAlignment="Left" Margin="5,5,5,5" Width="650" CornerRadius="7">
                 <DockPanel Margin="10,10,10,10" LastChildFill="False">
@@ -29,7 +29,7 @@
 
 
     </UserControl.Resources>
-    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" VerticalScrollBarVisibility="Hidden" >
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" >
         <Grid x:Name="mainGrid" Background="#FF333131" Height="468">
             <Grid.RowDefinitions>
                 <RowDefinition/>
