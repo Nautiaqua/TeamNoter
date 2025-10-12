@@ -11,14 +11,14 @@
         <!--THIS IS THE TEMPLATE FOR HOW EACH ITEM WILL LOOK. DON'T TOUCH THIS WITHOUT TELLING ME. PLEASE.-->
         <DataTemplate x:Key="TaskItem">
             <Border Background="#FFF7BB64" HorizontalAlignment="Left" Margin="5,5,5,5" Width="650" CornerRadius="7">
-                <DockPanel Margin="10,10,10,10">
+                <DockPanel Margin="10,10,10,10" LastChildFill="False">
                     <StackPanel Margin="5,0,10,0" DockPanel.Dock="Left">
                         <TextBlock Text="{Binding Deadline}" FontSize="14" Margin="0,0,0,0" />
                         <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0"/>
                         <TextBlock Text="{Binding Details}" FontSize="13" Margin="0,0,0,0"/>
                         <TextBlock Text="{Binding Users}" FontSize="12" Margin="0,0,0,0" FontStyle="Italic"/>
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#FF505050" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+                    <CheckBox IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderBrush="Black" VerticalAlignment="Center" Foreground="#FF777777" BorderThickness="2,2,2,2" Background="{x:Null}" Padding="0,0,0,0" Margin="0,0,20,0"/>
                 </DockPanel>
             </Border>
         </DataTemplate>
@@ -29,7 +29,7 @@
 
 
     </UserControl.Resources>
-    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" >
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" VerticalScrollBarVisibility="Hidden" >
         <Grid x:Name="mainGrid" Background="#FF333131" Height="468">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -37,7 +37,11 @@
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" >
                 <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
                 <StackPanel x:Name="contentStack" Margin="25,10,0,0">
-                    <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="Search for tasks, users, deadlines..." VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Width="650" Margin="0,0,0,11" Height="33" ToolTip="Searchs for tasks by default. If search starts with @, then it will search for users. If it starts with a number, then it will search for the date."/>
+                    <StackPanel x:Name="filterStack" Orientation="Horizontal" Margin="0,10,0,10">
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter1" Content="Show tasks due today" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Margin="0,0,15,0" Checked="filter1_Checked"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter2" Content="Show tasks only assigned to you" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Checked="filter2_Checked"/>
+                    </StackPanel>
+                    <TextBox Style="{DynamicResource NoterTextbox}" x:Name="searchBox" TextWrapping="Wrap" Text="Search for tasks, users, deadlines..." VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Width="650" Margin="0,0,0,11" Height="33" ToolTip="Searchs for tasks by default. If search starts with @, then it will search for users. If it starts with a number, then it will search for the date." GotFocus="searchBox_GotFocus" LostFocus="searchBox_LostFocus"/>
                     <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                 </StackPanel>
 

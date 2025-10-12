@@ -32,6 +32,7 @@
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     <PackageReference Include="SharpVectors" Version="1.8.5" />
+    <PackageReference Include="WpfDarkMode" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>

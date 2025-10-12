@@ -67,5 +67,17 @@ namespace TeamNoter
                 }
             }
         }
+
+        // for handling checkboxes with blank backgrounds
+        public static void checkboxBGHandler(object sender, string hexcolor)
+        {
+            if (sender is CheckBox chkbox)
+            {
+                if (chkbox.IsChecked == true)
+                    chkbox.Background = Brushes.Transparent;
+                else
+                    chkbox.Background = HexConvert(hexcolor);
+            }
+        }
     }
 }
