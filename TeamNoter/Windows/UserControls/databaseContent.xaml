@@ -20,11 +20,26 @@
                     <Label x:Name="emailLabel" Content="Current URI" Padding="3,0,10,3" FontSize="14" Foreground="White" Margin="0,10,0,0"/>
                     <TextBox x:Name="databaseURI_Box_Copy" TextWrapping="Wrap" Text="N/A"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
                 </StackPanel>
+                <StackPanel x:Name="statisticsStack" Margin="20,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Label x:Name="statisticsLabel" Content="Statistics" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                    <DockPanel x:Name="tasksCompletedDock" LastChildFill="False">
+                        <TextBox x:Name="completedBox" DockPanel.Dock="Left" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Width="100" Height="33" VerticalAlignment="Top"/>
+                        <Label x:Name="completedLabel" DockPanel.Dock="Right" Content="Completed Tasks" Padding="10,0,0,0" FontSize="14" Foreground="White" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel x:Name="tasksIncompleteDock" LastChildFill="False" Margin="0,5,0,0">
+                        <TextBox x:Name="incompleteBox" DockPanel.Dock="Left" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Width="100" Height="33" VerticalAlignment="Top"/>
+                        <Label x:Name="incompleteLabel" DockPanel.Dock="Right" Content="Incomplete Tasks" Padding="10,0,0,0" FontSize="14" Foreground="White" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel x:Name="tasksTotalDock" LastChildFill="False" Margin="0,5,0,0">
+                        <TextBox x:Name="totalBox" DockPanel.Dock="Left" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Width="100" Height="33" VerticalAlignment="Top"/>
+                        <Label x:Name="totalLabel" DockPanel.Dock="Right" Content="Total Tasks" Padding="10,0,0,0" FontSize="14" Foreground="White" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </StackPanel>
                 <StackPanel x:Name="actionStack" Margin="20,10,0,0">
-                    <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                    <Label x:Name="actionLabel" Content="Backup and Recovery" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
                     <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
-                        <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
-                        <Button x:Name="changeBtn" Content="Recover Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                        <Button x:Name="recoverBtn" Content="Export into JSON" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
+                        <Button x:Name="changeBtn" Content="Import from JSON" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
