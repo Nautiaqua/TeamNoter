@@ -18,7 +18,7 @@ namespace TeamNoter
             public string Title { get; set; }
             public string Details { get; set; }
             public string Users { get; set; }
-            public string Status { get; set; }
+            public bool IsCompleted { get; set; }
 
         }
         public ObservableCollection<Item> tasks { get; set; }
@@ -28,10 +28,10 @@ namespace TeamNoter
             tasks = new ObservableCollection<Item>
             {
                 new Item { Deadline = DateTime.Today, Title = "Finish C# Code", Details = "Complete missing C# functionality",
-                Users = "@User1, @User2", Status = "Incomplete"},
+                Users = "@User1, @User2", IsCompleted = false},
 
                 new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", Status = "Incomplete"},
+                Users = "@User1", IsCompleted = false },
             };
         }
     }
