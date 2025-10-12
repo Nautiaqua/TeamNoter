@@ -32,6 +32,36 @@ namespace TeamNoter
 
                 new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
                 Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
+
+                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
+                Users = "@User1", IsCompleted = false },
             };
         }
     }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="1920" Height="1080" VerticalContentAlignment="Top">
+             d:DesignHeight="450" d:DesignWidth="800" VerticalContentAlignment="Top">
     <UserControl.Resources>
 
         <!--Item template-->
@@ -29,20 +29,20 @@
 
 
     </UserControl.Resources>
-    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch" Height="450" >
-        <Grid x:Name="mainGrid" Background="#FF333131" Height="468">
+    <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Center" >
+        <Grid x:Name="mainGrid" Background="#FF333131" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+                <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center"/>
                 <StackPanel x:Name="contentStack" Margin="25,10,0,0">
                     <StackPanel x:Name="filterStack" Orientation="Horizontal" Margin="0,10,0,10">
                         <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter1" Content="Show tasks due today" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Margin="0,0,15,0" Checked="filter1_Checked"/>
                         <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter2" Content="Show tasks only assigned to you" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Checked="filter2_Checked"/>
                     </StackPanel>
-                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for tasks, users, deadlines..." VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Width="650" Margin="0,0,0,11" Height="33" ToolTip="Searchs for tasks by default. If search starts with @, then it will search for users. If it starts with a number, then it will search for the date." GotFocus="searchBox_GotFocus" LostFocus="searchBox_LostFocus"/>
-                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for tasks, users, deadlines..." VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="33" ToolTip="Searchs for tasks by default. If search starts with @, then it will search for users. If it starts with a number, then it will search for the date." GotFocus="searchBox_GotFocus" LostFocus="searchBox_LostFocus"/>
+                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" ItemsSource="{Binding tasks}" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
                 </StackPanel>
 
             </StackPanel>
