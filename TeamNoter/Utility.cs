@@ -44,5 +44,28 @@ namespace TeamNoter
             }
 
         }
+
+        // Sameish method as the one up top but it really just covers password boxes.
+        public static void PassPlaceholderText(PasswordBox box, string defaultText, bool entering)
+        {
+            if (entering) // Code to run if the user clicks on the box.
+            {
+                if (box.Password == defaultText) // Prevents accidental clear of user inputs
+                {
+                    box.Password = "";
+                    box.Foreground = HexConvert("#FFFFFFFF");
+                }
+
+            }
+            else // Code to run when the user clicks out of the box.
+            {
+                // Returns to default text is nothing has been inputted
+                if (string.IsNullOrWhiteSpace(box.Password) || box.Password == defaultText)
+                {
+                    box.Password = defaultText;
+                    box.Foreground = HexConvert("#FF777777");
+                }
+            }
+        }
     }
 }
