@@ -25,5 +25,27 @@ namespace TeamNoter.Windows.UserControls
         {
             InitializeComponent();
         }
+
+        static string searchBoxPlaceholder = "Search for tasks, users, deadlines...";
+
+        private void searchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(searchBox, searchBoxPlaceholder, true);
+        }
+
+        private void searchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(searchBox, searchBoxPlaceholder, false);
+        }
+
+        private void filter1_Checked(object sender, RoutedEventArgs e)
+        {
+            Utility.checkboxBGHandler(sender, "#FFF7BB64");
+        }
+
+        private void filter2_Checked(object sender, RoutedEventArgs e)
+        {
+            Utility.checkboxBGHandler(sender, "#FFF7BB64");
+        }
     }
 }

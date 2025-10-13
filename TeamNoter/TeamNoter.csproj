@@ -15,6 +15,7 @@
     <None Remove="Images\Icons\NoterIcon.ico" />
     <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoterDarkBG.png" />
+    <None Remove="Images\UI_Icons\Add_Plus.svg" />
     <None Remove="Images\UI_Icons\Close_MD.svg" />
     <None Remove="Images\UI_Icons\Data.svg" />
     <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
@@ -28,9 +29,6 @@
 
   <ItemGroup>
     <PackageReference Include="DarkNet" Version="2.3.0" />
-    <PackageReference Include="MahApps.Metro" Version="2.4.11" />
-    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
-    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     <PackageReference Include="SharpVectors" Version="1.8.5" />
   </ItemGroup>
 
@@ -48,6 +46,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TeamNoterDarkBG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Add_Plus.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Close_MD.svg">

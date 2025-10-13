@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid" Background="#FF333131">
+        <Grid x:Name="mainGrid" Background="#FF333131" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -15,9 +15,9 @@
                 <Label x:Name="titleLabel" Content="Profile" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
                 <StackPanel x:Name="detailsStack" Margin="20,10,0,0">
                     <Label x:Name="usernameLabel" Content="Username" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
-                    <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="Database URI"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True"/>
+                    <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
                     <Label x:Name="emailLabel" Content="Email" Padding="3,0,10,3" FontSize="14" Foreground="White" Margin="0,10,0,0"/>
-                    <TextBox x:Name="databaseURI_Box_Copy" TextWrapping="Wrap" Text="Database URI"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True"/>
+                    <TextBox x:Name="databaseURI_Box_Copy" TextWrapping="Wrap" Text="N/A"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
                 </StackPanel>
                 <StackPanel x:Name="actionStack" Margin="20,10,0,0">
                     <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>

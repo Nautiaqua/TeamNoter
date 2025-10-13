@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid" Background="#FF333131">
+        <Grid x:Name="mainGrid" Background="#FF333131" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -22,6 +22,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+            <DataGrid HorizontalAlignment="Left" Height="285" Margin="21,123,0,0" VerticalAlignment="Top" Width="526" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged"/>
 
         </Grid>
     </ScrollViewer>

@@ -23,6 +23,8 @@ namespace TeamNoter
         {
 
             InitializeComponent();
+
+            // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             Initializing = false;
@@ -30,7 +32,7 @@ namespace TeamNoter
 
         public void debugCheck()
         {
-            if (databaseURI_Box.Text == "debugmode" && emailBox.Text == "debugmode@gmail.com" && passwordBox.Text == "beholdTESTMODE123")
+            if (databaseURI_Box.Text == "debugmode" && emailBox.Text == "debugmode@gmail.com" && userpassPassbox.Password == "beholdTESTMODE123")
             {
                 Dashboard dashboard = new Dashboard(this);
                 dashboard.Show();
@@ -44,7 +46,7 @@ namespace TeamNoter
             {
                 proceedBtn.IsEnabled = (!string.IsNullOrWhiteSpace(databaseURI_Box.Text) && databaseURI_Box.Text != "Database URI" &&
                                         !string.IsNullOrWhiteSpace(emailBox.Text) && emailBox.Text != "Email" &&
-                                        !string.IsNullOrWhiteSpace(passwordBox.Text) && passwordBox.Text != "Password");
+                                        !string.IsNullOrWhiteSpace(userpassPassbox.Password) && userpassPassbox.Password != "Password");
             }
             ;
         }
@@ -69,16 +71,6 @@ namespace TeamNoter
             Utility.PlaceholderText(emailBox, "Email", false);
         }
 
-        private void passwordBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Utility.PlaceholderText(passwordBox, "Password", true);
-        }
-
-        private void passwordBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Utility.PlaceholderText(passwordBox, "Password", false);
-        }
-
         private void generalTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ProceedUnlock();
@@ -94,6 +86,21 @@ namespace TeamNoter
             Dashboard dashboard = new Dashboard(this);
             dashboard.Show();
             this.Hide();
+        }
+
+        private void userpassPassbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.PassPlaceholderText(userpassPassbox, "", true);
+        }
+
+        private void userpassPassbox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Utility.PassPlaceholderText(userpassPassbox, "", false);
+        }
+
+        private void userpassPassbox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ProceedUnlock();
         }
     }
 }

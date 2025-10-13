@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TeamNoter.Windows.UserControls;
+using TeamNoter.Windows.CustomPopups;
 
 namespace TeamNoter
 {
@@ -25,6 +26,7 @@ namespace TeamNoter
     public partial class Dashboard : Window
     {
         bool sidebarExpanded;
+        bool isLogout = false;
 
         // Sizing for the sidebar itself
         static int expandedSidebarSize = 210;
@@ -38,6 +40,8 @@ namespace TeamNoter
         public Dashboard(MainWindow LoginWindow)
         {
             InitializeComponent();
+
+            // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             // Let's us track the original instance of the app this dashboard came from.
@@ -143,7 +147,24 @@ namespace TeamNoter
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            this.Origin.Close();
+            if (isLogout == false) // closes the app itself if we're NOT logging out.
+            {
+                this.Origin.Close();
+            }
+            
+        }
+
+        private void logoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            isLogout = true;
+            this.Origin.Show();
+            this.Close();
+        }
+
+        private void addTaskBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddPopup addTask = new AddPopup();
+            addTask.Show();
         }
     }
 }

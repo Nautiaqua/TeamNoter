@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dark.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TeamNoter.Windows.UserControls
+namespace TeamNoter.Windows.CustomPopups
 {
     /// <summary>
-    /// Interaction logic for ContentTemplate.xaml
+    /// Interaction logic for AddPopup.xaml
     /// </summary>
-    public partial class manageContent : UserControl
+    public partial class AddPopup : Window
     {
-        public manageContent()
+        public AddPopup()
         {
             InitializeComponent();
-        }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            // Directly handles the dark mode for the titlebar
+            DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
         }
     }
 }
