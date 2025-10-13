@@ -12,47 +12,49 @@
     <Window.Background>
         <ImageBrush ImageSource="/Images/TeamNoterDarkBG.png"/>
     </Window.Background>
-    <Grid Margin="0,0,0,-6" Width="NaN" Height="NaN">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" Background="#FF333131" CornerRadius="30" MaxWidth="460" MaxHeight="588" MinWidth="460" MinHeight="588" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel>
-                <Grid x:Name="titleGrid" Height="90" Width="460" Margin="0,25,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="51*"/>
-                        <ColumnDefinition Width="56*"/>
-                        <ColumnDefinition Width="353*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/Icons/NoterLogo.svg}" Grid.Column="1" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0"/>
-
-                    <StackPanel x:Name="titleStack" Grid.Column="2">
-                        <Label x:Name="mainTitle" Content="TeamNoter" Style="{StaticResource Leixo}" FontSize="20" VerticalContentAlignment="Bottom" Padding="5,44,5,0" Foreground="White"/>
-                        <Label x:Name="subTitle" Content="Track &amp; Manage You and Your Team's Work" Padding="5,0,5,5" Foreground="White"/>
-                    </StackPanel>
-                </Grid>
-                <Grid x:Name="contentGrid" Height="473" Width="460">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="24*"/>
-                        <ColumnDefinition Width="175*"/>
-                        <ColumnDefinition Width="24*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel x:Name="contentStack" Grid.Column="1">
-                        <Label x:Name="welcomeLabel" Content="Welcome" FontSize="18" Padding="0,5,5,0" Margin="6,25,0,0" FontWeight="Bold" Foreground="White"/>
-                        <Label x:Name="welcomeSubtitle" Content="Connect to a TeamNoter-compatible database or create your own" FontSize="11" Foreground="White" Padding="1,0,0,0" Margin="6,0,0,30" FontStyle="Italic"/>
-                        <Label x:Name="loginLabel" Content="If you've got a compatible database:" Padding="0,5,5,5" Margin="6,0,0,0" Foreground="White"/>
-                        <TextBox x:Name="databaseURI_Box"  Grid.Row="1" TextWrapping="Wrap" Text="Database URI"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" GotFocus="databaseURI_Box_GotFocus" LostFocus="databaseURI_Box_LostFocus" TextChanged="generalTextBox_TextChanged" Background="#FF333131" CaretBrush="White"/>
-                        <TextBox x:Name="emailBox"  Grid.Row="1" TextWrapping="Wrap" Text="Email"  Width="350" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" HorizontalAlignment="Center" Margin="0,10,0,0" GotFocus="emailBox_GotFocus" LostFocus="emailBox_LostFocus" TextChanged="generalTextBox_TextChanged" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White"/>
-                        <Label x:Name="loginLabel_Copy" Content="Account Password:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,6,0,0"/>
-                        <PasswordBox x:Name="userpassPassbox" Width="350" Background="#FF333131" BorderBrush="#FF777777" CaretBrush="White" Foreground="#FF777777" Margin="0,0,0,10" Height="33" VerticalContentAlignment="Center" Padding="10,0,0,0" GotFocus="userpassPassbox_GotFocus" LostFocus="userpassPassbox_LostFocus" PasswordChanged="userpassPassbox_PasswordChanged"/>
-                        <Button Style="{DynamicResource NoterButton}" x:Name="proceedBtn" Content="Proceed" Width="350" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" IsEnabled="False" Click="proceedBtn_Click" FontWeight="Bold"/>
-                        <Label x:Name="dividerLabel" Content="—————————————— OR ——————————————" FontSize="11" Padding="5,8,5,5" HorizontalAlignment="Center" Foreground="#FF777777" Margin="0,5,0,0" FontStyle="Italic"/>
-                        <Label x:Name="createLabel" Content="If not, click this button to get started:" Padding="0,8,5,5" Margin="6,5,0,0" HorizontalAlignment="Left" Foreground="White"/>
-                        <Button x:Name="guideBtn" Content="View Guide" Width="350" Height="31" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Click="guideBtn_Click" VerticalAlignment="Stretch" FontFamily="Segoe UI"/>
-
-                    </StackPanel>
-                </Grid>
+    <Border x:Name="mainBorder" BorderBrush="Black" Background="#FF333131" CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Height="695" MinWidth="460" MinHeight="700" MaxHeight="700" MaxWidth="460">
+        <StackPanel>
+            <StackPanel x:Name="titleStack" Orientation="Horizontal" Margin="50,40,0,0">
+                <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/Icons/NoterLogo.svg}" Height="50" Width="50"/>
+                <StackPanel x:Name="titleTextStack" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label x:Name="mainTitle" Content="TeamNoter" Style="{StaticResource Leixo}" FontSize="20" VerticalContentAlignment="Bottom" Padding="5,0,5,0" Foreground="White"/>
+                    <Label x:Name="subTitle" Content="Track &amp; Manage Your Team's Work" Padding="5,0,5,0" Foreground="White"/>
+                </StackPanel>
             </StackPanel>
-        </Border>
-    </Grid>
+            <Grid x:Name="contentGrid" Width="460">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24*"/>
+                    <ColumnDefinition Width="175*"/>
+                    <ColumnDefinition Width="24*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="contentStack" Grid.Column="1">
+                    <Label x:Name="welcomeLabel" Content="Welcome" FontSize="18" Padding="0,5,5,0" Margin="6,15,0,0" FontWeight="Bold" Foreground="White"/>
+                    <Label x:Name="welcomeSubtitle" Content="Connect to a TeamNoter-compatible database." FontSize="11" Foreground="White" Padding="1,0,0,0" Margin="6,0,0,15" FontStyle="Italic"/>
+                    <Label x:Name="loginLabel" Content="Database Details" Padding="0,5,5,5" Margin="6,0,0,0" Foreground="White"/>
+                    <TextBox x:Name="serverBox"  Grid.Row="1" TextWrapping="Wrap" Text="Server"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" GotFocus="serverBox_Placeholder" LostFocus="serverBox_Placeholder"/>
+                    <TextBox x:Name="portBox"  Grid.Row="1" TextWrapping="Wrap" Text="Port"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,10,0,0" GotFocus="portBox_Placeholder" LostFocus="portBox_Placeholder"/>
+                    <TextBox x:Name="dbBox"  Grid.Row="1" TextWrapping="Wrap" Text="Database"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,10,0,0" GotFocus="dbBox_Placeholder" LostFocus="dbBox_Placeholder"/>
+                    <TextBox x:Name="dbUsernameBox"  Grid.Row="1" TextWrapping="Wrap" Text="Username / UID"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,10,0,0" GotFocus="dbUsernameBox_Placeholder" LostFocus="dbUsernameBox_Placeholder"/>
+                    <Label x:Name="dbPasswordLabel" Content="Database Password:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,5,0,0"/>
+                    <PasswordBox x:Name="dbPasswordPassbox" Width="350" Background="#FF333131" BorderBrush="#FF777777" CaretBrush="White" Foreground="#FF777777" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,11,0,0">
+                        <Label x:Name="sslModeLabel" Content="SSL Mode:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,0,15,0"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="none" Content="None" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Margin="0,0,15,0" Click="caFilterHandler"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="required" Content="Required" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Margin="0,0,15,0" Click="caFilterHandler"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="verifyca" Content="Verify CA" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Margin="0,0,15,0" Click="caFilterHandler"/>
+                    </StackPanel>
+                    <TextBox x:Name="caPathBox"  Grid.Row="1" TextWrapping="Wrap" Text="ca.pem Filepath (Example: D:\ca.pem)"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" HorizontalAlignment="Center" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,10,0,0" GotFocus="caPathBox_Placeholder" LostFocus="caPathBox_Placeholder" Visibility="Collapsed"/>
+                    <Label x:Name="borderLabel" Content="—————————————————————————————" Padding="0,8,0,8" Foreground="#FF777777" HorizontalContentAlignment="Center"/>
+                    <Label x:Name="accountdetailsLabel" Content="TeamNoter Account Details" Padding="0,0,5,5" Foreground="White" Margin="6,0,0,0"/>
+                    <TextBox x:Name="emailBox"  Grid.Row="1" TextWrapping="Wrap" Text="Email"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" HorizontalAlignment="Center" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" Margin="0,1,0,0" GotFocus="emailBox_Placeholder" LostFocus="emailBox_Placeholder"/>
+                    <Label x:Name="accPasswordLabel" Content="Account Password:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,6,0,0"/>
+                    <PasswordBox x:Name="userpassPassbox" Width="350" Background="#FF333131" BorderBrush="#FF777777" CaretBrush="White" Foreground="#FF777777" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0"/>
+                    <Label x:Name="borderLabel_Copy" Content="—————————————————————————————" Padding="0,8,0,8" Foreground="#FF777777" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="proceedBtn" Content="Proceed" Width="350" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,6,0,0" Click="proceedBtn_Click"/>
+                    <Label x:Name="accountdetailsLabel_Copy" Content="Click here to view guide" Padding="0,5,5,5" Foreground="#FFF7BB64" FontSize="10" FontStyle="Italic" Margin="5,0,0,0"/>
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
 </Window>

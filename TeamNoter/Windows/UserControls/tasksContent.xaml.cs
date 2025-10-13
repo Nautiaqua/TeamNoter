@@ -30,12 +30,12 @@ namespace TeamNoter.Windows.UserControls
 
         private void searchBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            Utility.PlaceholderText(searchBox, searchBoxPlaceholder, true);
+            Utility.PlaceholderText(sender, searchBoxPlaceholder, e);
         }
 
         private void searchBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            Utility.PlaceholderText(searchBox, searchBoxPlaceholder, false);
+            Utility.PlaceholderText(sender, searchBoxPlaceholder, e);
         }
 
         private void filter1_Checked(object sender, RoutedEventArgs e)

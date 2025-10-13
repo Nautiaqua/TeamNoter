@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using TeamNoter.Windows.CustomPopups;
 
 namespace TeamNoter
 {
@@ -22,27 +24,30 @@ namespace TeamNoter
         }
 
         // Does placeholder text behaviour for TextBoxes, dunno why this isn't a base feature.
-        public static void PlaceholderText(TextBox box, string defaultText, bool entering)
+        public static void PlaceholderText(object sender, string defaultText, RoutedEventArgs e)
         { 
-            if (entering) // Code to run if the user clicks on the box.
+            if (sender is TextBox box)
             {
-                if (box.Text == defaultText) // Prevents accidental clear of user inputs
+                if (e.RoutedEvent == UIElement.GotFocusEvent) // Code to run if the user clicks on the box.
                 {
-                    box.Text = "";
-                    box.Foreground = HexConvert("#FFFFFFFF");
-                }
-                
-            }
-            else // Code to run when the user clicks out of the box.
-            {
-                // Returns to default text is nothing has been inputted
-                if (string.IsNullOrWhiteSpace(box.Text) || box.Text == defaultText) 
-                {
-                    box.Text = defaultText;
-                    box.Foreground = HexConvert("#FF777777");
-                }
-            }
+                    if (box.Text == defaultText) // Prevents accidental clear of user inputs
+                    {
+                        box.Text = "";
+                        box.Foreground = HexConvert("#FFFFFFFF");
+                    }
 
+                }
+
+                else if (e.RoutedEvent == UIElement.LostFocusEvent) // Code to run when the user clicks out of the box.
+                {
+                    // Returns to default text is nothing has been inputted
+                    if (string.IsNullOrWhiteSpace(box.Text) || box.Text == defaultText)
+                    {
+                        box.Text = defaultText;
+                        box.Foreground = HexConvert("#FF777777");
+                    }
+                }
+            }
         }
 
         // Sameish method as the one up top but it really just covers password boxes.
@@ -78,6 +83,13 @@ namespace TeamNoter
                 else
                     chkbox.Background = HexConvert(hexcolor);
             }
+        }
+
+        // this is literally a custom MessageBox
+        public static void NoterMessage(string windowTitle, string content)
+        {
+            NoterMessage message = new NoterMessage(windowTitle, content);
+            message.Show();
         }
     }
 }

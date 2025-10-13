@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 namespace TeamNoter
 {
@@ -31,6 +32,7 @@ namespace TeamNoter
                 catch (Exception ex)
                 {
                     MessageBox.Show("❌ ERROR: " + ex.Message);
+                    Debug.WriteLine("❌ ERROR: " + ex.Message);
                 }
             }
         }
