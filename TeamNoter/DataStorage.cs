@@ -34,8 +34,11 @@ namespace TeamNoter
                 {
                     // conn.Open();
 
-                    // string queryString = "SELECT DEADLINE, TASK_NAME, TASK_DESCRIPTION, TASK_USERS, IS_COMPLETED FROM TASKS WHERE IS_COMPLETED = FALSE";
-                    string queryString = "SELECT DEADLINE, TASK_NAME, TASK_DESCRIPTION, IS_COMPLETED FROM TASKS WHERE IS_COMPLETED = FALSE";
+                    string queryString = "SELECT t.TASK_ID, t.DEADLINE, t.TASK_NAME, t.TASK_DESCRIPTION, t.IS_COMPLETED, " +
+                                             "(SELECT GROUP_CONCAT(u.USERNAME SEPARATOR ', ') " +
+                                             "FROM USER_TASKS ut LEFT JOIN USERS u ON u.USER_ID = ut.USER_ID " +
+                                             "WHERE ut.TASK_ID = t.TASK_ID) AS TASK_USERS " +
+                                          "FROM TASKS t WHERE t.IS_COMPLETED = FALSE";
                     MySqlCommand query = new MySqlCommand(queryString, conn);
 
                     MySqlDataReader resultset = query.ExecuteReader();
@@ -46,8 +49,7 @@ namespace TeamNoter
                             Deadline = resultset.GetDateTime("DEADLINE"),
                             Title = resultset.GetString("TASK_NAME"),
                             Details = resultset.GetString("TASK_DESCRIPTION"),
-                            Users = "User1",
-                            // Users = resultset.GetString("TASK_USERS"),
+                            Users = resultset.GetString("TASK_USERS"),
                             IsCompleted = resultset.GetBoolean("IS_COMPLETED")
                         };  
 
