@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,5 +92,6 @@ namespace TeamNoter
             NoterMessage message = new NoterMessage(windowTitle, content);
             message.Show();
         }
+        
     }
 }

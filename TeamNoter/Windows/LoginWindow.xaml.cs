@@ -1,9 +1,11 @@
 ﻿using Dark.Net;
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using MySql.Data.MySqlClient;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Diagnostics;
 
 namespace TeamNoter
 {
@@ -118,40 +119,82 @@ namespace TeamNoter
 
         private void proceedBtn_Click(object sender, RoutedEventArgs e)
         {
+            bool verification = false;
+
             if (dbConnect.Connect(serverBox.Text, portBox.Text, dbBox.Text,
-                                  dbUsernameBox.Text, dbPasswordPassbox.Password,
-                                  sslMode, caPathBox.Text) 
-                                  == true)
+                dbUsernameBox.Text, dbPasswordPassbox.Password,
+                sslMode, caPathBox.Text))
             {
+                bool loginSuccess = false;
                 MySqlConnection conn = dbConnect.Connection;
-                if (conn != null)
-                {
+                if (conn.State != ConnectionState.Open)
                     conn.Open();
 
-                    string queryString = "SELECT PASSWORD FROM Users WHERE Email = @email";
-                    MySqlCommand query = new MySqlCommand(queryString, conn);
-                    query.Parameters.AddWithValue("@email", emailBox.Text);
+                try
+                {
+                    // Verify schema
+                    string[] queries =
+                    {
+            "SELECT TASK_ID, TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED FROM TASKS;",
+            "SELECT USER_ID, TASK_ID FROM USER_TASKS;",
+            "SELECT USER_ID, USERNAME, EMAIL, PASSWORD, CREATION_DATE, TASKS_COMPLETED, TASKS_ASSIGNED, ACCOUNT_TYPE FROM USERS;"
+        };
 
-                    MySqlDataReader resultset = query.ExecuteReader();
-                    if (!resultset.HasRows)
+                    foreach (string q in queries)
                     {
-                        Utility.NoterMessage("Login failed", "Invalid email or password.");
-                    }
-                    else if (resultset.Read())
-                    {
-                        if (resultset["PASSWORD"] != DBNull.Value &&
-                                userpassPassbox.Password == resultset.GetString("PASSWORD"))
+                        using (MySqlCommand cmd = new MySqlCommand(q, conn))
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            Utility.NoterMessage("Login succesfull", "Valid email and password.");
+                            // just checking structure — no need to read data
                         }
-                        else
-                            Utility.NoterMessage("Login failed", "Invalid email or password.");
                     }
 
-                    resultset.Close();
-                    conn.Close();
+                    MessageBox.Show("Working — all queries executed successfully!");
+                    verification = true;
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Incomplete or wrong database:\n" + error.Message);
+                }
+
+                if (verification)
+                {
+                    try
+                    {
+                        string queryString = "SELECT PASSWORD FROM USERS WHERE EMAIL = @email";
+                        using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                        {
+                            query.Parameters.AddWithValue("@email", emailBox.Text);
+                            using (MySqlDataReader resultset = query.ExecuteReader())
+                            {
+                                if (!resultset.HasRows)
+                                {
+                                    Utility.NoterMessage("Login failed", "Invalid email or password.");
+                                }
+                                else if (resultset.Read())
+                                {
+                                    if (resultset["PASSWORD"] != DBNull.Value &&
+                                        userpassPassbox.Password.Equals(resultset.GetString("PASSWORD")))
+                                    {
+                                        Utility.NoterMessage("Login successful", "Valid email and password.");
+                                        loginSuccess = true;
+                                    }
+                                    else
+                                    {
+                                        Utility.NoterMessage("Login failed", "Invalid email or password.");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
+
+
         }
 
         private void proceedUnlock()
@@ -188,5 +231,11 @@ namespace TeamNoter
         {
             proceedUnlock();
         }
+
+        private void serverBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        
     }
 }
