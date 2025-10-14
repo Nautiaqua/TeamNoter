@@ -21,7 +21,7 @@ namespace TeamNoter
 
             try
             {
-                if (sslMode == "verifyca")
+                if (sslMode == "VerifyCA")
                 {
                     connectionString =
                     "Server=" + server + ";" +
