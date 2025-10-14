@@ -131,14 +131,19 @@ namespace TeamNoter
                     query.Parameters.AddWithValue("@email", emailBox.Text);
 
                     MySqlDataReader resultset = query.ExecuteReader();
-                    while (resultset.Read())
+                    if (!resultset.HasRows)
                     {
-                        if (resultset.HasRows == true)
+                        Utility.NoterMessage("Login failed", "Invalid email or password.");
+                    }
+                    else if (resultset.Read())
+                    {
+                        if (resultset["PASSWORD"] != DBNull.Value &&
+                                userpassPassbox.Password == resultset.GetString("PASSWORD"))
                         {
-
+                            Utility.NoterMessage("Login succesfull", "Valid email and password.");
                         }
                         else
-                            Utility.NoterMessage("Cannot log in!", "Invalid email or password");
+                            Utility.NoterMessage("Login failed", "Invalid email or password.");
                     }
 
                     resultset.Close();
