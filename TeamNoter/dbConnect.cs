@@ -19,43 +19,51 @@ namespace TeamNoter
         {
             string connectionString;
 
-            
-            if (sslMode == "verifyca")
-            {
-                connectionString =
-                "Server=" + server + ";" +
-                "Port=" + port + ";" +
-                "Database=" + database + ";" +
-                "Uid=" + username + ";" +
-                "Pwd=" + password + ";" +
-                "SslMode=" + sslMode + ";" +
-                "SslCa=" + caPath + ";";
-            }
-            else
-            {
-                connectionString =
-                "Server=" + server + ";" +
-                "Port=" + port + ";" +
-                "Database=" + database + ";" +
-                "Uid=" + username + ";" +
-                "Pwd=" + password + ";" +
-                "SslMode=" + sslMode + ";";
-            }
-
-            // assigns the connection string to conn
-            conn = new MySqlConnection(connectionString);            
-            
             try
             {
-                conn.Open();
-                Utility.NoterMessage("Connected", "Sucessfully connected");
-                conn.Close();
-                return true; // returns true if successful
+                if (sslMode == "verifyca")
+                {
+                    connectionString =
+                    "Server=" + server + ";" +
+                    "Port=" + port + ";" +
+                    "Database=" + database + ";" +
+                    "Uid=" + username + ";" +
+                    "Pwd=" + password + ";" +
+                    "SslMode=" + sslMode + ";" +
+                    "SslCa=" + caPath + ";";
+                }
+                else
+                {
+                    connectionString =
+                    "Server=" + server + ";" +
+                    "Port=" + port + ";" +
+                    "Database=" + database + ";" +
+                    "Uid=" + username + ";" +
+                    "Pwd=" + password + ";" +
+                    "SslMode=" + sslMode + ";";
+                }
+
+                // assigns the connection string to 
+                conn = new MySqlConnection(connectionString);
+
+
+                try
+                {
+                    conn.Open();
+                    Utility.NoterMessage("Connected", "Sucessfully connected");
+                    conn.Close();
+                    return true; // returns true if successful
+                }
+                catch (Exception ex)
+                {
+                    Utility.NoterMessage("Database connection failed", ex.Message);
+                    return false; // returns false if unsuccessful
+                }
             }
             catch (Exception ex)
             {
                 Utility.NoterMessage("Database connection failed", ex.Message);
-                return false; // returns false if unsuccessful
+                return false;
             }
         }
 

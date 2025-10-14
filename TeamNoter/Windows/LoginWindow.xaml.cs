@@ -81,6 +81,8 @@ namespace TeamNoter
                     caPathBox.Visibility = System.Windows.Visibility.Visible;
                     caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
                 }
+
+                proceedUnlock();
             }
         }
 
@@ -149,9 +151,42 @@ namespace TeamNoter
                     resultset.Close();
                     conn.Close();
                 }
-                
             }
+        }
 
+        private void proceedUnlock()
+        {
+            if (verifyca.IsChecked == false)
+            {
+                proceedBtn.IsEnabled = (
+                    !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
+                    !string.IsNullOrEmpty(portBox.Text) && portBox.Text != "Port" &&
+                    !string.IsNullOrEmpty(dbBox.Text) && dbBox.Text != "Database" &&
+                    !string.IsNullOrEmpty(dbUsernameBox.Text) && dbUsernameBox.Text != "Username / UID" &&
+                    !string.IsNullOrEmpty(dbPasswordPassbox.Password) &&
+                    (none.IsChecked == true || required.IsChecked == true) &&
+                    !string.IsNullOrEmpty(emailBox.Text) && emailBox.Text != "Email" &&
+                    !string.IsNullOrEmpty(userpassPassbox.Password)
+                    );
+            }
+            else if (verifyca.IsChecked == true)
+            {
+                proceedBtn.IsEnabled = (
+                    !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
+                    !string.IsNullOrEmpty(portBox.Text) && portBox.Text != "Port" &&
+                    !string.IsNullOrEmpty(dbBox.Text) && dbBox.Text != "Database" &&
+                    !string.IsNullOrEmpty(dbUsernameBox.Text) && dbUsernameBox.Text != "Username / UID" &&
+                    !string.IsNullOrEmpty(dbPasswordPassbox.Password) &&
+                    !string.IsNullOrEmpty(caPathBox.Text) && caPathBox.Text != "ca.pem Filepath (Example: D:\\ca.pem)" &&
+                    !string.IsNullOrEmpty(emailBox.Text) && emailBox.Text != "Email" &&
+                    !string.IsNullOrEmpty(userpassPassbox.Password)
+                    );
+            }
+        }
+
+        private void box_KeyPress(object sender, KeyEventArgs e)
+        {
+            proceedUnlock();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace TeamNoter.Windows.CustomPopups
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             mainWindow.Title = windowTitle;
-            mainMessage.Content = content;
+            mainMessage.Text = content;
         }
     }
 }
