@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dark.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,10 @@ namespace TeamNoter.Windows.CustomPopups
         public NoterMessage(string windowTitle, string content)
         {
             InitializeComponent();
+
+            // Directly handles the dark mode for the titlebar
+            DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
+
             mainWindow.Title = windowTitle;
             mainMessage.Content = content;
         }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using MySql.Data.MySqlClient;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -11,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Diagnostics;
 
 namespace TeamNoter
 {
@@ -119,25 +121,32 @@ namespace TeamNoter
                                   sslMode, caPathBox.Text) 
                                   == true)
             {
-                Dashboard dashboard = new Dashboard(this);
-                dashboard.Show();
-                this.Hide();
+                MySqlConnection conn = dbConnect.Connection;
+                if (conn != null)
+                {
+                    conn.Open();
+
+                    string queryString = "SELECT PASSWORD FROM Users WHERE Email = @email";
+                    MySqlCommand query = new MySqlCommand(queryString, conn);
+                    query.Parameters.AddWithValue("@email", emailBox.Text);
+
+                    MySqlDataReader resultset = query.ExecuteReader();
+                    while (resultset.Read())
+                    {
+                        if (resultset.HasRows == true)
+                        {
+
+                        }
+                        else
+                            Utility.NoterMessage("Cannot log in!", "Invalid email or password");
+                    }
+
+                    resultset.Close();
+                    conn.Close();
+                }
+                
             }
+
         }
-
-        //public void ProceedUnlock()
-        //{
-        //    if (!Initializing)
-        //    {
-        //        proceedBtn.IsEnabled = (!string.IsNullOrWhiteSpace(databaseURI_Box.Text) && databaseURI_Box.Text != "Database URI" &&
-        //                                !string.IsNullOrWhiteSpace(emailBox.Text) && emailBox.Text != "Email" &&
-        //                                !string.IsNullOrWhiteSpace(userpassPassbox.Password) && userpassPassbox.Password != "Password");
-        //    }
-        //    ;
-        //}
-
-
-
-
     }
 }

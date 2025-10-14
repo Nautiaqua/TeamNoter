@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamNoter.Windows.CustomPopups"
         mc:Ignorable="d"
-        Title="NoterMessage" MinWidth="150" MaxWidth="500" ResizeMode="CanMinimize" Icon="/Images/Icons/NoterIcon.ico">
-    <Grid x:Name="mainGrid" Background="#FF333131">
+        Title="NoterMessage" MinWidth="150" MaxWidth="300" ResizeMode="CanMinimize" Icon="/Images/Icons/NoterIcon.ico" SizeToContent="Height" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="mainGrid" Background="#FF333131" VerticalAlignment="Top">
         <Label x:Name="mainMessage" Content="Label" Margin="10,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
 
     </Grid>
