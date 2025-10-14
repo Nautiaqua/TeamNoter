@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using MySql.Data.MySqlClient;
+
 
 namespace TeamNoter
 {
@@ -21,50 +23,41 @@ namespace TeamNoter
             public bool IsCompleted { get; set; }
 
         }
-        public ObservableCollection<Item> tasks { get; set; }
-        
+
+        public ObservableCollection<Item> tasks { get; set; } = new ObservableCollection<Item>();
+
         public DataStorage()
         {
-            tasks = new ObservableCollection<Item>
+            using (MySqlConnection conn = dbConnect.Connection)
             {
-                new Item { Deadline = DateTime.Today, Title = "Finish C# Code", Details = "Complete missing C# functionality",
-                Users = "@User1, @User2", IsCompleted = false},
+                if (conn != null)
+                {
+                    conn.Open();
 
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
+                    string queryString = "SELECT DEADLINE, TASK_NAME, TASK_DESCRIPTION, TASK_USERS, IS_COMPLETED FROM TASKS WHERE IS_COMPLETED = FALSE";
+                    MySqlCommand query = new MySqlCommand(queryString, conn);
 
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
+                    MySqlDataReader resultset = query.ExecuteReader();
+                    while (resultset.Read())
+                    {
+                        var item = new Item
+                        {
+                            Deadline = resultset.GetDateTime("DEADLINE"),
+                            Title = resultset.GetString("TASK_NAME"),
+                            Details = resultset.GetString("TASK_DESCRIPTION"),
+                            Users = resultset.GetString("TASK_USERS"),
+                            IsCompleted = resultset.GetBoolean("IS_COMPLETED")
+                        };  
 
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
+                        tasks.Add(item);
+                    }
 
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-
-                new Item { Deadline = DateTime.Today, Title = "Wrap up Java Project", Details = "Package and post Java project",
-                Users = "@User1", IsCompleted = false },
-            };
+                    resultset.Close();
+                    conn.Close();
+                }
+                else
+                    Utility.NoterMessage("Task error", "Empty connection. Cannot display tasks.");
+            }
         }
     }
-
-    
 }

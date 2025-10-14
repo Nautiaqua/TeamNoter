@@ -21,7 +21,7 @@ namespace TeamNoter
 
             try
             {
-                if (sslMode == "verifyca")
+                if (sslMode == "VerifyCA")
                 {
                     connectionString =
                     "Server=" + server + ";" +
@@ -46,7 +46,6 @@ namespace TeamNoter
                 // assigns the connection string to 
                 conn = new MySqlConnection(connectionString);
 
-
                 try
                 {
                     conn.Open();
@@ -56,13 +55,13 @@ namespace TeamNoter
                 }
                 catch (Exception ex)
                 {
-                    Utility.NoterMessage("Database connection failed", ex.Message);
+                    Utility.NoterMessage("Database connection failed", ex.Message + " " + sslMode);
                     return false; // returns false if unsuccessful
                 }
             }
             catch (Exception ex)
             {
-                Utility.NoterMessage("Database connection failed", ex.Message);
+                Utility.NoterMessage("Database connection failed", ex.Message + " " + sslMode);
                 return false;
             }
         }
