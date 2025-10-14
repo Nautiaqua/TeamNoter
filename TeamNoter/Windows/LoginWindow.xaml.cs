@@ -161,7 +161,7 @@ namespace TeamNoter
                 {
                     try
                     {
-                        string queryString = "SELECT PASSWORD FROM USERS WHERE EMAIL = @email";
+                        string queryString = "SELECT * FROM USERS WHERE EMAIL = @email";
                         using (MySqlCommand query = new MySqlCommand(queryString, conn))
                         {
                             query.Parameters.AddWithValue("@email", emailBox.Text);
@@ -176,8 +176,24 @@ namespace TeamNoter
                                     if (resultset["PASSWORD"] != DBNull.Value &&
                                         userpassPassbox.Password.Equals(resultset.GetString("PASSWORD")))
                                     {
-                                        Utility.NoterMessage("Login successful", "Valid email and password.");
+                                        // Utility.NoterMessage("Login successful", "Valid email and password.");
                                         loginSuccess = true;
+
+                                        LoginData.UserID = resultset.GetInt32("USER_ID");
+                                        LoginData.Username = resultset.GetString("USERNAME");
+                                        LoginData.Email = resultset.GetString("EMAIL");
+                                        LoginData.Password = resultset.GetString("PASSWORD");
+                                        LoginData.TasksCompleted = resultset.GetInt32("TASKS_COMPLETED");
+                                        LoginData.TasksAssigned = resultset.GetInt32("TASKS_ASSIGNED");
+                                        LoginData.AccountType = resultset.GetString("ACCOUNT_TYPE");
+
+                                        resultset.Close();
+
+                                        Dashboard dashboard = new Dashboard(this);
+                                        dashboard.Show();
+                                        this.Hide();
+
+
                                     }
                                     else
                                     {
