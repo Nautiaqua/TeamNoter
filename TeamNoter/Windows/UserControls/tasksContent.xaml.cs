@@ -40,7 +40,7 @@ namespace TeamNoter.Windows.UserControls
         }
 
         static string searchBoxPlaceholder = "Search for task titles";
-        static string userSearchPlaceholder = "Search for users";
+        static string userSearchPlaceholder = "Search for user";
 
         private void filterHandler()
         {
@@ -115,13 +115,17 @@ namespace TeamNoter.Windows.UserControls
         {
             if (sender is CheckBox checkBox && checkBox.DataContext is DataStorage.TaskItem task)
             {
+                bool isComplete = e.RoutedEvent == CheckBox.CheckedEvent;
+                        
+                
                 using (MySqlConnection conn = dbConnect.GetConnection())
                 {
                     conn.Open();
 
-                    string queryString = " UPDATE TASKS SET IS_COMPLETED = TRUE WHERE TASK_ID = @currentTaskID";
+                    string queryString = " UPDATE TASKS SET IS_COMPLETED = @completionBool WHERE TASK_ID = @currentTaskID";
                     MySqlCommand query = new MySqlCommand(queryString, conn);
                     query.Parameters.AddWithValue("@currentTaskID", task.TaskID);
+                    query.Parameters.AddWithValue("@completionBool", isComplete);
 
                     query.ExecuteNonQuery();
                     conn.Close();
