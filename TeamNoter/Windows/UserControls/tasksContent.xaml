@@ -31,13 +31,13 @@
                 </DockPanel>
             </Border>
         </DataTemplate>
-
         <Style TargetType="ListBoxItem">
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
-
-
     </UserControl.Resources>
+    
+    
+    
     <ScrollViewer x:Name="mainScroller" HorizontalContentAlignment="Center" >
         <Grid x:Name="mainGrid" Background="#FF333131" HorizontalAlignment="Center">
             <Grid.RowDefinitions>

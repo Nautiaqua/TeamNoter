@@ -26,7 +26,6 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-
         </Grid>
     </ScrollViewer>
 </UserControl>
