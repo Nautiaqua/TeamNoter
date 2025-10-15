@@ -1,20 +1,18 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using MySql.Data.MySqlClient;
+using System.Windows.Data;
 
 
 namespace TeamNoter
 {
     public class DataStorage
     {
-        // This class is placeholder data for NoterMain's Task List display
-        // pls delete this later when we've got the database up and workin'
-        // ~ Nautia
-        public class Item
+        public class TaskItem
         {
             public DateTime Deadline { get; set; }
             public string Title { get; set; }
@@ -24,27 +22,27 @@ namespace TeamNoter
 
         }
 
-        public ObservableCollection<Item> tasks { get; set; } = new ObservableCollection<Item>();
+        public ObservableCollection<TaskItem> tasks { get; set; } = new ObservableCollection<TaskItem>();
 
         public DataStorage()
         {
-            using (MySqlConnection conn = dbConnect.Connection)
+            using (MySqlConnection conn = dbConnect.GetConnection())
             {
                 if (conn != null)
                 {
-                    // conn.Open();
+                    conn.Open();
 
                     string queryString = "SELECT t.TASK_ID, t.DEADLINE, t.TASK_NAME, t.TASK_DESCRIPTION, t.IS_COMPLETED, " +
                                              "(SELECT GROUP_CONCAT(u.USERNAME SEPARATOR ', ') " +
                                              "FROM USER_TASKS ut LEFT JOIN USERS u ON u.USER_ID = ut.USER_ID " +
                                              "WHERE ut.TASK_ID = t.TASK_ID) AS TASK_USERS " +
-                                          "FROM TASKS t WHERE t.IS_COMPLETED = FALSE";
+                                          "FROM TASKS t WHERE t.IS_COMPLETED = FALSE ORDER BY DEADLINE ASC";
                     MySqlCommand query = new MySqlCommand(queryString, conn);
 
                     MySqlDataReader resultset = query.ExecuteReader();
                     while (resultset.Read())
                     {
-                        var item = new Item
+                        var item = new TaskItem
                         {
                             Deadline = resultset.GetDateTime("DEADLINE"),
                             Title = resultset.GetString("TASK_NAME"),
@@ -57,11 +55,17 @@ namespace TeamNoter
                     }
 
                     resultset.Close();
-                    // conn.Close();
+                    conn.Close();
                 }
                 else
                     Utility.NoterMessage("Task error", "Empty connection. Cannot display tasks.");
             }
+        }
+
+        public CollectionView getTaskView()
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
+            return view;
         }
     }
 }

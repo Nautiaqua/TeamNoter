@@ -13,12 +13,11 @@ namespace TeamNoter
     internal class dbConnect
     {
         private static MySqlConnection? conn;
+        static string connectionString;
         public static bool Connect(string server, string port, string database,
                                    string username, string password, string sslMode,
                                    string caPath)
         {
-            string connectionString;
-
             try
             {
                 if (sslMode == "VerifyCA")
@@ -64,6 +63,13 @@ namespace TeamNoter
                 Utility.NoterMessage("Database connection failed", ex.Message + " " + sslMode);
                 return false;
             }
+
+            
+        }
+
+        public static MySqlConnection GetConnection()
+        {
+            return new MySqlConnection(connectionString);
         }
 
         // allows us to retrieve the connection later throughout any point in the app by doing:

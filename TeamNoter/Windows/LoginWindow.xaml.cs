@@ -189,11 +189,6 @@ namespace TeamNoter
 
                                         resultset.Close();
 
-                                        Dashboard dashboard = new Dashboard(this);
-                                        dashboard.Show();
-                                        this.Hide();
-
-
                                     }
                                     else
                                     {
@@ -206,6 +201,13 @@ namespace TeamNoter
                     finally
                     {
                         conn.Close();
+
+                        if (loginSuccess)
+                        {
+                            Dashboard dashboard = new Dashboard(this);
+                            dashboard.Show();
+                            this.Hide();
+                        }
                     }
                 }
             }

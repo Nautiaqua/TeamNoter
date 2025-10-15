@@ -51,7 +51,7 @@ namespace TeamNoter
             contentPane.Content = new tasksContent();
             taskBtn.Background = Utility.HexConvert("#FF403F3D");
 
-            this.DataContext = new DataStorage();
+            
 
             // hides manageBtn if a user is logged in
             if (LoginData.AccountType == "USER")
