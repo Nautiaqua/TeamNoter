@@ -254,6 +254,19 @@ namespace TeamNoter
         {
 
         }
-        
+
+        private void mainTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // THIS IS JUST FOR QUICK LOGIN
+            serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
+            portBox.Text = "28069";
+            dbBox.Text = "TASK_MANAGEMENT";
+            dbUsernameBox.Text = "avnadmin";
+            dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
+            emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
+            userpassPassbox.Password = "TEAMNOTER";
+            required.IsChecked = true;
+            proceedBtn.IsEnabled = true;
+        }
     }
 }

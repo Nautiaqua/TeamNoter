@@ -29,5 +29,15 @@ namespace TeamNoter.Windows.UserControls
         {
 
         }
+
+        private void searchBox_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Search for users", e);
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

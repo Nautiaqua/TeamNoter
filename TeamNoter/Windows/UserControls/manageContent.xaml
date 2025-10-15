@@ -8,11 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer x:Name="mainScroller_Copy" HorizontalContentAlignment="Stretch">
-        <Grid x:Name="mainGrid1" Background="#FF333131" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-        </Grid>
+        <StackPanel x:Name="mainStack">
+            <Label x:Name="titleLabel" Content="Manage Users" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+            <StackPanel x:Name="actionStack" Margin="20,10,0,0">
+                <Label x:Name="actionLabel" Content="User Options:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+                <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
+                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged" Width="382"/>
+                    <Button x:Name="AddBtn" Content=" Add Users" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="20,0,0,0"/>
+                    <Button x:Name="editBtn" Content=" Add Users" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="20,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            <DataGrid HorizontalAlignment="Left" Margin="20,20,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Width="722" Height="275"/>
+        </StackPanel>
     </ScrollViewer>
 </UserControl>
