@@ -23,7 +23,6 @@
                     <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
                     <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
                         <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
-                        <Button x:Name="changeBtn" Content="Recover Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

@@ -24,5 +24,10 @@ namespace TeamNoter.Windows.UserControls
         {
             InitializeComponent();
         }
+
+        private void filepathExportBox_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Filepath for exports", e);
+        }
     }
 }
