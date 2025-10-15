@@ -260,7 +260,7 @@ namespace TeamNoter
 
         private void mainTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // THIS IS JUST FOR QUICK LOGIN
+            // just for quick login! comment this out later.
             serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
             portBox.Text = "28069";
             dbBox.Text = "TASK_MANAGEMENT";

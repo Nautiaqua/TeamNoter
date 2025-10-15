@@ -23,6 +23,8 @@
     <None Remove="Images\UI_Icons\List_Unordered.svg" />
     <None Remove="Images\UI_Icons\Log_Out.svg" />
     <None Remove="Images\UI_Icons\Settings.svg" />
+    <None Remove="Images\UI_Icons\Timer.svg" />
+    <None Remove="Images\UI_Icons\Users.svg" />
     <None Remove="Images\UI_Icons\Users_Group.svg" />
     <None Remove="Images\UI_Icons\User_01.svg" />
   </ItemGroup>
@@ -71,6 +73,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Settings.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Timer.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Users.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Users_Group.svg">

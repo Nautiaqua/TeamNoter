@@ -18,7 +18,7 @@
                     <Button x:Name="editBtn" Content=" Add Users" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="20,0,0,0"/>
                 </StackPanel>
             </StackPanel>
-            <DataGrid HorizontalAlignment="Left" Margin="20,20,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Width="722" Height="275"/>
+            <DataGrid HorizontalAlignment="Left" Margin="20,20,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Width="738" Height="275"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
