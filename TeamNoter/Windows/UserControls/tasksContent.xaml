@@ -24,7 +24,10 @@
                         <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,2,0,0" Foreground="#FFF7BB64"/>
                         <TextBlock Text="{Binding Details}" FontSize="13" Margin="12,0,0,0" Foreground="White"/>
                     </StackPanel>
-                    <CheckBox Style="{DynamicResource NoterCheckbox}" IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderBrush="#FF777777" VerticalAlignment="Center" Foreground="#FF777777" BorderThickness="2,2,2,2" Background="{x:Null}" Padding="0,0,0,0" Margin="0,0,20,0" Click="task_Checked" />
+                    <Button DockPanel.Dock="Right"  Width="17" Height="17" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Click="deleteBtn_Clicked" Foreground="#FFFF2A2A" Margin="0,0,10,0">
+                        <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Trash_Full.svg}" Stretch="Uniform" Width="15" Height="15" Margin="0,0,0,0" HorizontalAlignment="Center"/>
+                    </Button>
+                    <CheckBox Style="{DynamicResource NoterCheckbox}" IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderBrush="#FF777777" VerticalAlignment="Center" Foreground="#FF777777" BorderThickness="2,2,2,2" Background="{x:Null}" Padding="0,0,0,0" Margin="0,0,25,0" Click="task_Checked" />
                 </DockPanel>
             </Border>
         </DataTemplate>
@@ -52,7 +55,7 @@
                     </StackPanel>
                     <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for task titles" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged"/>
                     <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for user" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" TextChanged="searchBox_TextChanged" MinWidth="675" Margin="0,0,0,10"/>
-                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
+                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
                 </StackPanel>
 
             </StackPanel>

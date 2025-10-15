@@ -27,11 +27,11 @@ namespace TeamNoter.Windows.UserControls
     {
         public CollectionView taskView;
         public bool initializing = true;
+        DataStorage dataStorage = new DataStorage();
         public tasksContent()
         {
             InitializeComponent();
 
-            DataStorage dataStorage = new DataStorage();
             this.DataContext = dataStorage;
             taskView = dataStorage.getTaskView();
 
@@ -157,6 +157,28 @@ namespace TeamNoter.Windows.UserControls
         private void filter1_Click(object sender, RoutedEventArgs e)
         {
             filterHandler();
+        }
+
+        private void deleteBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button delBtn && delBtn.DataContext is DataStorage.TaskItem task)
+            {
+                using (MySqlConnection conn = dbConnect.GetConnection())
+                {
+                    conn.Open();
+
+                    string queryString = "DELETE FROM TASKS WHERE TASK_ID = @currentTaskID";
+                    MySqlCommand query = new MySqlCommand(queryString, conn);
+                    query.Parameters.AddWithValue("@currentTaskID", task.TaskID);
+
+                    dataStorage.tasks.Remove(task);
+
+                    query.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                taskView.Refresh();
+            }
         }
     }
 }
