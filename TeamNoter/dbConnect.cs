@@ -45,10 +45,11 @@ namespace TeamNoter
                 // assigns the connection string to 
                 conn = new MySqlConnection(connectionString);
 
+                // code that just checcs if we can connect properly
                 try
                 {
                     conn.Open();
-                    Utility.NoterMessage("Connected", "Sucessfully connected");
+                    // Utility.NoterMessage("Connected", "Sucessfully connected");
                     conn.Close();
                     return true; // returns true if successful
                 }
@@ -67,13 +68,10 @@ namespace TeamNoter
             
         }
 
+        // use this if you're opening a connection
         public static MySqlConnection GetConnection()
         {
             return new MySqlConnection(connectionString);
         }
-
-        // allows us to retrieve the connection later throughout any point in the app by doing:
-        // MySqlConnection conn = dbConnect.Connection;
-        public static MySqlConnection? Connection => conn;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dark.Net;
 using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using static TeamNoter.DataStorage;
 
 namespace TeamNoter.Windows.UserControls
 {
@@ -33,10 +36,43 @@ namespace TeamNoter.Windows.UserControls
             taskView = dataStorage.getTaskView();
 
             initializing = false;
+            filterHandler();
         }
 
         static string searchBoxPlaceholder = "Search for task titles";
         static string userSearchPlaceholder = "Search for users";
+
+        private void filterHandler()
+        {
+            string titleSearchText = searchBox.Text.ToLower();
+            string userSearchText = userSearchBox.Text.ToLower();
+
+            bool titleSearch_IsDefault = searchBox.Text == searchBoxPlaceholder || string.IsNullOrWhiteSpace(searchBox.Text);
+            bool userSearch_IsDefault = userSearchBox.Text == userSearchPlaceholder || string.IsNullOrWhiteSpace(userSearchBox.Text);
+
+            taskView.Filter = item =>
+            {
+                if (item is DataStorage.TaskItem taskItem)
+                {
+                    // check for if the item matches the search query
+                    bool isMatchingTitle = titleSearch_IsDefault || taskItem.Title.ToLower().Contains(titleSearchText);
+                    bool isMatchingUser = userSearch_IsDefault || taskItem.Users.ToLower().Contains(userSearchText);
+                    bool isDueToday = filter1.IsChecked == false || taskItem.Deadline.Date.Equals(DateTime.Now);
+                    bool isIncomplete = taskItem.IsCompleted == false;
+
+                    if (filter3.IsChecked == true)
+                        return isMatchingTitle && isMatchingUser && isIncomplete && isDueToday;
+                    else if (filter4.IsChecked == true)
+                        return isMatchingTitle && isMatchingUser && !isIncomplete && isDueToday;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+
+            };
+            taskView.Refresh();
+        }
 
         private void searchBox_Placeholder(object sender, RoutedEventArgs e)   
         {
@@ -48,60 +84,14 @@ namespace TeamNoter.Windows.UserControls
             Utility.PlaceholderText(sender, userSearchPlaceholder, e);
         }
 
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs eB)
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!initializing)
             {
-                string titleSearchText = searchBox.Text.ToLower();
-                string userSearchText = userSearchBox.Text.ToLower();
-
-                bool titleSearch_IsDefault = searchBox.Text == searchBoxPlaceholder || string.IsNullOrWhiteSpace(searchBox.Text);
-                bool userSearch_IsDefault = userSearchBox.Text == userSearchPlaceholder || string.IsNullOrWhiteSpace(userSearchBox.Text);
-
-                if (titleSearch_IsDefault && userSearch_IsDefault)
-                {
-                    taskView.Filter = null;
-                }
-                else
-                {
-                    taskView.Filter = item =>
-                    {
-                        var taskItem = item as DataStorage.TaskItem;
-
-                        if (!titleSearch_IsDefault && !userSearch_IsDefault)
-                        {
-                            if (taskItem != null)
-                                return taskItem.Title.ToLower().Contains(titleSearchText) &&
-                                       taskItem.Users.ToLower().Contains(userSearchText);
-                            else
-                                return false;
-                        }
-                        else if (!titleSearch_IsDefault && userSearch_IsDefault)
-                        {
-                            if (taskItem != null)
-                                return taskItem.Title.ToLower().Contains(titleSearchText);
-                            else
-                                return false;
-                        }
-                        else if (!userSearch_IsDefault && titleSearch_IsDefault)
-                        {
-                            if (taskItem != null)
-                                return taskItem.Users.ToLower().Contains(userSearchText);
-                            else
-                                return false;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    };
-                }
-
-                taskView.Refresh();
+                filterHandler();
 
                 if (userSearchBox.Text == LoginData.Username)
                     filter2.IsChecked = true;
-
                 else
                     filter2.IsChecked = false;
             }
@@ -121,6 +111,48 @@ namespace TeamNoter.Windows.UserControls
             }
         }
 
-        
+        private void task_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is DataStorage.TaskItem task)
+            {
+                using (MySqlConnection conn = dbConnect.GetConnection())
+                {
+                    conn.Open();
+
+                    string queryString = " UPDATE TASKS SET IS_COMPLETED = TRUE WHERE TASK_ID = @currentTaskID";
+                    MySqlCommand query = new MySqlCommand(queryString, conn);
+                    query.Parameters.AddWithValue("@currentTaskID", task.TaskID);
+
+                    query.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                taskView.Refresh();
+            }
+        }
+
+        private void mainViewHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox)
+            {
+                if (checkBox == filter3)
+                {
+                    filter3.IsChecked = true;
+                    filter4.IsChecked = false; 
+                }
+                else if (checkBox == filter4)
+                {
+                    filter4.IsChecked = true;
+                    filter3.IsChecked = false;
+                }
+
+                filterHandler();
+            }
+        }
+
+        private void filter1_Click(object sender, RoutedEventArgs e)
+        {
+            filterHandler();
+        }
     }
 }

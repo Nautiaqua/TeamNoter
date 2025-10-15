@@ -125,88 +125,91 @@ namespace TeamNoter
                 dbUsernameBox.Text, dbPasswordPassbox.Password,
                 sslMode, caPathBox.Text))
             {
-                bool loginSuccess = false;
-                MySqlConnection conn = dbConnect.Connection;
-                if (conn.State != ConnectionState.Open)
-                    conn.Open();
-
-                try
+                using (MySqlConnection conn = dbConnect.GetConnection())
                 {
-                    // Verify schema
-                    string[] queries =
-                    {
-            "SELECT TASK_ID, TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED FROM TASKS;",
-            "SELECT USER_ID, TASK_ID FROM USER_TASKS;",
-            "SELECT USER_ID, USERNAME, EMAIL, PASSWORD, CREATION_DATE, TASKS_COMPLETED, TASKS_ASSIGNED, ACCOUNT_TYPE FROM USERS;"
-        };
+                    if (conn.State != ConnectionState.Open)
+                        conn.Open();
+                    bool loginSuccess = false;
 
-                    foreach (string q in queries)
-                    {
-                        using (MySqlCommand cmd = new MySqlCommand(q, conn))
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            // just checking structure — no need to read data
-                        }
-                    }
-
-                    MessageBox.Show("Working — all queries executed successfully!");
-                    verification = true;
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show("Incomplete or wrong database:\n" + error.Message);
-                }
-
-                if (verification)
-                {
                     try
                     {
-                        string queryString = "SELECT * FROM USERS WHERE EMAIL = @email";
-                        using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                        // Verify schema
+                        string[] queries =
                         {
-                            query.Parameters.AddWithValue("@email", emailBox.Text);
-                            using (MySqlDataReader resultset = query.ExecuteReader())
+                        "SELECT TASK_ID, TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED FROM TASKS;",
+                        "SELECT USER_ID, TASK_ID FROM USER_TASKS;",
+                        "SELECT USER_ID, USERNAME, EMAIL, PASSWORD, CREATION_DATE, TASKS_COMPLETED, TASKS_ASSIGNED, ACCOUNT_TYPE FROM USERS;"
+                    };
+
+                        foreach (string q in queries)
+                        {
+                            using (MySqlCommand cmd = new MySqlCommand(q, conn))
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
                             {
-                                if (!resultset.HasRows)
+                                // checks the structure
+                            }
+                        }
+
+                        // for debug reasons, just uncomment if u wanna debug the connection code
+                        // MessageBox.Show("Working — all queries executed successfully!");
+                        verification = true;
+                    }
+                    catch (Exception error)
+                    {
+                        Utility.NoterMessage("Incomplete or wrong database", "Incomplete or wrong database" + error.Message);
+                    }
+
+                    if (verification)
+                    {
+                        try
+                        {
+                            string queryString = "SELECT * FROM USERS WHERE EMAIL = @email";
+                            using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                            {
+                                query.Parameters.AddWithValue("@email", emailBox.Text);
+                                using (MySqlDataReader resultset = query.ExecuteReader())
                                 {
-                                    Utility.NoterMessage("Login failed", "Invalid email or password.");
-                                }
-                                else if (resultset.Read())
-                                {
-                                    if (resultset["PASSWORD"] != DBNull.Value &&
-                                        userpassPassbox.Password.Equals(resultset.GetString("PASSWORD")))
-                                    {
-                                        // Utility.NoterMessage("Login successful", "Valid email and password.");
-                                        loginSuccess = true;
-
-                                        LoginData.UserID = resultset.GetInt32("USER_ID");
-                                        LoginData.Username = resultset.GetString("USERNAME");
-                                        LoginData.Email = resultset.GetString("EMAIL");
-                                        LoginData.Password = resultset.GetString("PASSWORD");
-                                        LoginData.TasksCompleted = resultset.GetInt32("TASKS_COMPLETED");
-                                        LoginData.TasksAssigned = resultset.GetInt32("TASKS_ASSIGNED");
-                                        LoginData.AccountType = resultset.GetString("ACCOUNT_TYPE");
-
-                                        resultset.Close();
-
-                                    }
-                                    else
+                                    if (!resultset.HasRows)
                                     {
                                         Utility.NoterMessage("Login failed", "Invalid email or password.");
+                                    }
+                                    else if (resultset.Read())
+                                    {
+                                        if (resultset["PASSWORD"] != DBNull.Value &&
+                                            userpassPassbox.Password.Equals(resultset.GetString("PASSWORD")))
+                                        {
+                                            // Utility.NoterMessage("Login successful", "Valid email and password.");
+                                            loginSuccess = true;
+
+                                            LoginData.UserID = resultset.GetInt32("USER_ID");
+                                            LoginData.Username = resultset.GetString("USERNAME");
+                                            LoginData.Email = resultset.GetString("EMAIL");
+                                            LoginData.Password = resultset.GetString("PASSWORD");
+                                            LoginData.TasksCompleted = resultset.GetInt32("TASKS_COMPLETED");
+                                            LoginData.TasksAssigned = resultset.GetInt32("TASKS_ASSIGNED");
+                                            LoginData.AccountType = resultset.GetString("ACCOUNT_TYPE");
+
+                                            resultset.Close();
+
+                                        }
+                                        else
+                                        {
+                                            Utility.NoterMessage("Login failed", "Invalid email or password.");
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    finally
-                    {
-                        conn.Close();
-
-                        if (loginSuccess)
+                        finally
                         {
-                            Dashboard dashboard = new Dashboard(this);
-                            dashboard.Show();
-                            this.Hide();
+                            conn.Close();
+
+                            if (loginSuccess)
+                            {
+                                Dashboard dashboard = new Dashboard(this);
+                                dashboard.Show();
+                                this.Hide();
+                            }
                         }
                     }
                 }

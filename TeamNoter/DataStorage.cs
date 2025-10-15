@@ -14,6 +14,7 @@ namespace TeamNoter
     {
         public class TaskItem
         {
+            public int TaskID { get; set; }
             public DateTime Deadline { get; set; }
             public string Title { get; set; }
             public string Details { get; set; }
@@ -36,7 +37,8 @@ namespace TeamNoter
                                              "(SELECT GROUP_CONCAT(u.USERNAME SEPARATOR ', ') " +
                                              "FROM USER_TASKS ut LEFT JOIN USERS u ON u.USER_ID = ut.USER_ID " +
                                              "WHERE ut.TASK_ID = t.TASK_ID) AS TASK_USERS " +
-                                          "FROM TASKS t WHERE t.IS_COMPLETED = FALSE ORDER BY DEADLINE ASC";
+                                          "FROM TASKS t ORDER BY DEADLINE ASC";
+                                          // this will make ALL the tasks into items.
                     MySqlCommand query = new MySqlCommand(queryString, conn);
 
                     MySqlDataReader resultset = query.ExecuteReader();
@@ -44,6 +46,7 @@ namespace TeamNoter
                     {
                         var item = new TaskItem
                         {
+                            TaskID = resultset.GetInt32("TASK_ID"),
                             Deadline = resultset.GetDateTime("DEADLINE"),
                             Title = resultset.GetString("TASK_NAME"),
                             Details = resultset.GetString("TASK_DESCRIPTION"),

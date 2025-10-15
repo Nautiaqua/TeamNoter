@@ -18,7 +18,7 @@
                         <TextBlock Text="{Binding Details}" FontSize="13" Margin="0,0,0,0"/>
                         <TextBlock Text="{Binding Users}" FontSize="12" Margin="0,0,0,0" FontStyle="Italic"/>
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderBrush="Black" VerticalAlignment="Center" Foreground="#FF777777" BorderThickness="2,2,2,2" Background="{x:Null}" Padding="0,0,0,0" Margin="0,0,20,0"/>
+                    <CheckBox IsChecked="{Binding IsCompleted}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderBrush="Black" VerticalAlignment="Center" Foreground="#FF777777" BorderThickness="2,2,2,2" Background="{x:Null}" Padding="0,0,0,0" Margin="0,0,20,0" Click="task_Checked" />
                 </DockPanel>
             </Border>
         </DataTemplate>
@@ -38,10 +38,14 @@
                 <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center"/>
                 <StackPanel x:Name="contentStack" Margin="25,10,0,0">
                     <StackPanel x:Name="filterStack" Orientation="Horizontal" Margin="0,10,0,10">
-                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter2" Content="Show tasks only assigned to you" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Click="filter2_Click"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter1" Content="Show tasks due for today" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Click="filter1_Click" VerticalContentAlignment="Center" Margin="0,0,15,0"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter2" Content="Show tasks only assigned to you" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Click="filter2_Click" VerticalContentAlignment="Center"/>
+                        <Label x:Name="borderLabel" Content="|" FontWeight="Bold" FontSize="14" Padding="15,5,15,5" Foreground="#FF777777"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter3" Content="Show Incomplete Tasks" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" VerticalContentAlignment="Center" Margin="0,0,15,0" IsChecked="True" Click="mainViewHandler"/>
+                        <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter4" Content="Show Complete Tasks" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Click="mainViewHandler" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for task titles" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged"/>
-                    <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" TextChanged="searchBox_TextChanged" MinWidth="650"/>
+                    <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" TextChanged="searchBox_TextChanged" MinWidth="675" Margin="0,0,0,10"/>
                     <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" ItemsSource="{Binding tasks}" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
                 </StackPanel>
 
