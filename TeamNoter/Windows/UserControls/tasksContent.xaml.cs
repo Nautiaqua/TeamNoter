@@ -115,7 +115,7 @@ namespace TeamNoter.Windows.UserControls
         {
             if (sender is CheckBox checkBox && checkBox.DataContext is DataStorage.TaskItem task)
             {
-                bool isComplete = e.RoutedEvent == CheckBox.CheckedEvent;
+                bool isComplete = checkBox.IsChecked == true;
                         
                 
                 using (MySqlConnection conn = dbConnect.GetConnection())
@@ -125,9 +125,11 @@ namespace TeamNoter.Windows.UserControls
                     string queryString = " UPDATE TASKS SET IS_COMPLETED = @completionBool WHERE TASK_ID = @currentTaskID";
                     MySqlCommand query = new MySqlCommand(queryString, conn);
                     query.Parameters.AddWithValue("@currentTaskID", task.TaskID);
-                    query.Parameters.AddWithValue("@completionBool", isComplete);
+                    query.Parameters.AddWithValue("@completionBool", isComplete ? 1 : 0);
 
                     query.ExecuteNonQuery();
+
+                    // Utility.NoterMessage("FINISHED", "COMPLETED TASK");
                     conn.Close();
                 }
 

@@ -13,7 +13,7 @@ namespace TeamNoter
     internal class dbConnect
     {
         private static MySqlConnection? conn;
-        static string connectionString;
+        static string connectionString = "";
         public static bool Connect(string server, string port, string database,
                                    string username, string password, string sslMode,
                                    string caPath)

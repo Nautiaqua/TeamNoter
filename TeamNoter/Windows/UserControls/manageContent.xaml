@@ -127,7 +127,7 @@
                 <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged" Width="382" Height="30" Margin="0,0,60,0"/>
             </DockPanel>
         </StackPanel>
-        <DataGrid CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="557" ItemsSource="{Binding tasks}" HeadersVisibility="Column" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="Auto
+        <DataGrid CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="557" ItemsSource="{Binding users}" HeadersVisibility="Column" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="Auto
                   " Margin="20,0,0,0"/>
     </StackPanel>
 </UserControl>
