@@ -98,6 +98,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Windows\CustomPopups\AddPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\CustomPopups\ChangePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\UserControls\manageContent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -30,7 +30,7 @@
                     <StackPanel x:Name="actionStack" Margin="30,0,0,0">
                         <Label x:Name="actionLabel" Content="Security Actions" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
                         <StackPanel x:Name="horizontalStack" Orientation="Horizontal">
-                            <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                            <Button x:Name="recoverBtn" Content="Change Password" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Click="recoverBtn_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamNoter.Windows.CustomPopups;
 
 namespace TeamNoter.Windows.UserControls
 {
@@ -23,6 +24,12 @@ namespace TeamNoter.Windows.UserControls
         public profileContent()
         {
             InitializeComponent();
+        }
+
+        private void recoverBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassword changepass = new ChangePassword();
+            changepass.Show();
         }
     }
 }

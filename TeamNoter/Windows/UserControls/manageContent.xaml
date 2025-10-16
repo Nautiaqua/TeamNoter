@@ -114,7 +114,7 @@
         <StackPanel x:Name="actionStack" Margin="20,10,0,0">
             <Label x:Name="actionLabel" Content="User Options:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
             <DockPanel LastChildFill="False">
-                <Button DockPanel.Dock="Right" x:Name="addBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40">
+                <Button DockPanel.Dock="Right" x:Name="addBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" Click="addBtn_Click">
                     <Grid Width="39" Height="39">
                         <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_Add.svg}" Stretch="Uniform" Width="20" Height="20"/>
                     </Grid>

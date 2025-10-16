@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using TeamNoter.Windows.CustomPopups;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -41,6 +42,12 @@ namespace TeamNoter.Windows.UserControls
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddUserPopup adduser = new AddUserPopup();
+            adduser.Show();
         }
     }
 }
