@@ -55,7 +55,7 @@
                     </StackPanel>
                     <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for task titles" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged"/>
                     <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for user" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" TextChanged="searchBox_TextChanged" MinWidth="675" Margin="0,0,0,10"/>
-                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
+                    <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" ItemsSource="{Binding tasks}"/>
                 </StackPanel>
 
             </StackPanel>

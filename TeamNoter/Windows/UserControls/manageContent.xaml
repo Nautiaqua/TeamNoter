@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:TeamNoter.Windows.UserControls"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" x:Class="TeamNoter.Windows.UserControls.manageContent"
              Style="{DynamicResource windowStyle}"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Background="#FF333131">
+             mc:Ignorable="d"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Background="#FF333131" Height="706" ScrollViewer.HorizontalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
     <UserControl.Resources>
         <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="8"/>
@@ -23,7 +22,7 @@
             </Setter>
         </Style>
         <Style x:Key="NoterHeader" TargetType="{x:Type DataGridColumnHeader}">
-            
+
             <Setter Property="Foreground" Value="#FFF7BB64"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
@@ -80,7 +79,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Border Background="#FF2D2D2D" BorderBrush="#FF252525" BorderThickness="0" SnapsToDevicePixels="True">
+                        <Border Background="#FF2D2D2D" BorderBrush="#FF252525" BorderThickness="0" SnapsToDevicePixels="True" Padding="3,3,3,3">
                             <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
                     </ControlTemplate>
@@ -110,26 +109,25 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <ScrollViewer x:Name="mainScroller_Copy" HorizontalContentAlignment="Stretch">
-        <StackPanel x:Name="mainStack">
-            <Label x:Name="titleLabel" Content="Manage Users" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
-            <StackPanel x:Name="actionStack" Margin="20,10,0,0">
-                <Label x:Name="actionLabel" Content="User Options:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
-                <DockPanel LastChildFill="False">
-                    <Button DockPanel.Dock="Right" x:Name="addBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Click="taskBtn_Click" Foreground="#FFFF2A2A" Height="40" Margin="0,0,25,0">
-                        <Grid Width="39" Height="39">
-                            <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_Add.svg}" Stretch="Uniform" Width="20" Height="20"/>
-                        </Grid>
-                    </Button>
-                    <Button DockPanel.Dock="Right" x:Name="removeBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Click="taskBtn_Click" Foreground="#FFFF2A2A" Height="40" Margin="0,0,21,0">
-                        <Grid Width="39" Height="39">
-                            <Image x:Name="taskLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Trash_Full.svg}" Stretch="Uniform" Width="20" Height="20"/>
-                        </Grid>
-                    </Button>
-                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged" Width="382" Height="30"/>
-                </DockPanel>
-            </StackPanel>
-            <DataGrid CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="742"/>
+    <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,20,0">
+        <Label x:Name="titleLabel" Content="Manage Users" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+        <StackPanel x:Name="actionStack" Margin="20,10,0,0">
+            <Label x:Name="actionLabel" Content="User Options:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+            <DockPanel LastChildFill="False">
+                <Button DockPanel.Dock="Right" x:Name="addBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40">
+                    <Grid Width="39" Height="39">
+                        <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_Add.svg}" Stretch="Uniform" Width="20" Height="20"/>
+                    </Grid>
+                </Button>
+                <Button DockPanel.Dock="Right" x:Name="removeBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" Margin="0,0,21,0">
+                    <Grid Width="39" Height="39">
+                        <Image x:Name="taskLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Trash_Full.svg}" Stretch="Uniform" Width="20" Height="20"/>
+                    </Grid>
+                </Button>
+                <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged" Width="382" Height="30" Margin="0,0,60,0"/>
+            </DockPanel>
         </StackPanel>
-    </ScrollViewer>
+        <DataGrid CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="557" ItemsSource="{Binding tasks}" HeadersVisibility="Column" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="Auto
+                  " Margin="20,0,0,0"/>
+    </StackPanel>
 </UserControl>

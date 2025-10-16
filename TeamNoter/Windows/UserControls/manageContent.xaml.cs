@@ -20,9 +20,12 @@ namespace TeamNoter.Windows.UserControls
     /// </summary>
     public partial class manageContent : UserControl
     {
+        DataStorage dataStorage = new DataStorage();
         public manageContent()
         {
             InitializeComponent();
+
+            this.DataContext = dataStorage;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
