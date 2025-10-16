@@ -61,7 +61,8 @@ namespace TeamNoter.Windows.UserControls
                         {
                             while (reader.Read())
                             {
-                                writer.WriteLine($"{reader["TASK_ID"]},{reader["DEADLINE"]},{reader["TASK_NAME"]},{reader["TASK_DESCRIPTION"]},{reader["IS_COMPLETED"]}");
+                                var deadline = (DateTime)reader["DEADLINE"];
+                                writer.WriteLine($"{reader["TASK_ID"]},{deadline:yyyy-MM-dd HH:mm:ss},{reader["TASK_NAME"]},{reader["TASK_DESCRIPTION"]},{reader["IS_COMPLETED"]}");
                             }
                         }
                     }
