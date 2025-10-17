@@ -8,17 +8,17 @@
         xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="Add a new user" Icon="/Images/Icons/NoterIcon.ico" MinWidth="400" MinHeight="250" Background="#FF333131" ResizeMode="NoResize">
+        Title="Add a new user" Icon="/Images/Icons/NoterIcon.ico" MinWidth="400" MinHeight="250" Background="#FF333131" Width="420" Height="273">
     <StackPanel x:Name="mainStack" Margin="20,10,20,0">
         <Label x:Name="mainLabel" Content="Add new user's details:" Padding="0,5,5,5" Foreground="White" Margin="0,1,0,0"/>
         <TextBox x:Name="noteName" TextWrapping="Wrap" Text="Username" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Width="360"/>
-        <TextBox x:Name="noteName_Copy" TextWrapping="Wrap" Text="Email" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" Width="360"/>
-        <TextBox x:Name="noteName_Copy1" TextWrapping="Wrap" Text="Password" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" Width="360"/>
+        <TextBox x:Name="noteEmail" TextWrapping="Wrap" Text="Email" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" Width="360"/>
+        <TextBox x:Name="notePass" TextWrapping="Wrap" Text="Password" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" Width="360"/>
         <StackPanel x:Name="typeStack" Orientation="Horizontal" Margin="0,10,0,0">
             <Label x:Name="sslModeLabel" Content="Account Type:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,0,10,0"/>
             <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="adminBtn" Content="Admin" Foreground="White" Margin="0,0,20,0" />
             <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="userBtn" Content="User" Foreground="White" />
         </StackPanel>
-        <Button x:Name="proceedBtn" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Content="Proceed"/>
+        <Button x:Name="proceedBtn" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Content="Proceed" Click="proceedBtn_Click"/>
     </StackPanel>
 </Window>
