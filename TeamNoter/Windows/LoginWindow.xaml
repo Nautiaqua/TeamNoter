@@ -15,7 +15,7 @@
     <Border x:Name="mainBorder" BorderBrush="Black" Background="#FF333131" CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Height="695" MinWidth="460" MinHeight="700" MaxHeight="700" MaxWidth="460">
         <StackPanel>
             <StackPanel x:Name="titleStack" Orientation="Horizontal" Margin="50,40,0,0">
-                <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/Icons/NoterLogo.svg}" Height="50" Width="50"/>
+                <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/Icons/NoterLogo.svg}" Height="50" Width="50" MouseLeftButtonDown="noterLogo_MouseLeftButtonDown"/>
                 <StackPanel x:Name="titleTextStack" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Label x:Name="mainTitle" Content="TeamNoter" Style="{StaticResource Leixo}" FontSize="20" VerticalContentAlignment="Bottom" Padding="5,0,5,0" Foreground="White" MouseDoubleClick="mainTitle_MouseDoubleClick"/>
                     <Label x:Name="subTitle" Content="Track &amp; Manage Your Team's Work" Padding="5,0,5,0" Foreground="White"/>

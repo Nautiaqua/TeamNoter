@@ -70,11 +70,11 @@ namespace TeamNoter.Windows.CustomPopups
                 if (conn.State != System.Data.ConnectionState.Open)//<---- checks if its opwn
                     conn.Open();
 
-                // ✅ Insert into TASKS
+                // make a query 
                 string query = @"
                     INSERT INTO TASKS (TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED)
                     VALUES (@name, @description, @created, @deadline, @completed)";
-
+                // insert that query in the Mysqlcommand function
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
@@ -82,7 +82,7 @@ namespace TeamNoter.Windows.CustomPopups
                     cmd.Parameters.AddWithValue("@created", DateTime.Now);
                     cmd.Parameters.AddWithValue("@deadline", deadline);
                     cmd.Parameters.AddWithValue("@completed", false);
-
+                    //execute the query that you inserted
                     cmd.ExecuteNonQuery();
                 }
 

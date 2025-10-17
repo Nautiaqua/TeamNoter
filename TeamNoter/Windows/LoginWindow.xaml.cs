@@ -25,6 +25,7 @@ namespace TeamNoter
 
         public bool Initializing = true;
         public string sslMode;
+        string saveFile = "lastlogin.txt";
         public MainWindow()
         {
 
@@ -32,7 +33,6 @@ namespace TeamNoter
             //Class1.Connect();
 
             // Directly handles the dark mode for the titlebar
-            DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
 
             Initializing = false;
         }
@@ -206,6 +206,18 @@ namespace TeamNoter
 
                             if (loginSuccess)
                             {
+                                // eto yung inadd ko TOFFY
+                                File.WriteAllLines(saveFile, new string[]
+                                {
+                                serverBox.Text,
+                                portBox.Text,
+                                dbBox.Text,
+                                dbUsernameBox.Text,
+                                dbPasswordPassbox.Password,
+                                emailBox.Text,
+                                userpassPassbox.Password
+                                });
+
                                 Dashboard dashboard = new Dashboard(this);
                                 dashboard.Show();
                                 this.Hide();
@@ -270,6 +282,33 @@ namespace TeamNoter
             userpassPassbox.Password = "TEAMNOTER";
             required.IsChecked = true;
             proceedBtn.IsEnabled = true;
+        }
+
+        private void noterLogo_TouchLeave(object sender, TouchEventArgs e)
+        {
+            
+        }
+
+        private void noterLogo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (File.Exists(saveFile))
+            {
+                string[] lines = File.ReadAllLines(saveFile);
+                if (lines.Length >= 7)
+                {
+                    serverBox.Text = lines[0];
+                    portBox.Text = lines[1];
+                    dbBox.Text = lines[2];
+                    dbUsernameBox.Text = lines[3];
+                    dbPasswordPassbox.Password = lines[4];
+                    emailBox.Text = lines[5];
+                    userpassPassbox.Password = lines[6];
+
+                    required.IsChecked = true;
+                    sslMode = "Required";
+                    proceedBtn.IsEnabled = true;
+                }
+            }
         }
     }
 }
