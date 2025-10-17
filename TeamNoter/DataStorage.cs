@@ -59,14 +59,24 @@ namespace TeamNoter
                     while (resultset.Read())
                     {
                         var item = new TaskItem
-                        {
-                            TaskID = resultset.GetInt32("TASK_ID"),
-                            Deadline = resultset.GetDateTime("DEADLINE"),
-                            Title = resultset.GetString("TASK_NAME"),
-                            Details = resultset.GetString("TASK_DESCRIPTION"),
-                            Users = resultset.GetString("TASK_USERS"),
-                            IsCompleted = resultset.GetBoolean("IS_COMPLETED")
-                        };  
+                                    {
+                                        TaskID = resultset.GetInt32("TASK_ID"),
+                                        Deadline = resultset.IsDBNull(resultset.GetOrdinal("DEADLINE"))
+                    ? DateTime.MinValue
+                    : resultset.GetDateTime("DEADLINE"),
+                                        Title = resultset.IsDBNull(resultset.GetOrdinal("TASK_NAME"))
+                    ? "Untitled"
+                    : resultset.GetString("TASK_NAME"),
+                                        Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION"))
+                    ? ""
+                    : resultset.GetString("TASK_DESCRIPTION"),
+                                        Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS"))
+                    ? "Unassigned"
+                    : resultset.GetString("TASK_USERS"),
+                                        IsCompleted = !resultset.IsDBNull(resultset.GetOrdinal("IS_COMPLETED")) &&
+                              resultset.GetBoolean("IS_COMPLETED")
+                                    };
+
 
                         tasks.Add(item);
                     }
@@ -107,13 +117,11 @@ namespace TeamNoter
                     Utility.NoterMessage("Task error", "Empty connection. Cannot display tasks.");
             }
         }
-
         public CollectionView getTaskView()
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
             return view;
         }
-
         public CollectionView getUserView()
         {
             CollectionView userview = (CollectionView)CollectionViewSource.GetDefaultView(tasks);

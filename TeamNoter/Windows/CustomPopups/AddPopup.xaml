@@ -14,7 +14,7 @@
         <TextBox x:Name="noteName" TextWrapping="Wrap" Text="Name" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="33"/>
         <TextBox x:Name="noteDetails" TextWrapping="Wrap" Text="Details (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="60" Margin="0,10,0,0"/>
         <TextBox x:Name="assignedUsers" TextWrapping="Wrap" Text="Assigned Users" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="33" Margin="0,10,0,0"/>
-        <DatePicker Style="{DynamicResource NoterDatepicker}" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="#FF777777" Foreground="White" Text="Deadline" Padding="5,5,5,5"/>
-        <Button x:Name="proceedBtn" Content="Add Note" Height="33" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0"/>
+        <DatePicker x:Name="calendar" Style="{DynamicResource NoterDatepicker}" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="#FF777777" Foreground="White" Text="Deadline" Padding="5,5,5,5"/>
+        <Button x:Name="proceedBtn" Content="Add Note" Height="33" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Click="proceedBtn_Click"/>
     </StackPanel>
 </Window>
