@@ -172,5 +172,85 @@ namespace TeamNoter.Windows.UserControls
                 Utility.NoterMessage("Import Failed", $"An error has been occured: {ex.Message}");
             }
         }
+
+        private void exportBtnSQL_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var saveDialog = new Microsoft.Win32.SaveFileDialog();
+                saveDialog.Filter = "SQL files (*.sql)|*.sql";
+                saveDialog.Title = "Export Database to SQL File";
+
+                if (saveDialog.ShowDialog() == true)
+                {
+                    string filePath = saveDialog.FileName;
+
+                    
+                    string server = "localhost";
+                    string user = "root";
+                    string password = ""; 
+                    string database = "your_database_name";
+
+                    string dumpCommand = $"mysqldump -h {server} -u {user} {(string.IsNullOrEmpty(password) ? "" : "-p" + password)} {database} > \"{filePath}\"";
+
+                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = "/C " + dumpCommand,
+                        RedirectStandardOutput = false,
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+
+                    System.Diagnostics.Process.Start(psi);
+
+                    MessageBox.Show("Database export started (check your file once it finishes).", "Export", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error exporting database: " + ex.Message);
+            }
+        }
+
+        private void importBtnSQL_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var openDialog = new Microsoft.Win32.OpenFileDialog();
+                openDialog.Filter = "SQL files (*.sql)|*.sql";
+                openDialog.Title = "Import Database from SQL File";
+
+                if (openDialog.ShowDialog() == true)
+                {
+                    string filePath = openDialog.FileName;
+
+                    
+                    string server = "localhost";
+                    string user = "root";
+                    string password = "";
+                    string database = "your_database_name";
+
+                    string importCommand = $"mysql -h {server} -u {user} {(string.IsNullOrEmpty(password) ? "" : "-p" + password)} {database} < \"{filePath}\"";
+
+                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = "/C " + importCommand,
+                        RedirectStandardOutput = false,
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+
+                    System.Diagnostics.Process.Start(psi);
+
+                    MessageBox.Show("Database import started (check your database after it finishes).", "Import", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error importing database: " + ex.Message);
+            }
+        }
     }
 }

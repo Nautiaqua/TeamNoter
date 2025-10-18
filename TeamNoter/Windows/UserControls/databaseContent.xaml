@@ -40,8 +40,8 @@
                         <Button x:Name="importBtnCSV" Content="Import from CSV" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Click="importBtnCSV_Click"/>
                     </StackPanel>
                     <StackPanel x:Name="horizontalStack2" Orientation="Horizontal" Margin="0,10,0,0">
-                        <Button x:Name="exportBtnSQL" Content="Export into SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0"/>
-                        <Button x:Name="importBtnSQL" Content="Import from SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                        <Button x:Name="exportBtnSQL" Content="Export into SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0" Click="exportBtnSQL_Click"/>
+                        <Button x:Name="importBtnSQL" Content="Import from SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Click="importBtnSQL_Click"/>
                     </StackPanel>
                     <TextBox x:Name="filepathExportBox" TextWrapping="Wrap" Text="Filepath for exports"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,10,0,0" LostFocus="filepathExportBox_Placeholder" GotFocus="filepathExportBox_Placeholder" TextChanged="filepathExportBox_TextChanged"/>
                 </StackPanel>
