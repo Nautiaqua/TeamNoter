@@ -23,6 +23,7 @@ namespace TeamNoter
     /// <summary>
     /// Interaction logic for Dashboard.xaml
     /// </summary>
+
     public partial class Dashboard : Window
     {
         bool sidebarExpanded;
