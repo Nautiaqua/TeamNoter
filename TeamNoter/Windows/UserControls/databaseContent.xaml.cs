@@ -26,7 +26,69 @@ namespace TeamNoter.Windows.UserControls
         public databaseContent()
         {
             InitializeComponent();
+            LoadDatabaseStats();
         }
+
+        private void LoadDatabaseStats()
+        {
+
+            try
+            {
+                using (MySqlConnection conn = dbConnect.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT 
+                            DATABASE() AS DATABASE_NAME,
+                            (SELECT COUNT(*) 
+                            FROM USER_TASKS 
+                            JOIN TASKS ON USER_TASKS.TASK_ID = TASKS.TASK_ID
+                            WHERE USER_TASKS.USER_ID = @currentUserID 
+                            AND TASKS.IS_COMPLETED = TRUE) AS COMPLETED_TASKS,
+
+                            (SELECT COUNT(*) 
+                            FROM USER_TASKS 
+                            JOIN TASKS ON USER_TASKS.TASK_ID = TASKS.TASK_ID
+                            WHERE USER_TASKS.USER_ID = @currentUserID 
+                            AND TASKS.IS_COMPLETED = FALSE) AS INCOMPLETE_TASKS,
+
+                            (SELECT COUNT(TASK_ID) 
+                            FROM USER_TASKS 
+                            WHERE USER_ID = @currentUserID) AS TOTAL_TASKS;";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@currentUserID", LoginData.UserID);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                
+                                dbNameBox.Text = reader["DATABASE_NAME"].ToString();
+                                completedBox.Text = reader["COMPLETED_TASKS"].ToString();
+                                incompleteBox.Text = reader["INCOMPLETE_TASKS"].ToString();
+                                totalBox.Text = reader["TOTAL_TASKS"].ToString();
+                            }
+                            else
+                            {
+                                dbNameBox.Text = "N/A";
+                                completedBox.Text = "0";
+                                incompleteBox.Text = "0";
+                                totalBox.Text = "0";
+                            }
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch
+            {
+            }
+        }
+
 
         private void filepathExportBox_Placeholder(object sender, RoutedEventArgs e)
         {
