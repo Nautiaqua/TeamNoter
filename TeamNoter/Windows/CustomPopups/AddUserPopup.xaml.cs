@@ -108,9 +108,15 @@ namespace TeamNoter.Windows.CustomPopups
                     }
 
                     Utility.NoterMessage("Added user", "User added successfully!");
-                    noteName.Clear();
-                    noteEmail.Clear();
-                    notePass.Clear();
+                    noteName.Text = "Username";
+                    noteName.Foreground = Utility.HexConvert("#FF777777");
+
+                    noteEmail.Text = "Email";
+                    noteEmail.Foreground = Utility.HexConvert("#FF777777");
+
+                    notePass.Text = "Password";
+                    notePass.Foreground = Utility.HexConvert("#FF777777");
+
                     adminBtn.IsChecked = false;
                     userBtn.IsChecked = false;
 

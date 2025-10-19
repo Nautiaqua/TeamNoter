@@ -26,7 +26,6 @@ namespace TeamNoter.Windows.CustomPopups
     /// </summary>
     public partial class DeleteUser : Window
     {
-        string regexPattern = @"^[^@]+@[^@]+\.[^@]+$";
         bool init = true;
         Dashboard dashboard;
         public DeleteUser(Dashboard dashboard)

@@ -167,7 +167,6 @@ namespace TeamNoter.Windows.CustomPopups
             proceedCheck();
         }
 
-        string finalList;
         private void noteUsers_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!initializing && noteUsers.Text != "Assigned Users (Optional)" && !string.IsNullOrWhiteSpace(noteUsers.Text))
