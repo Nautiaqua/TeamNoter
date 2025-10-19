@@ -27,6 +27,8 @@ namespace TeamNoter.Windows.CustomPopups
     public partial class DeleteUser : Window
     {
         bool init = true;
+        DataStorage dataStorage = new DataStorage();
+
         Dashboard dashboard;
         public DeleteUser(Dashboard dashboard)
         {
@@ -35,6 +37,8 @@ namespace TeamNoter.Windows.CustomPopups
             this.dashboard = dashboard;
             // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
+
+            this.DataContext = dataStorage;
 
             init = false;
         }
@@ -49,21 +53,48 @@ namespace TeamNoter.Windows.CustomPopups
         private void proceedBtn_Click(object sender, RoutedEventArgs e)
         {
             int num = int.Parse(noteName.Text);
-
-            using (MySqlConnection conn = dbConnect.GetConnection())
+            try
             {
-                conn.Open();
-
-                string queryString = "DELETE FROM USERS WHERE USER_ID = @currentUserID";
-                using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                DataStorage.UserItem user = dataStorage.users.FirstOrDefault(u => u.UserID == num);
+                if (user == null)
                 {
-                    query.Parameters.AddWithValue("@currentUserID", num);
-                    query.ExecuteNonQuery();
+                    Utility.NoterMessage("Invalid action!", "User does not exist.");
+                    return;
                 }
 
-                conn.Close();
+                if (user != null && user.Account_Type == "OWNER")
+                {
+                    Utility.NoterMessage("Invalid action!", "You can't delete the owner.");
+                    return;
+                }
 
-                this.dashboard.contentPane.Content = new manageContent(this.dashboard);
+                if (num == LoginData.UserID)
+                {
+                    Utility.NoterMessage("Invalid action!", "You can't delete the currently logged in account.");
+                    return;
+                }
+                else
+                {
+                    using (MySqlConnection conn = dbConnect.GetConnection())
+                    {
+                        conn.Open();
+
+                        string queryString = "DELETE FROM USERS WHERE USER_ID = @currentUserID";
+                        using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                        {
+                            query.Parameters.AddWithValue("@currentUserID", num);
+                            query.ExecuteNonQuery();
+                        }
+
+                        conn.Close();
+
+                        this.dashboard.contentPane.Content = new manageContent(this.dashboard);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.NoterMessage("Error!", ex.Message);
             }
         }
 

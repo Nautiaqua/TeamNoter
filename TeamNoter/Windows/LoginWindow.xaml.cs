@@ -232,6 +232,36 @@ namespace TeamNoter
 
         }
 
+        private void remember()
+        {
+            if (File.Exists(saveFile))
+            {
+                string[] lines = File.ReadAllLines(saveFile);
+                if (lines.Length >= 7)
+                {
+                    serverBox.Text = lines[0];
+                    portBox.Text = lines[1];
+                    dbBox.Text = lines[2];
+                    dbUsernameBox.Text = lines[3];
+                    dbPasswordPassbox.Password = lines[4];
+                    emailBox.Text = lines[5];
+                    userpassPassbox.Password = lines[6];
+
+                    required.IsChecked = true;
+                    sslMode = "Required";
+                    proceedBtn.IsEnabled = true;
+                }
+            }
+
+            serverBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            portBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            dbBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            dbUsernameBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            dbPasswordPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            emailBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            userpassPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
+
+        }
         private void proceedUnlock()
         {
             if (verifyca.IsChecked == false)
@@ -275,15 +305,15 @@ namespace TeamNoter
         private void mainTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // just for quick login! comment this out later.
-            serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
-            portBox.Text = "28069";
-            dbBox.Text = "TASK_MANAGEMENT";
-            dbUsernameBox.Text = "avnadmin";
-            dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
-            emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
-            userpassPassbox.Password = "TEAMNOTER";
-            required.IsChecked = true;
-            proceedBtn.IsEnabled = true;
+            //serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
+            //portBox.Text = "28069";
+            //dbBox.Text = "TASK_MANAGEMENT";
+            //dbUsernameBox.Text = "avnadmin";
+            //dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
+            //emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
+            //userpassPassbox.Password = "TEAMNOTER";
+            //required.IsChecked = true;
+            //proceedBtn.IsEnabled = true;
         }
 
         private void noterLogo_TouchLeave(object sender, TouchEventArgs e)
@@ -293,24 +323,24 @@ namespace TeamNoter
 
         private void noterLogo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (File.Exists(saveFile))
-            {
-                string[] lines = File.ReadAllLines(saveFile);
-                if (lines.Length >= 7)
-                {
-                    serverBox.Text = lines[0];
-                    portBox.Text = lines[1];
-                    dbBox.Text = lines[2];
-                    dbUsernameBox.Text = lines[3];
-                    dbPasswordPassbox.Password = lines[4];
-                    emailBox.Text = lines[5];
-                    userpassPassbox.Password = lines[6];
+            //if (File.Exists(saveFile))
+            //{
+            //    string[] lines = File.ReadAllLines(saveFile);
+            //    if (lines.Length >= 7)
+            //    {
+            //        serverBox.Text = lines[0];
+            //        portBox.Text = lines[1];
+            //        dbBox.Text = lines[2];
+            //        dbUsernameBox.Text = lines[3];
+            //        dbPasswordPassbox.Password = lines[4];
+            //        emailBox.Text = lines[5];
+            //        userpassPassbox.Password = lines[6];
 
-                    required.IsChecked = true;
-                    sslMode = "Required";
-                    proceedBtn.IsEnabled = true;
-                }
-            }
+            //        required.IsChecked = true;
+            //        sslMode = "Required";
+            //        proceedBtn.IsEnabled = true;
+            //    }
+            //}
         }
     }
 }
