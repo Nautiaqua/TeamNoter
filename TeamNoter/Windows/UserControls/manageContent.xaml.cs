@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using TeamNoter.Windows.CustomPopups;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using TeamNoter.Windows.CustomPopups;
 
 namespace TeamNoter.Windows.UserControls
 {
@@ -22,9 +25,13 @@ namespace TeamNoter.Windows.UserControls
     public partial class manageContent : UserControl
     {
         DataStorage dataStorage = new DataStorage();
-        public manageContent()
+
+        Dashboard dashboard;
+        public manageContent(Dashboard dashboard)
         {
             InitializeComponent();
+
+            this.dashboard = dashboard;
 
             this.DataContext = dataStorage;
         }
@@ -46,8 +53,14 @@ namespace TeamNoter.Windows.UserControls
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddUserPopup adduser = new AddUserPopup();
+            AddUserPopup adduser = new AddUserPopup(this.dashboard);
             adduser.Show();
+        }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteUser del = new DeleteUser(this.dashboard);
+            del.Show();
         }
     }
 }

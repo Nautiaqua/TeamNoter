@@ -1,10 +1,12 @@
 ﻿using Dark.Net;
 using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeamNoter.Windows.UserControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TeamNoter.Windows.CustomPopups
@@ -23,14 +26,32 @@ namespace TeamNoter.Windows.CustomPopups
     /// </summary>
     public partial class AddUserPopup : Window
     {
-        public AddUserPopup()
+        string regexPattern = @"^[^@]+@[^@]+\.[^@]+$";
+        bool init = true;
+        Dashboard dashboard;
+        public AddUserPopup(Dashboard dashboard)
         {
             InitializeComponent();
 
+            this.dashboard = dashboard;
             // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
+
+            init = false;
         }
 
+        private void proceedCheck()
+        {
+
+            if (!init)
+            {
+                proceedBtn.IsEnabled =
+                    (!string.IsNullOrWhiteSpace(noteName.Text) && noteName.Text != "Username") &&
+                    (!string.IsNullOrWhiteSpace(noteEmail.Text) && noteEmail.Text != "Email") &&
+                    Regex.IsMatch(noteEmail.Text, regexPattern, RegexOptions.IgnoreCase) &&
+                    (!string.IsNullOrWhiteSpace(notePass.Text) && notePass.Text != "Password");
+            }
+        }
 
         private void proceedBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -65,7 +86,6 @@ namespace TeamNoter.Windows.CustomPopups
             {
                 try
                 {
-                  
                     MySqlConnection conn = dbConnect.GetConnection();
 
                     if (conn.State != System.Data.ConnectionState.Open)
@@ -87,17 +107,62 @@ namespace TeamNoter.Windows.CustomPopups
                         cmd.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("User added successfully!");
+                    Utility.NoterMessage("Added user", "User added successfully!");
                     noteName.Clear();
                     noteEmail.Clear();
                     notePass.Clear();
                     adminBtn.IsChecked = false;
                     userBtn.IsChecked = false;
+
+                    this.dashboard.contentPane.Content = new manageContent(this.dashboard);
+                    Utility.NoterMessage("Successful", "User has been successfully deleted");
+                    this.Close();
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error adding user: " + ex.Message);
+                    Utility.NoterMessage("Error adding user: ", ex.Message);
                 }
+
+
+            }
+        }
+
+        private void noteName_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Username", e);
+        }
+
+        private void noteEmail_Placholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Email", e);
+
+            
+        }
+
+        private void notePass_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Password", e);
+
+        }
+       
+        private void textboxes_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proceedCheck();
+        }
+
+        private void noteEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!Regex.IsMatch(noteEmail.Text, regexPattern, RegexOptions.IgnoreCase) &&
+                noteEmail.Text != "Email" || string.IsNullOrWhiteSpace(noteEmail.Text))
+            {
+                noteEmailWarning.Visibility = Visibility.Visible;
+                noteEmail.Margin = new Thickness(0, 0, 0, 0);
+            }
+            else
+            {
+                noteEmailWarning.Visibility = Visibility.Collapsed;
+                noteEmail.Margin = new Thickness(0, 10, 0, 0);
             }
         }
     }

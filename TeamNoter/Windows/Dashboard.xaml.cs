@@ -140,7 +140,7 @@ namespace TeamNoter
 
         private void manageBtn_Click(object sender, RoutedEventArgs e)
         {
-            contentPane.Content = new manageContent();
+            contentPane.Content = new manageContent(this);
             selectedHighlight(sender);
 
         }

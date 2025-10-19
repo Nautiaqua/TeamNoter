@@ -119,7 +119,7 @@
                         <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/User_Add.svg}" Stretch="Uniform" Width="20" Height="20"/>
                     </Grid>
                 </Button>
-                <Button DockPanel.Dock="Right" x:Name="removeBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" Margin="0,0,21,0">
+                <Button DockPanel.Dock="Right" x:Name="removeBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" Margin="0,0,21,0" Click="removeBtn_Click">
                     <Grid Width="39" Height="39">
                         <Image x:Name="taskLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Trash_Full.svg}" Stretch="Uniform" Width="20" Height="20"/>
                     </Grid>
@@ -127,7 +127,7 @@
                 <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for users" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" TextChanged="searchBox_TextChanged" Width="382" Height="30" Margin="0,0,60,0"/>
             </DockPanel>
         </StackPanel>
-        <DataGrid CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="557" ItemsSource="{Binding users}" HeadersVisibility="Column" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="Auto
-                  " Margin="20,0,0,0"/>
+        <DataGrid x:Name="usergrid" CellStyle="{DynamicResource NoterCellStyle}" RowHeaderStyle="{DynamicResource NoterRowHeader}" ColumnHeaderStyle="{DynamicResource NoterHeader}" Height="557" ItemsSource="{Binding users}" HeadersVisibility="Column" Background="#FF333131" BorderBrush="{x:Null}" BorderThickness="0,0,1,0" Width="Auto
+                  " Margin="20,0,0,0" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True"/>
     </StackPanel>
 </UserControl>
