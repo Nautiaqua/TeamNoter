@@ -16,15 +16,15 @@
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <StackPanel x:Name="detailsStack">
                         <Label x:Name="usernameLabel" Content="Username" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
-                        <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
+                        <TextBox x:Name="usernameBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="White" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
                         <Label x:Name="emailLabel" Content="Email" Padding="3,0,10,3" FontSize="14" Foreground="White" Margin="0,10,0,0"/>
-                        <TextBox x:Name="emailBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
+                        <TextBox x:Name="emailBox" TextWrapping="Wrap" Text="N/A"  Width="350" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="White" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White"/>
                         <Label x:Name="uidLabel" Content="UID" Padding="3,0,10,3" FontSize="14" Foreground="White" Height="22" Width="350" Margin="0,10,0,0"/>
-                        <TextBox x:Name="uidBox" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" RenderTransformOrigin="1.376,2.233" Height="30" Width="350"/>
+                        <TextBox x:Name="uidBox" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="White" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" RenderTransformOrigin="1.376,2.233" Height="30" Width="350"/>
                         <Label x:Name="tasksAssignedLabel" Content="Tasks Assigned" Padding="3,0,10,3" FontSize="14" Foreground="White" Height="22" Width="350" Margin="0,10,0,0"/>
-                        <TextBox x:Name="tasksAssignedBox" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Height="30" Width="350"/>
+                        <TextBox x:Name="tasksAssignedBox" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="White" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Height="30" Width="350"/>
                         <Label x:Name="tasksAssignedLabel1" Content="Tasks Completed" Padding="3,0,10,3" FontSize="14" Foreground="White" Height="22" Width="350" Margin="0,10,0,0"/>
-                        <TextBox x:Name="tasksAssignedBox1" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Height="30" Width="350"/>
+                        <TextBox x:Name="tasksAssignedBox1" TextWrapping="Wrap" Text="N/A" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="White" BorderBrush="#FF777777" Background="#FF333131" IsReadOnly="True" CaretBrush="White" Height="30" Width="350"/>
 
                     </StackPanel>
                     <StackPanel x:Name="actionStack" Margin="30,0,0,0">
