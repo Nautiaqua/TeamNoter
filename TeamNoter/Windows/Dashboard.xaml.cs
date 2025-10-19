@@ -168,7 +168,7 @@ namespace TeamNoter
 
         private void addTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddPopup addTask = new AddPopup();
+            AddPopup addTask = new AddPopup(this);
             addTask.Show();
         }
     }

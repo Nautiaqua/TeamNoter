@@ -7,14 +7,16 @@
         xmlns:local="clr-namespace:TeamNoter.Windows.CustomPopups"
         xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Add a new task" Width="400" Height="320" Icon="/Images/Icons/NoterIcon.ico" MinWidth="400" MinHeight="300" Background="#FF333131">
-    <StackPanel x:Name="mainStack" Margin="20,10,20,0">
+        Title="Add a new task" Icon="/Images/Icons/NoterIcon.ico" Background="#FF333131" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <StackPanel x:Name="mainStack" Margin="20,10,20,20" VerticalAlignment="Top">
         <Label x:Name="mainLabel" Content="Add your note details:" Padding="0,5,5,5" Foreground="White" Margin="0,1,0,0"/>
-        <TextBox x:Name="noteName" TextWrapping="Wrap" Text="Name" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="33"/>
-        <TextBox x:Name="noteDetails" TextWrapping="Wrap" Text="Details (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="60" Margin="0,10,0,0"/>
-        <TextBox x:Name="assignedUsers" TextWrapping="Wrap" Text="Assigned Users" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="33" Margin="0,10,0,0"/>
-        <DatePicker x:Name="calendar" Style="{DynamicResource NoterDatepicker}" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="#FF777777" Foreground="White" Text="Deadline" Padding="5,5,5,5"/>
-        <Button x:Name="proceedBtn" Content="Add Note" Height="33" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Click="proceedBtn_Click"/>
+        <TextBox x:Name="noteName" TextWrapping="Wrap" Text="Title" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Width="360" TextChanged="textBoxes_TextChanged" GotFocus="noteName_Placeholder" LostFocus="noteName_Placeholder"/>
+        <TextBox x:Name="noteDetails" TextWrapping="Wrap" Text="Details (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="50" Margin="0,10,0,0" TextChanged="textBoxes_TextChanged"  GotFocus="noteDetails_Placeholder" LostFocus="noteDetails_Placeholder"/>
+        <Label x:Name="noteUsersWarning" Content="Invalid usernames." Padding="0,5,5,5" Foreground="#FFD65A5A" Background="{x:Null}" Visibility="Collapsed"/>
+        <TextBox x:Name="noteUsers" TextWrapping="Wrap" Text="Assigned Users (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" TextChanged="noteUsers_TextChanged" GotFocus="noteUsers_Placeholder" LostFocus="noteUsers_Placeholder"/>
+        <xctk:DateTimePicker x:Name="calendar" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="#FF777777" Foreground="White" Text="Deadline" Padding="5,5,5,5" ValueChanged="calendar_ValueChanged" />
+        <Button x:Name="proceedBtn" Content="Add Note" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Click="proceedBtn_Click" IsEnabled="False"/>
     </StackPanel>
 </Window>

@@ -68,7 +68,7 @@ namespace TeamNoter
                     ? "Untitled"
                     : resultset.GetString("TASK_NAME"),
                                         Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION"))
-                    ? ""
+                    ? "N/A"
                     : resultset.GetString("TASK_DESCRIPTION"),
                                         Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS"))
                     ? "Unassigned"

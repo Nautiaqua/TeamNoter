@@ -1,6 +1,7 @@
 ﻿using Dark.Net;
 using MySql.Data.MySqlClient;
 using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,10 +14,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
-using System;
-using System.Windows;
-using MySql.Data.MySqlClient;
+using TeamNoter.Windows.UserControls;
 
 namespace TeamNoter.Windows.CustomPopups
 {
@@ -25,78 +25,198 @@ namespace TeamNoter.Windows.CustomPopups
     /// </summary>
     public partial class AddPopup : Window
     {
-        public AddPopup()
+        bool initializing = true;
+        bool isInvalidUsername = false;
+        List<int> validList = new List<int>();
+
+        Dashboard origin;
+        public DataStorage dataStorage = new DataStorage();
+        public AddPopup(Dashboard originDashboard)
         {
             InitializeComponent();
 
+            this.origin = originDashboard;
+            this.DataContext = dataStorage;
+
             // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
+
+            initializing = false;
+        }
+
+        private void proceedCheck()
+        {
+            if (!initializing)
+            {
+                proceedBtn.IsEnabled =
+                (!string.IsNullOrWhiteSpace(noteName.Text) && noteName.Text != "Title") &&
+                (calendar.Value.HasValue && (calendar.Value >= DateTime.Now)) &&
+                !isInvalidUsername;
+            }
         }
 
         private void proceedBtn_Click(object sender, RoutedEventArgs e)
         {
             // kunin nya yung value sa textbox
             string taskName = noteName.Text.Trim();
-            string taskDescription = noteDetails.Text.Trim();
-            string assignedUser = assignedUsers.Text.Trim();
+            string taskDescription =
+                noteDetails.Text == "Details (Optional)" || string.IsNullOrWhiteSpace(noteDetails.Text) ?
+                "N/A" : noteDetails.Text.Trim();
 
-            // check nya kung may date ba kayo :)
-            if (!calendar.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Please select a deadline date!");
-                return;
-            }
+            DateTime deadline = calendar.Value.HasValue ? calendar.Value.Value : DateTime.Now;
 
-            DateTime deadline = calendar.SelectedDate.Value;
-
-            // dapat may laman yung taskName box
-            if (string.IsNullOrEmpty(taskName))
-            {
-                MessageBox.Show("Task name cannot be empty!");
-                return;
-            }
 
             // tatawagin yung database method na ginawa dito sa baba 
-            AddTaskToDatabase(taskName, taskDescription, deadline, assignedUser);
+            AddTaskToDatabase(taskName, taskDescription, deadline, validList);
             //eto sa baba        
     }
-        private void AddTaskToDatabase(string name, string description, DateTime deadline, string assignedUser)
+        private void AddTaskToDatabase(string name, string description, DateTime deadline, List<int> assignedUsers)
         {
             try
-            {
-                // open the connection this is the connection that krystoff made
-                MySqlConnection conn = dbConnect.GetConnection();//<--------
-
-                if (conn.State != System.Data.ConnectionState.Open)//<---- checks if its opwn
+            { 
+                using (MySqlConnection conn = dbConnect.GetConnection())
+                {
                     conn.Open();
 
-                // make a query 
-                string query = @"
+                    string queryString = @"
                     INSERT INTO TASKS (TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED)
                     VALUES (@name, @description, @created, @deadline, @completed)";
-                // insert that query in the Mysqlcommand function
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@name", name);
-                    cmd.Parameters.AddWithValue("@description", description);
-                    cmd.Parameters.AddWithValue("@created", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@deadline", deadline);
-                    cmd.Parameters.AddWithValue("@completed", false);
-                    //execute the query that you inserted
-                    cmd.ExecuteNonQuery();
+                    using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                    {
+                        query.Parameters.AddWithValue("@name", name);
+                        query.Parameters.AddWithValue("@description", description);
+                        query.Parameters.AddWithValue("@created", DateTime.Now);
+                        query.Parameters.AddWithValue("@deadline", deadline);
+                        query.Parameters.AddWithValue("@completed", false);
+                        query.ExecuteNonQuery();
+                    }
+
+                    foreach (int userID in assignedUsers)
+                    {
+                        queryString = @"INSERT INTO USER_TASKS (USER_ID, TASK_ID) VALUES (@userID, LAST_INSERT_ID());";
+
+                        using (MySqlCommand query = new MySqlCommand(queryString, conn))
+                        {
+                            query.Parameters.AddWithValue("@userID", userID);
+                            query.ExecuteNonQuery();
+                        }
+                    }
+
+                    // probs quickest way i can "refresh" the page.
+                    if (this.origin.contentPane.Content is tasksContent)
+                        this.origin.contentPane.Content = new tasksContent();
+
+                    Utility.NoterMessage("Task addition successful", "Task has been added successfully");
+
+                    // this just effectively "clears" it. .Clear() doesn't work due to how placeholder text is programmed.
+                    noteName.Text = "Title";
+                    noteName.Foreground = Utility.HexConvert("#FF777777");
+
+                    noteDetails.Text = "Details (Optional)";
+                    noteDetails.Foreground = Utility.HexConvert("#FF777777");
+
+                    noteUsers.Text = "Assigned Users (Optional)";
+                    noteUsers.Foreground = Utility.HexConvert("#FF777777");
+
+                    calendar.Value = DateTime.Now;
+
+                    conn.Close();
                 }
-
-                MessageBox.Show("✅ Task added successfully!");
-
-                // Optional: clear inputs
-                noteName.Clear();
-                noteDetails.Clear();
-                assignedUsers.Clear();
-                calendar.SelectedDate = null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error adding task: " + ex.Message);
+                Utility.NoterMessage("Task addition failure", ex.Message);
+            }
+        }
+
+        private void noteName_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Title", e);
+        }
+
+        private void noteDetails_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Details (Optional)", e);
+        }
+
+        private void noteUsers_Placeholder(object sender, RoutedEventArgs e)
+        {
+            Utility.PlaceholderText(sender, "Assigned Users (Optional)", e);
+
+            if (noteUsersWarning.Visibility == Visibility.Visible &&
+                noteUsers.Text == "Assigned Users (Optional)")
+            {
+                noteUsersWarning.Visibility = Visibility.Collapsed;
+                noteUsersWarning.Content = "";
+                noteUsers.Margin = new Thickness(0, 10, 0, 0);
+            }
+        }
+
+        private void textBoxes_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proceedCheck();
+        }
+
+        private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            proceedCheck();
+        }
+
+        private void calendar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            proceedCheck();
+        }
+
+        string finalList;
+        private void noteUsers_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!initializing && noteUsers.Text != "Assigned Users (Optional)" && !string.IsNullOrWhiteSpace(noteUsers.Text))
+            {
+                string usersInput = noteUsers.Text.Trim();
+                HashSet<string> inputs = new HashSet<string>(usersInput.Split(","));
+                List<string> invalidList = new List<string>();
+                validList.Clear();
+
+                foreach (string inputUsername in inputs)
+                {
+                    string trimmedInput = inputUsername.Trim();
+                    bool found = false;
+                    foreach (DataStorage.UserItem user in dataStorage.users)
+                    {
+                        if (user.Username.ToLower() == trimmedInput.ToLower())
+                        {
+                            found = true;
+                            validList.Add(user.UserID);
+                            break;
+                        }
+                    }
+                    if (!found)
+                        invalidList.Add(trimmedInput);
+                }
+
+                if (invalidList.Count > 0)
+                {
+                    string invalidUsernames = "";
+                    foreach (string username in invalidList)
+                    {
+                        if (string.IsNullOrWhiteSpace(invalidUsernames))
+                            invalidUsernames = username;
+                        else
+                            invalidUsernames += $", {username}";
+                    }
+
+                    noteUsers.Margin = new Thickness(0, 0, 0, 0);
+                    noteUsersWarning.Visibility = Visibility.Visible;
+                    noteUsersWarning.Content = $"The usernames {invalidUsernames} could not be found";
+                    isInvalidUsername = true;
+                }
+                else
+                {
+                    noteUsers.Margin = new Thickness(0, 10, 0, 0);
+                    noteUsersWarning.Visibility = Visibility.Collapsed;
+                    isInvalidUsername = false;
+                }
+                    proceedCheck();
             }
         }
     }

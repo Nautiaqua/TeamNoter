@@ -27,7 +27,7 @@ namespace TeamNoter.Windows.UserControls
     {
         public CollectionView taskView;
         public bool initializing = true;
-        DataStorage dataStorage = new DataStorage();
+        public DataStorage dataStorage = new DataStorage();
         public tasksContent()
         {
             InitializeComponent();
