@@ -17,7 +17,7 @@ Once the app is launched:
     - Log in using the database details provided by your organization and your account details.
 
 If you're looking to set up a TeamNoter compatible database:
-- Start your MySQL Server instance either locally or remotely and connect to it.
+- Start your MySQL Server instance either locally or remotely and connect to it using your DBMS.
 - Once connected, execute the SQL Files that came with the installation .zip folder.
 - Execute INITIALIZE-DATABASE.sql, then OWNER-SETUP.sql (do not forget to change OWNER-SETUP.sql's placeholder details).
 - With the owner account created, you may connect to the TeamNoter-compatible database using the app and log in.
@@ -25,4 +25,5 @@ If you're looking to set up a TeamNoter compatible database:
 
 
 It is suggested to have different MySQL server users with varying permissions (depending on their role) when using TeamNoter. If you trust your team / are using the app by yourself, you may skip creating a non-admin MySQL server user.
+
 
