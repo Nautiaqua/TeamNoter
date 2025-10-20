@@ -342,5 +342,16 @@ namespace TeamNoter
             //    }
             //}
         }
+
+        private void accountdetailsLabel_Copy_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "https://github.com/Nautiaqua/TeamNoter",
+                UseShellExecute = true
+            };
+
+            Process.Start(psi);
+        }
     }
 }

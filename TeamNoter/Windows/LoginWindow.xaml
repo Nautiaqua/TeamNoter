@@ -51,8 +51,7 @@
                     <PasswordBox x:Name="userpassPassbox" Width="350" Background="#FF333131" BorderBrush="#FF777777" CaretBrush="White" Foreground="#FF777777" Height="30" VerticalContentAlignment="Center" Padding="10,0,0,0" KeyDown="box_KeyPress"/>
                     <Label x:Name="borderLabel_Copy" Content="—————————————————————————————" Padding="0,8,0,8" Foreground="#FF777777" HorizontalContentAlignment="Center"/>
                     <Button x:Name="proceedBtn" Content="Proceed" Width="350" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,6,0,0" Click="proceedBtn_Click" IsEnabled="False"/>
-                    <Label x:Name="accountdetailsLabel_Copy" Content="Click here to view guide" Padding="0,5,5,5" Foreground="#FFF7BB64" FontSize="10" FontStyle="Italic" Margin="5,0,0,0"/>
-                    <CheckBox Content="CheckBox"/>
+                    <Label x:Name="accountdetailsLabel_Copy" Content="Click here to view guide" Padding="0,5,5,5" Foreground="#FFF7BB64" FontSize="10" FontStyle="Italic" Margin="5,0,0,0" MouseDown="accountdetailsLabel_Copy_MouseDown"/>
 
                 </StackPanel>
             </Grid>
