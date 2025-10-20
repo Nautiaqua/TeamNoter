@@ -30,7 +30,24 @@ namespace TeamNoter
         {
 
             InitializeComponent();
-            //Class1.Connect();
+            if (File.Exists(saveFile))
+            {
+                string[] lines = File.ReadAllLines(saveFile);
+                if (lines.Length >= 7)
+                {
+                    serverBox.Text = lines[0];
+                    portBox.Text = lines[1];
+                    dbBox.Text = lines[2];
+                    dbUsernameBox.Text = lines[3];
+                    dbPasswordPassbox.Password = lines[4];
+                    emailBox.Text = lines[5];
+                    userpassPassbox.Password = lines[6];
+
+                    required.IsChecked = true;
+                    sslMode = "Required";
+                    proceedBtn.IsEnabled = true; 
+                }
+            }
 
             // Directly handles the dark mode for the titlebar
             DarkNet.Instance.SetWindowThemeWpf(this, Theme.Auto);
@@ -206,11 +223,13 @@ namespace TeamNoter
                         {
                             conn.Close();
 
+                            
                             if (loginSuccess)
                             {
                                 // eto yung inadd ko TOFFY
-                                File.WriteAllLines(saveFile, new string[]
+                                if (rememberme.IsChecked==true)
                                 {
+                                File.WriteAllLines(saveFile, new string[]                   {
                                 serverBox.Text,
                                 portBox.Text,
                                 dbBox.Text,
@@ -218,7 +237,9 @@ namespace TeamNoter
                                 dbPasswordPassbox.Password,
                                 emailBox.Text,
                                 userpassPassbox.Password
-                                });
+                                                                   });
+                                }
+                               
 
                                 Dashboard dashboard = new Dashboard(this);
                                 dashboard.Show();
@@ -352,6 +373,11 @@ namespace TeamNoter
             };
 
             Process.Start(psi);
+        }
+
+        private void required_Copy_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
