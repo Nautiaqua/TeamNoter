@@ -8,7 +8,7 @@ A task-management app designed for teams dependent on user-managed MySQL databas
 
 ## Installation & Setup
 
-- Head into the releases page and download the latest release for TeamNoter.
+- Head into the releases page and download the latest release for TeamNoter (https://github.com/Nautiaqua/TeamNoter/releases/tag/Main).
 - Extract the TeamNoter folder into your location of choice and launch the app.
 
 Once the app is launched:
@@ -25,3 +25,4 @@ If you're looking to set up a TeamNoter compatible database:
 
 
 It is suggested to have different MySQL server users with varying permissions (depending on their role) when using TeamNoter. If you trust your team / are using the app by yourself, you may skip creating a non-admin MySQL server user.
+
