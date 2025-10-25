@@ -7,7 +7,7 @@
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" x:Class="TeamNoter.Windows.UserControls.manageContent"
              Style="{DynamicResource windowStyle}"
              mc:Ignorable="d"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Background="#FF333131" Height="706" ScrollViewer.HorizontalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Background="#FF333131" ScrollViewer.HorizontalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
     <UserControl.Resources>
         <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="8"/>
@@ -110,9 +110,16 @@
         </Style>
     </UserControl.Resources>
     <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,20,0">
-        <Label x:Name="titleLabel" Content="Manage Users" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+        <Label x:Name="titleLabel" Content="Manage Database" FontSize="24" Padding="0,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}"/>
+        <StackPanel x:Name="taskBackupStack" Margin="20,10,0,0">
+            <Label x:Name="actionLabel1" Content="Task Backup and Recovery" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+            <StackPanel x:Name="horizontalStack2" Orientation="Horizontal" Margin="0,1,0,0">
+                <Button x:Name="exportBtnSQL" Content="Export into SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Margin="0,0,20,0" Click="exportBtnSQL_Click"/>
+                <Button x:Name="importBtnSQL" Content="Import from SQL File" Width="150" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" Click="importBtnSQL_Click"/>
+            </StackPanel>
+        </StackPanel>
         <StackPanel x:Name="actionStack" Margin="20,10,0,0">
-            <Label x:Name="actionLabel" Content="User Options:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
+            <Label x:Name="actionLabel" Content="Manage Users:" Padding="3,0,10,3" FontSize="14" Foreground="White"/>
             <DockPanel LastChildFill="False">
                 <Button DockPanel.Dock="Right" x:Name="addBtn" Style="{StaticResource sideBtn}" Width="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="#FFFF2A2A" Height="40" Click="addBtn_Click">
                     <Grid Width="39" Height="39">

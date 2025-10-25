@@ -97,7 +97,7 @@ namespace TeamNoter.Windows.UserControls
 
         private void exportBtnCSV_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = filepathExportBox.Text;
+            string filePath = "C:\\";
 
             if (string.IsNullOrWhiteSpace(filePath) || filePath == "Filepath for exports")
             {
@@ -159,7 +159,7 @@ namespace TeamNoter.Windows.UserControls
 
         private void filepathExportBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            exportFilePath = filepathExportBox.Text;
+            exportFilePath = "C:\\";
             Utility.PlaceholderText(sender, "Filepath for exports", e);
 
         }

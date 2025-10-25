@@ -52,9 +52,9 @@ namespace TeamNoter
                     verifyca.IsChecked = false;
                     sslMode = "None";
 
-                    mainBorder.Height = 700;
-                    mainBorder.MinHeight = 700;
-                    mainBorder.MaxHeight = 700;
+                    mainBorder.Height = 650;
+                    mainBorder.MinHeight = 650;
+                    mainBorder.MaxHeight = 650;
                     caPathBox.Visibility = System.Windows.Visibility.Collapsed;
                     caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
                 }
@@ -65,9 +65,9 @@ namespace TeamNoter
                     verifyca.IsChecked = false;
                     sslMode = "Required";
 
-                    mainBorder.Height = 700;
-                    mainBorder.MinHeight = 700;
-                    mainBorder.MaxHeight = 700;
+                    mainBorder.Height = 650;
+                    mainBorder.MinHeight = 650;
+                    mainBorder.MaxHeight = 650;
                     caPathBox.Visibility = System.Windows.Visibility.Collapsed;
                     caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
                 }
@@ -78,9 +78,9 @@ namespace TeamNoter
                     none.IsChecked = false;
                     sslMode = "VerifyCA";
 
-                    mainBorder.Height = 730;
-                    mainBorder.MinHeight = 730;
-                    mainBorder.MaxHeight = 730;
+                    mainBorder.Height = 680;
+                    mainBorder.MinHeight = 680;
+                    mainBorder.MaxHeight = 680;
                     caPathBox.Visibility = System.Windows.Visibility.Visible;
                     caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
                 }
@@ -123,7 +123,7 @@ namespace TeamNoter
         {
             bool verification = false;
 
-            if (dbConnect.Connect(serverBox.Text, portBox.Text, dbBox.Text,
+            if (dbConnect.Connect(serverBox.Text, portBox.Text, "TASK_MANAGEMENT",
                 dbUsernameBox.Text, dbPasswordPassbox.Password,
                 sslMode, caPathBox.Text))
             {
@@ -213,7 +213,7 @@ namespace TeamNoter
                                 {
                                 serverBox.Text,
                                 portBox.Text,
-                                dbBox.Text,
+                                // "TASK_MANAGEMENT",
                                 dbUsernameBox.Text,
                                 dbPasswordPassbox.Password,
                                 emailBox.Text,
@@ -241,7 +241,6 @@ namespace TeamNoter
                 {
                     serverBox.Text = lines[0];
                     portBox.Text = lines[1];
-                    dbBox.Text = lines[2];
                     dbUsernameBox.Text = lines[3];
                     dbPasswordPassbox.Password = lines[4];
                     emailBox.Text = lines[5];
@@ -255,7 +254,6 @@ namespace TeamNoter
 
             serverBox.Foreground = Utility.HexConvert("#FFFFFFFF");
             portBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            dbBox.Foreground = Utility.HexConvert("#FFFFFFFF");
             dbUsernameBox.Foreground = Utility.HexConvert("#FFFFFFFF");
             dbPasswordPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
             emailBox.Foreground = Utility.HexConvert("#FFFFFFFF");
@@ -269,7 +267,6 @@ namespace TeamNoter
                 proceedBtn.IsEnabled = (
                     !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
                     !string.IsNullOrEmpty(portBox.Text) && portBox.Text != "Port" &&
-                    !string.IsNullOrEmpty(dbBox.Text) && dbBox.Text != "Database" &&
                     !string.IsNullOrEmpty(dbUsernameBox.Text) && dbUsernameBox.Text != "Username / UID" &&
                     !string.IsNullOrEmpty(dbPasswordPassbox.Password) &&
                     (none.IsChecked == true || required.IsChecked == true) &&
@@ -282,7 +279,6 @@ namespace TeamNoter
                 proceedBtn.IsEnabled = (
                     !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
                     !string.IsNullOrEmpty(portBox.Text) && portBox.Text != "Port" &&
-                    !string.IsNullOrEmpty(dbBox.Text) && dbBox.Text != "Database" &&
                     !string.IsNullOrEmpty(dbUsernameBox.Text) && dbUsernameBox.Text != "Username / UID" &&
                     !string.IsNullOrEmpty(dbPasswordPassbox.Password) &&
                     !string.IsNullOrEmpty(caPathBox.Text) && caPathBox.Text != "ca.pem Filepath (Example: D:\\ca.pem)" &&
@@ -305,15 +301,14 @@ namespace TeamNoter
         private void mainTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // just for quick login! comment this out later.
-            //serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
-            //portBox.Text = "28069";
-            //dbBox.Text = "TASK_MANAGEMENT";
-            //dbUsernameBox.Text = "avnadmin";
-            //dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
-            //emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
-            //userpassPassbox.Password = "TEAMNOTER";
-            //required.IsChecked = true;
-            //proceedBtn.IsEnabled = true;
+            serverBox.Text = "ibestupid-teamnoter.j.aivencloud.com";
+            portBox.Text = "28069";
+            dbUsernameBox.Text = "avnadmin";
+            dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
+            emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
+            userpassPassbox.Password = "TEAMNOTER";
+            required.IsChecked = true;
+            proceedBtn.IsEnabled = true;
         }
 
         private void noterLogo_TouchLeave(object sender, TouchEventArgs e)

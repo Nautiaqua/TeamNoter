@@ -25,15 +25,9 @@
                         <Label x:Name="accLabel" Content="My Profile" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
                     </DockPanel>
                 </Button>
-                <Button x:Name="dbBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Click="dbBtn_Click" Foreground="{x:Null}" Margin="5,10,0,0" HorizontalAlignment="Left">
-                    <DockPanel x:Name="dbDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Image x:Name="dbLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Data.svg}" Stretch="Uniform" Width="20" Height="20" Margin="9,0,0,0"/>
-                        <Label x:Name="dbLabel" Content="Database Information" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
-                    </DockPanel>
-                </Button>
                 <Button x:Name="manageBtn" Style="{StaticResource sideBtn}" Width="40" Height="40" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" Click="manageBtn_Click" Foreground="#FFFF2A2A" Margin="5,10,0,0" HorizontalAlignment="Left">
                     <DockPanel x:Name="manageDock" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Image x:Name="manageLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Users_Group.svg}" Stretch="Uniform" Width="20" Height="20" Margin="9,0,0,0"/>
+                        <Image x:Name="manageLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Data.svg}" Stretch="Uniform" Width="20" Height="20" Margin="9,0,0,0"/>
                         <Label x:Name="manageLabel" Content="User Management" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="11,5,5,5" Visibility="Hidden" Background="{x:Null}" Foreground="#FFDBDAD7" FontWeight="Bold"/>
                     </DockPanel>
                 </Button>

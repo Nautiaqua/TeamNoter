@@ -7,6 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+	<ApplicationIcon>Images\Icons\NoterAppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
     <None Remove="Images\Icons\NoterLogo.svg" />
     <None Remove="Images\TeamNoterDarkBG.png" />
     <None Remove="Images\UI_Icons\Add_Plus.svg" />
+    <None Remove="Images\UI_Icons\Arrows_Reload_01.svg" />
     <None Remove="Images\UI_Icons\Close_MD.svg" />
     <None Remove="Images\UI_Icons\Data.svg" />
     <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
@@ -45,6 +47,9 @@
     <Resource Include="Fonts\Oughter.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Images\Icons\NoterAppIcon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\Icons\NoterIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -55,6 +60,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Add_Plus.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Arrows_Reload_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Close_MD.svg">

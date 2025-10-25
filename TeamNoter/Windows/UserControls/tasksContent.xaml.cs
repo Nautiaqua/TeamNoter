@@ -182,5 +182,10 @@ namespace TeamNoter.Windows.UserControls
                 taskView.Refresh();
             }
         }
+
+        private void refreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            taskView.Refresh();
+        }
     }
 }

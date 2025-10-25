@@ -26,7 +26,7 @@ namespace TeamNoter
                     connectionString =
                     "Server=" + server + ";" +
                     "Port=" + port + ";" +
-                    "Database=" + database + ";" +
+                    "Database=TASK_MANAGEMENT;" +
                     "Uid=" + username + ";" +
                     "Pwd=" + password + ";" +
                     "SslMode=" + sslMode + ";" +
@@ -37,7 +37,7 @@ namespace TeamNoter
                     connectionString =
                     "Server=" + server + ";" +
                     "Port=" + port + ";" +
-                    "Database=" + database + ";" +
+                    "Database=TASK_MANAGEMENT;" +
                     "Uid=" + username + ";" +
                     "Pwd=" + password + ";" +
                     "SslMode=" + sslMode + ";";

@@ -65,7 +65,7 @@ namespace TeamNoter
 
         private void selectedHighlight(object sender)
         {
-            Button[] sidebarButtons = new Button[] { accBtn, dbBtn, manageBtn, taskBtn, logoutBtn };
+            Button[] sidebarButtons = new Button[] { accBtn, manageBtn, taskBtn, logoutBtn };
 
             if (sender is Button target)
             {
@@ -90,9 +90,6 @@ namespace TeamNoter
                 accLabel.Visibility = Visibility.Visible;
                 accBtn.Width = expandedSize;
                 
-                dbLabel.Visibility = Visibility.Visible;
-                dbBtn.Width = expandedSize;
-                
                 manageLabel.Visibility = Visibility.Visible;
                 manageBtn.Width = expandedSize;
                 
@@ -110,9 +107,6 @@ namespace TeamNoter
 
                 accLabel.Visibility = Visibility.Hidden;
                 accBtn.Width = collapsedSize;
-
-                dbLabel.Visibility = Visibility.Hidden;
-                dbBtn.Width = collapsedSize;
 
                 manageLabel.Visibility = Visibility.Hidden;
                 manageBtn.Width = collapsedSize;

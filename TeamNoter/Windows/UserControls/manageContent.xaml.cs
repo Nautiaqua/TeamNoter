@@ -62,5 +62,15 @@ namespace TeamNoter.Windows.UserControls
             DeleteUser del = new DeleteUser(this.dashboard);
             del.Show();
         }
+
+        private void exportBtnSQL_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void importBtnSQL_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
