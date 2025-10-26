@@ -18,6 +18,7 @@
     <None Remove="Images\TeamNoterDarkBG.png" />
     <None Remove="Images\UI_Icons\Add_Plus.svg" />
     <None Remove="Images\UI_Icons\Arrows_Reload_01.svg" />
+    <None Remove="Images\UI_Icons\Chart_Bar_Vertical_01.svg" />
     <None Remove="Images\UI_Icons\Close_MD.svg" />
     <None Remove="Images\UI_Icons\Data.svg" />
     <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
@@ -63,6 +64,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Arrows_Reload_01.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UI_Icons\Chart_Bar_Vertical_01.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\UI_Icons\Close_MD.svg">

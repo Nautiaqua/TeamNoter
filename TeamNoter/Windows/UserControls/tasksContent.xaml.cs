@@ -33,7 +33,11 @@ namespace TeamNoter.Windows.UserControls
             InitializeComponent();
 
             this.DataContext = dataStorage;
-            taskView = dataStorage.getTaskView();
+            
+            if (LoginData.AccountType == "OWNER" || LoginData.AccountType == "ADMIN")
+                taskView = dataStorage.getTaskView();
+            else
+                taskView = dataStorage.getTaskView();
 
             initializing = false;
             filterHandler();

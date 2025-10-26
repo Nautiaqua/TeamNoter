@@ -20,6 +20,7 @@ namespace TeamNoter
             public string Details { get; set; } = "n/a";
             public string Users { get; set; } = "n/a";
             public bool IsCompleted { get; set; }
+            public string Priority { get; set; } = "Low";
 
         }
 
@@ -47,7 +48,7 @@ namespace TeamNoter
                     conn.Open();
 
                     // Sets up the tasks table
-                    string queryString = "SELECT t.TASK_ID, t.DEADLINE, t.TASK_NAME, t.TASK_DESCRIPTION, t.IS_COMPLETED, " +
+                    string queryString = "SELECT t.TASK_ID, t.DEADLINE, t.TASK_NAME, t.TASK_DESCRIPTION, t.IS_COMPLETED, t.PRIORITY, " +
                                              "(SELECT GROUP_CONCAT(u.USERNAME SEPARATOR ', ') " +
                                              "FROM USER_TASKS ut LEFT JOIN USERS u ON u.USER_ID = ut.USER_ID " +
                                              "WHERE ut.TASK_ID = t.TASK_ID) AS TASK_USERS " +
@@ -59,23 +60,27 @@ namespace TeamNoter
                     while (resultset.Read())
                     {
                         var item = new TaskItem
-                                    {
-                                        TaskID = resultset.GetInt32("TASK_ID"),
-                                        Deadline = resultset.IsDBNull(resultset.GetOrdinal("DEADLINE"))
-                    ? DateTime.MinValue
-                    : resultset.GetDateTime("DEADLINE"),
-                                        Title = resultset.IsDBNull(resultset.GetOrdinal("TASK_NAME"))
-                    ? "Untitled"
-                    : resultset.GetString("TASK_NAME"),
-                                        Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION"))
-                    ? "N/A"
-                    : resultset.GetString("TASK_DESCRIPTION"),
-                                        Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS"))
-                    ? "Unassigned"
-                    : resultset.GetString("TASK_USERS"),
-                                        IsCompleted = !resultset.IsDBNull(resultset.GetOrdinal("IS_COMPLETED")) &&
-                              resultset.GetBoolean("IS_COMPLETED")
-                                    };
+                        {
+                            TaskID = resultset.GetInt32("TASK_ID"),
+                            Deadline = resultset.IsDBNull(resultset.GetOrdinal("DEADLINE"))
+                                            ? DateTime.MinValue
+                                            : resultset.GetDateTime("DEADLINE"),
+                            Title = resultset.IsDBNull(resultset.GetOrdinal("TASK_NAME"))
+                                            ? "Untitled"
+                                            : resultset.GetString("TASK_NAME"),
+                            Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION"))
+                                            ? "N/A"
+                                            : resultset.GetString("TASK_DESCRIPTION"),
+                            Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS"))
+                                            ? "Unassigned"
+                                            : resultset.GetString("TASK_USERS"),
+                            IsCompleted = !resultset.IsDBNull(resultset.GetOrdinal("IS_COMPLETED")) &&
+                                           resultset.GetBoolean("IS_COMPLETED"),
+                            Priority = resultset.IsDBNull(resultset.GetOrdinal("PRIORITY"))
+                                            ? "Low"
+                                            : char.ToUpper(resultset.GetString("PRIORITY").ToLower()[0]) + 
+                                              resultset.GetString("PRIORITY").ToLower().Substring(1) + " Priority"
+                        };
 
 
                         tasks.Add(item);
@@ -122,6 +127,23 @@ namespace TeamNoter
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
             return view;
         }
+
+        public CollectionView getUserTaskView()
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
+            
+
+            view.Filter = item =>
+            {
+                if (item is DataStorage.TaskItem taskItem)
+                    return taskItem.Users.Contains(LoginData.Username);
+                else
+                    return false;
+            };
+
+            return view;
+        }
+
         public CollectionView getUserView()
         {
             CollectionView userview = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
