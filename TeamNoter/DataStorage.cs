@@ -62,26 +62,20 @@ namespace TeamNoter
                         var item = new TaskItem
                         {
                             TaskID = resultset.GetInt32("TASK_ID"),
-                            Deadline = resultset.IsDBNull(resultset.GetOrdinal("DEADLINE"))
-                                            ? DateTime.MinValue
+                            Deadline = resultset.IsDBNull(resultset.GetOrdinal("DEADLINE")) ? DateTime.MinValue
                                             : resultset.GetDateTime("DEADLINE"),
-                            Title = resultset.IsDBNull(resultset.GetOrdinal("TASK_NAME"))
-                                            ? "Untitled"
+                            Title = resultset.IsDBNull(resultset.GetOrdinal("TASK_NAME")) ? "Untitled"
                                             : resultset.GetString("TASK_NAME"),
-                            Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION"))
-                                            ? "N/A"
+                            Details = resultset.IsDBNull(resultset.GetOrdinal("TASK_DESCRIPTION")) ? "N/A"
                                             : resultset.GetString("TASK_DESCRIPTION"),
-                            Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS"))
-                                            ? "Unassigned"
+                            Users = resultset.IsDBNull(resultset.GetOrdinal("TASK_USERS")) ? "Unassigned"
                                             : resultset.GetString("TASK_USERS"),
                             IsCompleted = !resultset.IsDBNull(resultset.GetOrdinal("IS_COMPLETED")) &&
                                            resultset.GetBoolean("IS_COMPLETED"),
-                            Priority = resultset.IsDBNull(resultset.GetOrdinal("PRIORITY"))
-                                            ? "Low"
+                            Priority = resultset.IsDBNull(resultset.GetOrdinal("PRIORITY")) ? "Low"
                                             : char.ToUpper(resultset.GetString("PRIORITY").ToLower()[0]) + 
                                               resultset.GetString("PRIORITY").ToLower().Substring(1) + " Priority"
                         };
-
 
                         tasks.Add(item);
                     }
@@ -124,24 +118,26 @@ namespace TeamNoter
         }
         public CollectionView getTaskView()
         {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
-            return view;
-        }
-
-        public CollectionView getUserTaskView()
-        {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
-            
-
-            view.Filter = item =>
+            if (LoginData.AccountType == "OWNER" || LoginData.AccountType == "ADMIN")
             {
-                if (item is DataStorage.TaskItem taskItem)
-                    return taskItem.Users.Contains(LoginData.Username);
-                else
-                    return false;
-            };
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
+                return view;
+            }
+            else
+            {
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
 
-            return view;
+
+                view.Filter = item =>
+                {
+                    if (item is DataStorage.TaskItem taskItem)
+                        return taskItem.Users.Contains(LoginData.Username);
+                    else
+                        return false;
+                };
+
+                return view;
+            }
         }
 
         public CollectionView getUserView()

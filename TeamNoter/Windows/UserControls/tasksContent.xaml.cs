@@ -34,17 +34,23 @@ namespace TeamNoter.Windows.UserControls
 
             this.DataContext = dataStorage;
             
-            if (LoginData.AccountType == "OWNER" || LoginData.AccountType == "ADMIN")
-                taskView = dataStorage.getTaskView();
-            else
-                taskView = dataStorage.getTaskView();
+            taskView = dataStorage.getTaskView();
 
             initializing = false;
             filterHandler();
+            layoutHandler();
         }
 
         static string searchBoxPlaceholder = "Search for task titles";
         static string userSearchPlaceholder = "Search for user";
+
+        private void layoutHandler()
+        {
+            if (LoginData.AccountType == "USER")
+            {
+                userSearchBox.Visibility = Visibility.Collapsed;
+            }
+        }
 
         private void filterHandler()
         {

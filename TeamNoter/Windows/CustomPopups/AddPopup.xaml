@@ -10,11 +10,24 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Add a new task" Icon="/Images/Icons/NoterIcon.ico" Background="#FF333131" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+    </Window.Resources>
+    
+    
     <StackPanel x:Name="mainStack" Margin="20,10,20,20" VerticalAlignment="Top">
         <Label x:Name="mainLabel" Content="Add your note details:" Padding="0,5,5,5" Foreground="White" Margin="0,1,0,0"/>
         <TextBox x:Name="noteName" TextWrapping="Wrap" Text="Title" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Width="360" TextChanged="textBoxes_TextChanged" GotFocus="noteName_Placeholder" LostFocus="noteName_Placeholder"/>
         <TextBox x:Name="noteDetails" TextWrapping="Wrap" Text="Details (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="50" Margin="0,10,0,0" TextChanged="textBoxes_TextChanged"  GotFocus="noteDetails_Placeholder" LostFocus="noteDetails_Placeholder"/>
         <Label x:Name="noteUsersWarning" Content="Invalid usernames." Padding="0,5,5,5" Foreground="#FFD65A5A" Background="{x:Null}" Visibility="Collapsed"/>
+        <StackPanel x:Name="priorityStack" Orientation="Horizontal" Margin="0,10,0,0">
+            <Label x:Name="priorityLabel" Content="Priority:" Foreground="#FF777777" Margin="0,0,10,0"/>
+            <ComboBox x:Name="priorityCB" Width="300" Background="Black" Padding="5,0,0,0" SelectionChanged="priorityCB_SelectionChanged">
+                <ComboBoxItem Content="Low" Foreground="#6b9675" Padding="5,0,0,0"/>
+                <ComboBoxItem Content="Medium" Foreground="#b98246" Padding="5,0,0,0"/>
+                <ComboBoxItem Content="High" Foreground="#d26161" Padding="5,0,0,0"/>
+            </ComboBox>
+        </StackPanel>
         <TextBox x:Name="noteUsers" TextWrapping="Wrap" Text="Assigned Users (Optional)" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" TextChanged="noteUsers_TextChanged" GotFocus="noteUsers_Placeholder" LostFocus="noteUsers_Placeholder"/>
         <xctk:DateTimePicker x:Name="calendar" Margin="0,10,0,0" Background="{x:Null}" BorderBrush="#FF777777" Foreground="White" Text="Deadline" Padding="5,5,5,5" ValueChanged="calendar_ValueChanged" />
         <Button x:Name="proceedBtn" Content="Add Note" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Click="proceedBtn_Click" IsEnabled="False"/>

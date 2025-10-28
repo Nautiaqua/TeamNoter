@@ -218,6 +218,31 @@ namespace TeamNoter.Windows.CustomPopups
                     proceedCheck();
             }
         }
+
+        private void priorityCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SolidColorBrush elBrush;
+            switch (priorityCB.SelectedIndex)
+            {
+                case 0: // Low priority
+                    elBrush = Utility.HexConvert("#6b9675");
+                    break;
+
+                case 1: // Medium priority
+                    elBrush = Utility.HexConvert("#b98246");
+                    break;
+
+                case 2: // High priority
+                    elBrush = Utility.HexConvert("#d26161");
+                    break;
+
+                default:
+                    elBrush = Utility.HexConvert("#FFFFFF");
+                    break;
+            }
+
+            priorityCB.Foreground = elBrush;
+        }
     }
 }
 
