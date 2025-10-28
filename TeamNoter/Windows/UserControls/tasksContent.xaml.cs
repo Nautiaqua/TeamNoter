@@ -163,5 +163,24 @@ namespace TeamNoter.Windows.UserControls
             }
             
         }
+
+        bool filtersShown = true;
+        private void filterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (filtersShown)
+            {
+                filterStack.Visibility = Visibility.Collapsed;
+                searchBox.Visibility = Visibility.Collapsed;
+                userSearchBox.Visibility = Visibility.Collapsed;
+                filtersShown = false;
+            }
+            else
+            {
+                filterStack.Visibility = Visibility.Visible;
+                searchBox.Visibility = Visibility.Visible;
+                userSearchBox.Visibility = Visibility.Visible;
+                filtersShown = true;
+            }
+        }
     }
 }
