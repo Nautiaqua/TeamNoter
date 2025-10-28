@@ -118,32 +118,8 @@ namespace TeamNoter
         }
         public CollectionView getTaskView()
         {
-            if (LoginData.AccountType == "OWNER" || LoginData.AccountType == "ADMIN")
-            {
-                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
-                return view;
-            }
-            else
-            {
-                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
-
-
-                view.Filter = item =>
-                {
-                    if (item is DataStorage.TaskItem taskItem)
-                        return taskItem.Users.Contains(LoginData.Username);
-                    else
-                        return false;
-                };
-
-                return view;
-            }
-        }
-
-        public CollectionView getUserView()
-        {
-            CollectionView userview = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
-            return userview;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
+            return view;
         }
     }
 }

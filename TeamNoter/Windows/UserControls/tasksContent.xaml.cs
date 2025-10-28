@@ -28,32 +28,31 @@ namespace TeamNoter.Windows.UserControls
         public CollectionView taskView;
         public bool initializing = true;
         public DataStorage dataStorage = new DataStorage();
+        bool init = true;
         public tasksContent()
         {
             InitializeComponent();
+            init = false;
 
             this.DataContext = dataStorage;
             
-            taskView = dataStorage.getTaskView();
+            taskView = (CollectionView)CollectionViewSource.GetDefaultView(dataStorage.tasks);
 
             initializing = false;
             filterHandler();
-            layoutHandler();
         }
 
         static string searchBoxPlaceholder = "Search for task titles";
         static string userSearchPlaceholder = "Search for user";
 
-        private void layoutHandler()
+        private void filterHandler()
         {
             if (LoginData.AccountType == "USER")
             {
                 userSearchBox.Visibility = Visibility.Collapsed;
+                userSearchBox.Text = LoginData.Username;
             }
-        }
 
-        private void filterHandler()
-        {
             string titleSearchText = searchBox.Text.ToLower();
             string userSearchText = userSearchBox.Text.ToLower();
 
@@ -70,17 +69,21 @@ namespace TeamNoter.Windows.UserControls
                     bool isDueToday = filter1.IsChecked == false || taskItem.Deadline.Date.Equals(DateTime.Now);
                     bool isIncomplete = taskItem.IsCompleted == false;
 
-                    if (filter3.IsChecked == true)
-                        return isMatchingTitle && isMatchingUser && isIncomplete && isDueToday;
-                    else if (filter4.IsChecked == true)
-                        return isMatchingTitle && isMatchingUser && !isIncomplete && isDueToday;
-                    else
-                        return false;
+                    switch (mainViewCB.SelectedIndex)
+                    {
+                        case 0:
+                            return isMatchingTitle && isMatchingUser && isIncomplete && isDueToday;
+                        case 1:
+                            return isMatchingTitle && isMatchingUser && !isIncomplete && isDueToday;
+                        default:
+                            return false;
+                    }
                 }
                 else
                     return false;
 
             };
+
             taskView.Refresh();
         }
 
@@ -92,33 +95,6 @@ namespace TeamNoter.Windows.UserControls
         private void userSearchBox_LostFocus(object sender, RoutedEventArgs e)
         {
             Utility.PlaceholderText(sender, userSearchPlaceholder, e);
-        }
-
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!initializing)
-            {
-                filterHandler();
-
-                if (userSearchBox.Text == LoginData.Username)
-                    filter2.IsChecked = true;
-                else
-                    filter2.IsChecked = false;
-            }
-        }
-
-        private void filter2_Click(object sender, RoutedEventArgs e)
-        {
-            if (filter2.IsChecked == true)
-            {
-                userSearchBox.Text = LoginData.Username;
-                userSearchBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            }
-            else
-            {
-                userSearchBox.Text = userSearchPlaceholder;
-                userSearchBox.Foreground = Utility.HexConvert("#FF777777");
-            }
         }
 
         private void task_Checked(object sender, RoutedEventArgs e)
@@ -144,25 +120,6 @@ namespace TeamNoter.Windows.UserControls
                 }
 
                 taskView.Refresh();
-            }
-        }
-
-        private void mainViewHandler(object sender, RoutedEventArgs e)
-        {
-            if (sender is CheckBox checkBox)
-            {
-                if (checkBox == filter3)
-                {
-                    filter3.IsChecked = true;
-                    filter4.IsChecked = false; 
-                }
-                else if (checkBox == filter4)
-                {
-                    filter4.IsChecked = true;
-                    filter3.IsChecked = false;
-                }
-
-                filterHandler();
             }
         }
 
@@ -196,6 +153,15 @@ namespace TeamNoter.Windows.UserControls
         private void refreshBtn_Click(object sender, RoutedEventArgs e)
         {
             taskView.Refresh();
+        }
+
+        private void mainViewCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!init)
+            {
+                filterHandler();
+            }
+            
         }
     }
 }

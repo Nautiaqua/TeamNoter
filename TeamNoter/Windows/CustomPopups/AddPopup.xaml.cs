@@ -51,7 +51,7 @@ namespace TeamNoter.Windows.CustomPopups
                 proceedBtn.IsEnabled =
                 (!string.IsNullOrWhiteSpace(noteName.Text) && noteName.Text != "Title") &&
                 (calendar.Value.HasValue && (calendar.Value >= DateTime.Now)) &&
-                !isInvalidUsername;
+                !isInvalidUsername && priorityCB.SelectedIndex > 0;
             }
         }
 
@@ -79,8 +79,8 @@ namespace TeamNoter.Windows.CustomPopups
                     conn.Open();
 
                     string queryString = @"
-                    INSERT INTO TASKS (TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED)
-                    VALUES (@name, @description, @created, @deadline, @completed)";
+                    INSERT INTO TASKS (TASK_NAME, TASK_DESCRIPTION, DATE_CREATED, DEADLINE, IS_COMPLETED, PRIORITY)
+                    VALUES (@name, @description, @created, @deadline, @completed, @priority)";
                     using (MySqlCommand query = new MySqlCommand(queryString, conn))
                     {
                         query.Parameters.AddWithValue("@name", name);
@@ -88,6 +88,7 @@ namespace TeamNoter.Windows.CustomPopups
                         query.Parameters.AddWithValue("@created", DateTime.Now);
                         query.Parameters.AddWithValue("@deadline", deadline);
                         query.Parameters.AddWithValue("@completed", false);
+                        query.Parameters.AddWithValue("@priority", priorityCB.Text.ToUpper());
                         query.ExecuteNonQuery();
                     }
 
