@@ -22,6 +22,7 @@
     <None Remove="Images\UI_Icons\Close_MD.svg" />
     <None Remove="Images\UI_Icons\Data.svg" />
     <None Remove="Images\UI_Icons\Filter.svg" />
+    <None Remove="Images\UI_Icons\Filter_Off.svg" />
     <None Remove="Images\UI_Icons\Hamburger_MD.svg" />
     <None Remove="Images\UI_Icons\List_Remove.svg" />
     <None Remove="Images\UI_Icons\List_Unordered.svg" />
@@ -52,6 +53,9 @@
     <Content Include="Images\Icons\NoterAppIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\UI_Icons\Filter_Off.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\UI_Icons\Filter.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

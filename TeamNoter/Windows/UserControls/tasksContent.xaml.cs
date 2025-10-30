@@ -58,23 +58,65 @@ namespace TeamNoter.Windows.UserControls
 
             bool titleSearch_IsDefault = searchBox.Text == searchBoxPlaceholder || string.IsNullOrWhiteSpace(searchBox.Text);
             bool userSearch_IsDefault = userSearchBox.Text == userSearchPlaceholder || string.IsNullOrWhiteSpace(userSearchBox.Text);
+            
+
 
             taskView.Filter = item =>
             {
                 if (item is DataStorage.TaskItem taskItem)
                 {
+                    
+
                     // check for if the item matches the search query
                     bool isMatchingTitle = titleSearch_IsDefault || taskItem.Title.ToLower().Contains(titleSearchText);
                     bool isMatchingUser = userSearch_IsDefault || taskItem.Users.ToLower().Contains(userSearchText);
                     bool isDueToday = filter1.IsChecked == false || taskItem.Deadline.Date.Equals(DateTime.Now);
                     bool isIncomplete = taskItem.IsCompleted == false;
+                    bool isOnMonth, isPrioritySame;
+
+                    switch (monthCB.SelectedIndex)
+                    {
+                        case 0: // All Months
+                            isOnMonth = true;
+                            break;
+                        case 1: // Runs for current month
+                            isOnMonth = taskItem.Deadline.Month == DateTime.Now.Month;
+                            break;
+                        default: // Why would I case every month? I'll just make this instead <3
+                            isOnMonth = taskItem.Deadline.Month == monthCB.SelectedIndex - 1;
+                            break;
+                    }
+
+                    switch (priorityCB.SelectedIndex)
+                    {
+                        case 0:
+                            isPrioritySame = true;
+                            break;
+
+                        case 1:
+                            isPrioritySame = taskItem.Priority == "Low Priority";
+                            break;
+
+                        case 2:
+                            isPrioritySame = taskItem.Priority == "Medium Priority";
+                            break;
+
+                        case 3:
+                            isPrioritySame = taskItem.Priority == "High Priority";
+                            break;
+
+                        default:
+                            isPrioritySame = true;
+                            break;
+                    }
+
 
                     switch (mainViewCB.SelectedIndex)
                     {
                         case 0:
-                            return isMatchingTitle && isMatchingUser && isIncomplete && isDueToday;
+                            return isMatchingTitle && isMatchingUser && isIncomplete && isDueToday && isOnMonth && isPrioritySame;
                         case 1:
-                            return isMatchingTitle && isMatchingUser && !isIncomplete && isDueToday;
+                            return isMatchingTitle && isMatchingUser && !isIncomplete && isDueToday && isOnMonth && isPrioritySame;
                         default:
                             return false;
                     }
@@ -155,13 +197,20 @@ namespace TeamNoter.Windows.UserControls
             taskView.Refresh();
         }
 
-        private void mainViewCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!init)
             {
                 filterHandler();
             }
-            
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!init)
+            {
+                filterHandler();
+            }
         }
 
         bool filtersShown = true;
@@ -181,6 +230,23 @@ namespace TeamNoter.Windows.UserControls
                 userSearchBox.Visibility = Visibility.Visible;
                 filtersShown = true;
             }
+        }
+
+        private void resetFiltersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainViewCB.SelectedIndex = 0;
+            monthCB.SelectedIndex = 0;
+            filter1.IsChecked = false;
+            searchBox.Text = "Search for task titles";
+            searchBox.Foreground = Utility.HexConvert("#FF777777");
+
+            if (LoginData.AccountType != "USER")
+            {
+                userSearchBox.Text = "Search for user";
+                userSearchBox.Foreground = Utility.HexConvert("#FF777777");
+            }
+
+            filterHandler();
         }
     }
 }

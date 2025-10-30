@@ -73,16 +73,25 @@
             <StackPanel x:Name="mainStack" HorizontalAlignment="Left" VerticalAlignment="Top" >
                 <Label x:Name="titleLabel" Content="Tasks" FontSize="24" Padding="2,0,0,0" Margin="20,15,0,0" Foreground="White" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center"/>
                 <StackPanel x:Name="contentStack" Margin="25,10,0,0">
-                    <StackPanel x:Name="buttonStack" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,0,0,5">
+                    <StackPanel x:Name="buttonStack" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,5">
                         <Button x:Name="refreshBtn" FontSize="20" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF777777" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="24" ToolTip="Refresh" Click="refreshBtn_Click" Margin="0,0,10,0">
                             <Image x:Name="taskLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Arrows_Reload_01.svg}" Stretch="Uniform" Width="15" Height="15"/>
                         </Button>
-                        <Button x:Name="filterBtn" FontSize="20" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF777777" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="24" ToolTip="Hide or unhide the filters" Click="filterBtn_Click">
+                        <Button x:Name="filterBtn" FontSize="20" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF777777" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="24" ToolTip="Hide or unhide the filters" Click="filterBtn_Click" Margin="0,0,10,0">
                             <Image x:Name="filterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Filter.svg}" Stretch="Uniform" Width="15" Height="15"/>
                         </Button>
+                        <Button x:Name="resetFiltersBtn" FontSize="20" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF777777" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="24" ToolTip="Clears all filters." Click="resetFiltersBtn_Click">
+                            <Image x:Name="filterLogo1" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Filter_Off.svg}" Stretch="Uniform" Width="15" Height="15"/>
+                        </Button>
                     </StackPanel>
-                    <StackPanel x:Name="filterStack" Orientation="Horizontal" Margin="0,0,0,10">
-                        <ComboBox x:Name="monthBox" Width="185" Margin="0,0,15,0" SelectedIndex="0">
+                    <StackPanel x:Name="filterStack" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <ComboBox x:Name="priorityCB" Width="170" Margin="0,0,15,0" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged">
+                            <ComboBoxItem Content="All Priorities" Foreground="#FFF7BB64" Padding="5,0,0,0"/>
+                            <ComboBoxItem Content="Low Priority" Foreground="White" Padding="5,0,0,0"/>
+                            <ComboBoxItem Content="Medium Priority" Foreground="White" Padding="5,0,0,0"/>
+                            <ComboBoxItem Content="High Priority" Foreground="White" Padding="5,0,0,0"/>
+                        </ComboBox>
+                        <ComboBox x:Name="monthCB" Width="135" Margin="0,0,15,0" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged">
                             <ComboBoxItem Content="All Months" Foreground="#FFF7BB64" Padding="5,0,0,0"/>
                             <ComboBoxItem Content="Current Month" Foreground="#FFF7BB64" Padding="5,0,0,0"/>
                             <ComboBoxItem Content="January" Foreground="White" Padding="5,0,0,0"/>
@@ -100,13 +109,13 @@
                         </ComboBox>
                         <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="filter1" Content="Show tasks due for today" Foreground="White" Background="{x:Null}" BorderBrush="#FF777777" Click="filter1_Click" VerticalContentAlignment="Center"/>
                         <Label x:Name="borderLabel" Content="|" FontWeight="Bold" FontSize="14" Padding="15,5,15,5" Foreground="#FF777777"/>
-                        <ComboBox x:Name="mainViewCB" Width="200" SelectedIndex="0" SelectionChanged="mainViewCB_SelectionChanged">
+                        <ComboBox x:Name="mainViewCB" Width="200" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged">
                             <ComboBoxItem Content="Incomplete Tasks" Foreground="White" Padding="5,0,0,0"/>
                             <ComboBoxItem Content="Complete Tasks" Foreground="White" Padding="5,0,0,0"/>
                         </ComboBox>
                     </StackPanel>
-                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for task titles" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" Width="724"/>
-                    <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for user" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" MinWidth="675" Margin="0,0,0,10" Width="724"/>
+                    <TextBox x:Name="searchBox" TextWrapping="Wrap" Text="Search for task titles" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Margin="0,0,0,11" Height="30" ToolTip="Searches for task titles" GotFocus="searchBox_Placeholder" LostFocus="searchBox_Placeholder" Width="724" TextChanged="searchBox_TextChanged"/>
+                    <TextBox x:Name="userSearchBox" TextWrapping="Wrap" Text="Search for user" VerticalContentAlignment="Center" Padding="10,0,0,0" Foreground="#FF777777" BorderBrush="#FF777777" Background="#FF333131" CaretBrush="White" Height="30" ToolTip="Searches for tasks assigned to a specific user" GotFocus="userSearchBox_LostFocus" LostFocus="userSearchBox_LostFocus" MinWidth="675" Margin="0,0,0,10" Width="724" TextChanged="searchBox_TextChanged"/>
                     <ListBox x:Name="taskListbox" ItemTemplate="{DynamicResource TaskItem}" Background="#FF333131" DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" ItemsSource="{Binding tasks}"/>
                 </StackPanel>
 
