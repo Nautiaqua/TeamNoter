@@ -29,6 +29,7 @@
 
                                             <DataTrigger Binding="{Binding Priority}" Value="Low Priority">
                                                 <Setter Property="Foreground" Value="#6b9675"/>
+                                                <Setter Property="Text" Value="AAA"/>
                                             </DataTrigger>
 
                                             <DataTrigger Binding="{Binding Priority}" Value="Medium Priority">
@@ -44,6 +45,21 @@
                             </TextBlock>
                             <Image Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/UI_Icons/Users.svg}" Stretch="Uniform" Width="15" Height="15" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding Users}" FontSize="12" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" Margin="0,0,20,0" ToolTip="Users assigned to the task"/>
+                            <TextBlock Text="{Binding IsOverdue}" FontSize="12" FontStyle="Normal" VerticalAlignment="Center" Margin="0,0,20,0" ToolTip="Task Priority" Foreground="#d26161" FontWeight="Bold">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsOverdue}" Value="Overdue">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsOverdue}" Value="Safe">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </StackPanel>
                         <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,2,0,0" Foreground="#FFF7BB64"/>
                         <TextBlock Text="{Binding Details}" FontSize="13" Margin="12,0,0,0" Foreground="White"/>

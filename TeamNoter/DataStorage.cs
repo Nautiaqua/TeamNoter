@@ -21,7 +21,7 @@ namespace TeamNoter
             public string Users { get; set; } = "n/a";
             public bool IsCompleted { get; set; }
             public string Priority { get; set; } = "Low";
-
+            public string IsOverdue { get; set; }
         }
 
         public class UserItem
@@ -74,7 +74,10 @@ namespace TeamNoter
                                            resultset.GetBoolean("IS_COMPLETED"),
                             Priority = resultset.IsDBNull(resultset.GetOrdinal("PRIORITY")) ? "Low"
                                             : char.ToUpper(resultset.GetString("PRIORITY").ToLower()[0]) + 
-                                              resultset.GetString("PRIORITY").ToLower().Substring(1) + " Priority"
+                                              resultset.GetString("PRIORITY").ToLower().Substring(1) + " Priority",
+
+                            IsOverdue = resultset.GetDateTime("DEADLINE") < DateTime.Now ? "Overdue" : "Safe"
+                            
                         };
 
                         tasks.Add(item);

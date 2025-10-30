@@ -236,6 +236,7 @@ namespace TeamNoter.Windows.UserControls
         {
             mainViewCB.SelectedIndex = 0;
             monthCB.SelectedIndex = 0;
+            priorityCB.SelectedIndex = 0;
             filter1.IsChecked = false;
             searchBox.Text = "Search for task titles";
             searchBox.Foreground = Utility.HexConvert("#FF777777");

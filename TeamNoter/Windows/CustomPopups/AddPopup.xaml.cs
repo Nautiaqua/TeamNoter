@@ -51,7 +51,7 @@ namespace TeamNoter.Windows.CustomPopups
                 proceedBtn.IsEnabled =
                 (!string.IsNullOrWhiteSpace(noteName.Text) && noteName.Text != "Title") &&
                 (calendar.Value.HasValue && (calendar.Value >= DateTime.Now)) &&
-                !isInvalidUsername && priorityCB.SelectedIndex > 0;
+                !isInvalidUsername && priorityCB.SelectedIndex > -1;
             }
         }
 
@@ -243,6 +243,7 @@ namespace TeamNoter.Windows.CustomPopups
             }
 
             priorityCB.Foreground = elBrush;
+            proceedCheck();
         }
     }
 }
