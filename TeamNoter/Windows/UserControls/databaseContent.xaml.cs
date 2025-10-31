@@ -65,7 +65,7 @@ namespace TeamNoter.Windows.UserControls
                         {
                             if (reader.Read())
                             {
-                                
+
                                 dbNameBox.Text = reader["DATABASE_NAME"].ToString();
                                 completedBox.Text = reader["COMPLETED_TASKS"].ToString();
                                 incompleteBox.Text = reader["INCOMPLETE_TASKS"].ToString();
@@ -239,39 +239,94 @@ namespace TeamNoter.Windows.UserControls
         {
             try
             {
-                var saveDialog = new Microsoft.Win32.SaveFileDialog();
-                saveDialog.Filter = "SQL files (*.sql)|*.sql";
-                saveDialog.Title = "Export Database to SQL File";
-
-                if (saveDialog.ShowDialog() == true)
+                var saveDialog = new Microsoft.Win32.SaveFileDialog
                 {
-                    string filePath = saveDialog.FileName;
+                    Filter = "SQL files (*.sql)|*.sql",
+                    Title = "Export Database to SQL File"
+                };
 
-                    
-                    string server = "localhost";
-                    string user = "root";
-                    string password = ""; 
-                    string database = "your_database_name";
+                if (saveDialog.ShowDialog() != true)
+                    return;
 
-                    string dumpCommand = $"mysqldump -h {server} -u {user} {(string.IsNullOrEmpty(password) ? "" : "-p" + password)} {database} > \"{filePath}\"";
+                string filePath = saveDialog.FileName;
+                string database = "your_database_name";
 
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo()
+                using (var conn = dbConnect.GetConnection())
+                {
+                    conn.Open();
+
+                    using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
                     {
-                        FileName = "cmd.exe",
-                        Arguments = "/C " + dumpCommand,
-                        RedirectStandardOutput = false,
-                        UseShellExecute = true,
-                        CreateNoWindow = true
-                    };
+                        writer.WriteLine($"-- SQL Backup of `{database}`");
+                        writer.WriteLine($"-- Exported at {DateTime.Now}");
+                        writer.WriteLine();
 
-                    System.Diagnostics.Process.Start(psi);
 
-                    MessageBox.Show("Database export started (check your file once it finishes).", "Export", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string tableQuery = "SHOW TABLES";
+                        using (var tableCmd = new MySqlCommand(tableQuery, conn))
+                        using (var tableReader = tableCmd.ExecuteReader())
+                        {
+                            var tables = new List<string>();
+                            while (tableReader.Read())
+                            {
+                                tables.Add(tableReader.GetString(0));
+                            }
+                            tableReader.Close();
+
+                            foreach (var table in tables)
+                            {
+
+                                var createCmd = new MySqlCommand($"SHOW CREATE TABLE `{table}`", conn);
+                                using (var createReader = createCmd.ExecuteReader())
+                                {
+                                    if (createReader.Read())
+                                    {
+                                        writer.WriteLine($"-- ----------------------------");
+                                        writer.WriteLine($"-- Table structure for `{table}`");
+                                        writer.WriteLine($"-- ----------------------------");
+                                        writer.WriteLine($"DROP TABLE IF EXISTS `{table}`;");
+                                        writer.WriteLine(createReader["Create Table"].ToString() + ";");
+                                        writer.WriteLine();
+                                    }
+                                }
+
+                                
+                                writer.WriteLine($"-- ----------------------------");
+                                writer.WriteLine($"-- Dumping data for table `{table}`");
+                                writer.WriteLine($"-- ----------------------------");
+
+                                string dataQuery = $"SELECT * FROM `{table}`";
+                                using (var dataCmd = new MySqlCommand(dataQuery, conn))
+                                using (var dataReader = dataCmd.ExecuteReader())
+                                {
+                                    while (dataReader.Read())
+                                    {
+                                        var values = new List<string>();
+                                        for (int i = 0; i < dataReader.FieldCount; i++)
+                                        {
+                                            object val = dataReader.GetValue(i);
+                                            if (val == DBNull.Value)
+                                                values.Add("NULL");
+                                            else
+                                                values.Add("'" + val.ToString().Replace("'", "''") + "'");
+                                        }
+
+                                        writer.WriteLine($"INSERT INTO `{table}` VALUES ({string.Join(",", values)});");
+                                    }
+                                }
+
+                                writer.WriteLine();
+                            }
+                        }
+                    }
                 }
+
+
+                Utility.NoterMessage("Export Complete", $"Database successfully exported to:\n{filePath}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error exporting database: " + ex.Message);
+                Utility.NoterMessage("Export Error", ex.Message);
             }
         }
 
@@ -279,39 +334,45 @@ namespace TeamNoter.Windows.UserControls
         {
             try
             {
-                var openDialog = new Microsoft.Win32.OpenFileDialog();
-                openDialog.Filter = "SQL files (*.sql)|*.sql";
-                openDialog.Title = "Import Database from SQL File";
-
-                if (openDialog.ShowDialog() == true)
+                var openDialog = new Microsoft.Win32.OpenFileDialog
                 {
-                    string filePath = openDialog.FileName;
+                    Filter = "SQL files (*.sql)|*.sql",
+                    Title = "Import Database from SQL File"
+                };
 
-                    
-                    string server = "localhost";
-                    string user = "root";
-                    string password = "";
-                    string database = "your_database_name";
+                if (openDialog.ShowDialog() != true)
+                    return;
 
-                    string importCommand = $"mysql -h {server} -u {user} {(string.IsNullOrEmpty(password) ? "" : "-p" + password)} {database} < \"{filePath}\"";
+                string filePath = openDialog.FileName;
 
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo()
+                string sqlScript = File.ReadAllText(filePath);
+
+                using (var conn = dbConnect.GetConnection())
+                {
+                    conn.Open();
+
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
+
+                    string[] commands = sqlScript.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string command in commands)
                     {
-                        FileName = "cmd.exe",
-                        Arguments = "/C " + importCommand,
-                        RedirectStandardOutput = false,
-                        UseShellExecute = true,
-                        CreateNoWindow = true
-                    };
+                        string trimmed = command.Trim();
+                        if (!string.IsNullOrEmpty(trimmed) && !trimmed.StartsWith("--"))
+                        {
+                            cmd.CommandText = trimmed;
+                            try { cmd.ExecuteNonQuery(); } catch {  }
+                        }
+                    }
 
-                    System.Diagnostics.Process.Start(psi);
-
-                    MessageBox.Show("Database import started (check your database after it finishes).", "Import", MessageBoxButton.OK, MessageBoxImage.Information);
+                    conn.Close();
                 }
+
+                Utility.NoterMessage("Import Complete", $"Successfully imported database from:\n{filePath}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error importing database: " + ex.Message);
+                Utility.NoterMessage("Import Error", ex.Message);
             }
         }
     }
