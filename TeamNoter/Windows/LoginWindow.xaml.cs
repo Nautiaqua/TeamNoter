@@ -47,62 +47,27 @@ namespace TeamNoter
         }
         private void mainBorderHandler(string state)
         {
-            const int borderSize = 659;
-            const int expandedBorderSize = borderSize + 40;
-            if (state == "base")
+            if (!Initializing)
             {
-                mainBorder.Height = borderSize;
-                mainBorder.MinHeight = borderSize;
-                mainBorder.MaxHeight = borderSize;
-                caPathBox.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            
-            if (state == "expand")
-            {
-                mainBorder.Height = expandedBorderSize;
-                mainBorder.MinHeight = expandedBorderSize;
-                mainBorder.MaxHeight = expandedBorderSize;
-                caPathBox.Visibility = System.Windows.Visibility.Visible;
-            }
-
-            caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
-        }
-
-        private void caFilterHandler(object sender, RoutedEventArgs e)
-        {
-            // yes, this could've been a radio button
-            // but im too lazy to style the radio buttons, so you get this. works the same anyway lol ~ nautia
-            if (sender is CheckBox checkbox)
-            {
-                if (checkbox == none)
+                const int borderSize = 659;
+                const int expandedBorderSize = borderSize + 40;
+                if (state == "base")
                 {
-                    checkbox.IsChecked = true;
-                    required.IsChecked = false;
-                    verifyca.IsChecked = false;
-                    sslMode = "None";
-
-                    mainBorderHandler("base");
-                }
-                if (checkbox == required)
-                {
-                    checkbox.IsChecked = true;
-                    none.IsChecked = false;
-                    verifyca.IsChecked = false;
-                    sslMode = "Required";
-
-                    mainBorderHandler("base");
-                }
-                if (checkbox == verifyca)
-                {
-                    checkbox.IsChecked = true;
-                    required.IsChecked = false;
-                    none.IsChecked = false;
-                    sslMode = "VerifyCA";
-
-                    mainBorderHandler("expand");
+                    mainBorder.Height = borderSize;
+                    mainBorder.MinHeight = borderSize;
+                    mainBorder.MaxHeight = borderSize;
+                    caPathBox.Visibility = System.Windows.Visibility.Collapsed;
                 }
 
-                proceedUnlock();
+                if (state == "expand")
+                {
+                    mainBorder.Height = expandedBorderSize;
+                    mainBorder.MinHeight = expandedBorderSize;
+                    mainBorder.MaxHeight = expandedBorderSize;
+                    caPathBox.Visibility = System.Windows.Visibility.Visible;
+                }
+
+                caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
             }
         }
 
@@ -292,16 +257,7 @@ namespace TeamNoter
                     userpassPassbox.Password = lines[6];
                     sslMode = lines[7];
 
-                    switch (lines[7])
-                    {
-                        case "None":
-                            none.IsChecked = true;
-                            break;
-
-                        case "Required":
-                            required.IsChecked = true;
-                            break;
-                    }
+                    
                     
                     proceedBtn.IsEnabled = true;
                 }
@@ -309,19 +265,18 @@ namespace TeamNoter
         }
         private void proceedUnlock()
         {
-            if (verifyca.IsChecked == false)
+            if (sslCB.SelectedIndex != 2)
             {
                 proceedBtn.IsEnabled = (
                     !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
                     !string.IsNullOrEmpty(portBox.Text) && portBox.Text != "Port" &&
                     !string.IsNullOrEmpty(dbUsernameBox.Text) && dbUsernameBox.Text != "Username / UID" &&
                     !string.IsNullOrEmpty(dbPasswordPassbox.Password) &&
-                    (none.IsChecked == true || required.IsChecked == true) &&
                     !string.IsNullOrEmpty(emailBox.Text) && emailBox.Text != "Email" &&
                     !string.IsNullOrEmpty(userpassPassbox.Password)
                     );
             }
-            else if (verifyca.IsChecked == true)
+            else if (sslCB.SelectedIndex == 2)
             {
                 proceedBtn.IsEnabled = (
                     !string.IsNullOrEmpty(serverBox.Text) && serverBox.Text != "Server" &&
@@ -354,7 +309,7 @@ namespace TeamNoter
             dbPasswordPassbox.Password = "AVNS_qtIuKAzlGVweZJe6e-C";
             emailBox.Text = "NOTER.JONNY@UE.EDU.PH";
             userpassPassbox.Password = "TEAMNOTER";
-            required.IsChecked = true;
+            sslCB.SelectedIndex = 1;
             proceedBtn.IsEnabled = true;
         }
 
@@ -382,6 +337,27 @@ namespace TeamNoter
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void sslCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (sslCB.SelectedIndex)
+            {
+                case 0:
+                    sslMode = "None";
+                    mainBorderHandler("base");
+                    break;
+
+                case 1:
+                    sslMode = "Required";
+                    mainBorderHandler("base");
+                    break;
+
+                case 2:
+                    sslMode = "VerifyCA";
+                    mainBorderHandler("expanded");
+                    break;
+            }
         }
     }
 }
