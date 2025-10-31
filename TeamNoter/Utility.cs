@@ -93,5 +93,9 @@ namespace TeamNoter
             message.Show();
         }
         
+        public static string getBaseDirectory()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory;
+        }
     }
 }

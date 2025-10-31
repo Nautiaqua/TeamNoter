@@ -1,9 +1,14 @@
 ﻿using Dark.Net;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
+using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,6 +42,8 @@ namespace TeamNoter
 
             // initializing flag to prevent crashing for certain things
             Initializing = false;
+
+            attemptRemember();
         }
 
         private void caFilterHandler(object sender, RoutedEventArgs e)
@@ -208,17 +215,8 @@ namespace TeamNoter
 
                             if (loginSuccess)
                             {
-                                // eto yung inadd ko TOFFY
-                                File.WriteAllLines(saveFile, new string[]
-                                {
-                                serverBox.Text,
-                                portBox.Text,
-                                // "TASK_MANAGEMENT",
-                                dbUsernameBox.Text,
-                                dbPasswordPassbox.Password,
-                                emailBox.Text,
-                                userpassPassbox.Password
-                                });
+                                if (remCheck.IsChecked == true)
+                                    rememberLastLogin();
 
                                 Dashboard dashboard = new Dashboard(this);
                                 dashboard.Show();
@@ -232,33 +230,28 @@ namespace TeamNoter
 
         }
 
-        private void remember()
+        private void rememberLastLogin()
         {
-            if (File.Exists(saveFile))
-            {
-                string[] lines = File.ReadAllLines(saveFile);
-                if (lines.Length >= 7)
+            string remValue = (remCheck.IsChecked == true).ToString();
+            string basePath = Utility.getBaseDirectory();
+
+            // MessageBox.Show(@$"{basePath}\testfile.txt");
+
+            File.WriteAllLines(@"D:\testfile.txt", new string[]
                 {
-                    serverBox.Text = lines[0];
-                    portBox.Text = lines[1];
-                    dbUsernameBox.Text = lines[3];
-                    dbPasswordPassbox.Password = lines[4];
-                    emailBox.Text = lines[5];
-                    userpassPassbox.Password = lines[6];
+                    remValue,
+                    serverBox.Text,
+                    portBox.Text,
+                    dbUsernameBox.Text,
+                    dbPasswordPassbox.Password,
+                    emailBox.Text,
+                    userpassPassbox.Password
+                });
+        }
 
-                    required.IsChecked = true;
-                    sslMode = "Required";
-                    proceedBtn.IsEnabled = true;
-                }
-            }
-
-            serverBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            portBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            dbUsernameBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            dbPasswordPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            emailBox.Foreground = Utility.HexConvert("#FFFFFFFF");
-            userpassPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
-
+        private void attemptRemember()
+        {
+            
         }
         private void proceedUnlock()
         {
@@ -318,35 +311,23 @@ namespace TeamNoter
 
         private void noterLogo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //if (File.Exists(saveFile))
-            //{
-            //    string[] lines = File.ReadAllLines(saveFile);
-            //    if (lines.Length >= 7)
-            //    {
-            //        serverBox.Text = lines[0];
-            //        portBox.Text = lines[1];
-            //        dbBox.Text = lines[2];
-            //        dbUsernameBox.Text = lines[3];
-            //        dbPasswordPassbox.Password = lines[4];
-            //        emailBox.Text = lines[5];
-            //        userpassPassbox.Password = lines[6];
 
-            //        required.IsChecked = true;
-            //        sslMode = "Required";
-            //        proceedBtn.IsEnabled = true;
-            //    }
-            //}
         }
 
         private void accountdetailsLabel_Copy_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo linkOpener = new ProcessStartInfo
             {
                 FileName = "https://github.com/Nautiaqua/TeamNoter",
                 UseShellExecute = true
             };
 
-            Process.Start(psi);
+            Process.Start(linkOpener);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
