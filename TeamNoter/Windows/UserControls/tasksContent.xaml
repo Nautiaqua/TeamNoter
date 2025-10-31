@@ -61,7 +61,17 @@
                                 </TextBlock.Style>
                             </TextBlock>
                         </StackPanel>
-                        <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,2,0,0" Foreground="#FFF7BB64"/>
+                        <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,2,0,0" Foreground="#FFF7BB64">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOverdue}" Value="Overdue">
+                                            <Setter Property="Foreground" Value="#d26161"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <TextBlock Text="{Binding Details}" FontSize="13" Margin="12,0,0,0" Foreground="White"/>
                     </StackPanel>
                     <Button DockPanel.Dock="Right"  Width="17" Height="17" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Click="deleteBtn_Clicked" Foreground="#FFFF2A2A" Margin="0,0,10,0">

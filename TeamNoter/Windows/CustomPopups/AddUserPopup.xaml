@@ -17,8 +17,10 @@
         <TextBox x:Name="notePass" TextWrapping="Wrap" Text="Password" Padding="10,0,0,0" Background="#FF333131" Foreground="#FF777777" BorderBrush="#FF777777" CaretBrush="White" VerticalContentAlignment="Center" Height="30" Margin="0,10,0,0" Width="360" GotFocus="notePass_Placeholder" LostFocus="notePass_Placeholder" TextChanged="textboxes_TextChanged"/>
         <StackPanel x:Name="typeStack" Orientation="Horizontal" Margin="0,10,0,0">
             <Label x:Name="sslModeLabel" Content="Account Type:" Padding="7,0,0,2" Foreground="#FF777777" FontStyle="Italic" Margin="0,0,10,0"/>
-            <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="adminBtn" Content="Admin" Foreground="White" Margin="0,0,20,0" VerticalContentAlignment="Center" />
-            <CheckBox Style="{DynamicResource NoterCheckbox}" x:Name="userBtn" Content="User" Foreground="White" VerticalContentAlignment="Center" IsChecked="True" />
+            <ComboBox x:Name="typeCB" Width="271" Foreground="White" SelectedIndex="0">
+                <ComboBoxItem Content="User" Padding="5,0,0,0"/>
+                <ComboBoxItem Content="Admin" Padding="5,0,0,0"/>
+            </ComboBox>
         </StackPanel>
         <Button x:Name="proceedBtn" Height="30" Background="#FFF7BB64" BorderThickness="0,0,0,0" Foreground="Black" FontWeight="Bold" FontFamily="Segoe UI" Margin="0,10,0,0" Content="Proceed" Click="proceedBtn_Click" IsEnabled="False"/>
     </StackPanel>

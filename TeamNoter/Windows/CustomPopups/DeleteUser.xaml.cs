@@ -89,6 +89,7 @@ namespace TeamNoter.Windows.CustomPopups
                         conn.Close();
 
                         this.dashboard.contentPane.Content = new manageContent(this.dashboard);
+                        this.Close();
                     }
                 }
             }

@@ -62,16 +62,10 @@ namespace TeamNoter.Windows.CustomPopups
 
            
             string accountType = "";
-            if (adminBtn.IsChecked == true)
+            if (typeCB.SelectedIndex == 0)
                 accountType = "ADMIN";
-            else if (userBtn.IsChecked == true)
+            else if (typeCB.SelectedIndex == 1)
                 accountType = "USER";
-            else
-            {
-                MessageBox.Show("Please select an account type!");
-                return;
-            }
-
             
             if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskEmail) || string.IsNullOrEmpty(taskPass))
             {
@@ -117,11 +111,9 @@ namespace TeamNoter.Windows.CustomPopups
                     notePass.Text = "Password";
                     notePass.Foreground = Utility.HexConvert("#FF777777");
 
-                    adminBtn.IsChecked = false;
-                    userBtn.IsChecked = false;
+                    typeCB.SelectedIndex = 0;
 
                     this.dashboard.contentPane.Content = new manageContent(this.dashboard);
-                    Utility.NoterMessage("Successful", "User has been successfully deleted");
                     this.Close();
 
                 }
@@ -170,6 +162,8 @@ namespace TeamNoter.Windows.CustomPopups
                 noteEmailWarning.Visibility = Visibility.Collapsed;
                 noteEmail.Margin = new Thickness(0, 10, 0, 0);
             }
+
+            proceedCheck();
         }
     }
 }
