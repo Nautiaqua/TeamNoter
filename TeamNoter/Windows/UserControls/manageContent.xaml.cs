@@ -63,14 +63,27 @@ namespace TeamNoter.Windows.UserControls
             del.Show();
         }
 
+        string filePath = @"D:\backup.sql";
         private void exportBtnSQL_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var conn = dbConnect.GetConnection())
+            using (var cmd = conn.CreateCommand())
+            using (var mb = new MySqlBackup(cmd))
+            {
+                conn.Open();
+                mb.ExportToFile(filePath);
+            }
         }
 
         private void importBtnSQL_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var conn = dbConnect.GetConnection())
+            using (var cmd = conn.CreateCommand())
+            using (var mb = new MySqlBackup(cmd))
+            {
+                conn.Open();
+                mb.ImportFromFile(filePath);
+            }
         }
     }
 }
