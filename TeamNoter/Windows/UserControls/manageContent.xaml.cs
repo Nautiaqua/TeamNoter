@@ -63,26 +63,73 @@ namespace TeamNoter.Windows.UserControls
             del.Show();
         }
 
-        string filePath = @"D:\backup.sql";
-        private void exportBtnSQL_Click(object sender, RoutedEventArgs e)
+        private async void exportBtnSQL_Click(object sender, RoutedEventArgs e)
         {
-            using (var conn = dbConnect.GetConnection())
-            using (var cmd = conn.CreateCommand())
-            using (var mb = new MySqlBackup(cmd))
+            try
             {
-                conn.Open();
-                mb.ExportToFile(filePath);
+                var openDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    Filter = "SQL files (*.sql)|*.sql",
+                    Title = "Export SQL File from TeamNoter Database"
+                };
+
+                if (openDialog.ShowDialog() != true)
+                    return;
+
+                string filePath = openDialog.FileName;
+
+                using (var conn = dbConnect.GetConnection())
+                using (var cmd = conn.CreateCommand())
+                using (var mb = new MySqlBackup(cmd))
+                {
+                    await Task.Run(() =>
+                    {
+                        conn.Open();
+                        mb.ExportToFile(filePath);
+                    });
+
+                }
+
+                Utility.NoterMessage("Export Complete", $"Database successfully exported from:\n{filePath}");
+            }
+            catch (Exception ex)
+            {
+                Utility.NoterMessage("Export Error", $"An error occurred:\n{ex.Message}");
             }
         }
 
-        private void importBtnSQL_Click(object sender, RoutedEventArgs e)
+        private async void importBtnSQL_Click(object sender, RoutedEventArgs e)
         {
-            using (var conn = dbConnect.GetConnection())
-            using (var cmd = conn.CreateCommand())
-            using (var mb = new MySqlBackup(cmd))
+            try
             {
-                conn.Open();
-                mb.ImportFromFile(filePath);
+                var openDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    Filter = "SQL files (*.sql)|*.sql",
+                    Title = "Import SQL File into TeamNoter Database"
+                };
+
+                if (openDialog.ShowDialog() != true)
+                    return;
+
+                string filePath = openDialog.FileName;
+
+                using (var conn = dbConnect.GetConnection())
+                using (var cmd = conn.CreateCommand())
+                using (var mb = new MySqlBackup(cmd))
+                {
+                    await Task.Run(() =>
+                    { 
+                        conn.Open();
+                        mb.ImportFromFile(filePath);
+                    });
+                    
+                }
+
+                Utility.NoterMessage("Import Complete", $"Database successfully imported from:\n{filePath}");
+            }
+            catch (Exception ex)
+            {
+                Utility.NoterMessage("Import Error", $"An error occurred:\n{ex.Message}");
             }
         }
     }
