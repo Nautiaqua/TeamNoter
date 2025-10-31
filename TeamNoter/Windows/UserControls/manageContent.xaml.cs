@@ -173,49 +173,22 @@ namespace TeamNoter.Windows.UserControls
                         return;
 
                     string filePath = openDialog.FileName;
-                    string sqlContent = File.ReadAllText(filePath);
 
-                    using (var conn = dbConnect.GetConnection())
-                    {
-                        conn.Open();
-                        using (var cmd = new MySqlCommand())
-                        {
-                            cmd.Connection = conn;
+                    string constr = "server=localhost;user=root;pwd=1234;database=teamnoter;convertzerodatetime=true;";
 
-                            string[] sqlCommands = sqlContent
-                                .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    var conn = new MySql.Data.MySqlClient.MySqlConnection(constr);
+                    var cmd = conn.CreateCommand();
+                    var mb = new MySqlBackup(cmd);
 
-                            foreach (string command in sqlCommands)
-                            {
-                                string trimmed = command.Trim();
+                    conn.Open();
+                    mb.ImportFromFile(filePath);
+                    conn.Close();
 
-                                if (string.IsNullOrWhiteSpace(trimmed) || trimmed.StartsWith("--") || trimmed.StartsWith("/*") || trimmed.StartsWith("*/"))
-                                    continue;
-
-                                try
-                                {
-                                    cmd.CommandText = trimmed;
-                                    cmd.ExecuteNonQuery();
-                                }
-                                catch (MySqlException mysqlEx)
-                                {
-                                    Console.WriteLine($"[MySQL Warning] {mysqlEx.Message}");
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"[SQL Error] {ex.Message}");
-                                }
-                            }
-                        }
-
-                        conn.Close();
-                    }
-
-                    Utility.NoterMessage("Import Complete.", $"Database successfully imported from:\n{filePath}");
+                    Utility.NoterMessage("Import Complete", $"Database successfully imported from:\n{filePath}");
                 }
                 catch (Exception ex)
                 {
-                    Utility.NoterMessage("Import Error.", $"An error occurred:\n{ex.Message}");
+                    Utility.NoterMessage("Import Error", $"An error occurred:\n{ex.Message}");
                 }
             }
         }
