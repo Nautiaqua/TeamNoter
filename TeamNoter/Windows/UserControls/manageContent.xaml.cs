@@ -178,37 +178,44 @@ namespace TeamNoter.Windows.UserControls
                     using (var conn = dbConnect.GetConnection())
                     {
                         conn.Open();
-                        MySqlCommand cmd = new MySqlCommand();
-                        cmd.Connection = conn;
-
-                        
-                        string[] sqlCommands = sqlContent.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                        foreach (string command in sqlCommands)
+                        using (var cmd = new MySqlCommand())
                         {
-                            string trimmed = command.Trim();
-                            if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith("--") || trimmed.StartsWith("/*"))
-                                continue;
+                            cmd.Connection = conn;
 
-                            try
+                            string[] sqlCommands = sqlContent
+                                .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                            foreach (string command in sqlCommands)
                             {
-                                cmd.CommandText = trimmed;
-                                cmd.ExecuteNonQuery();
-                            }
-                            catch
-                            {
-                                
+                                string trimmed = command.Trim();
+
+                                if (string.IsNullOrWhiteSpace(trimmed) || trimmed.StartsWith("--") || trimmed.StartsWith("/*") || trimmed.StartsWith("*/"))
+                                    continue;
+
+                                try
+                                {
+                                    cmd.CommandText = trimmed;
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (MySqlException mysqlEx)
+                                {
+                                    Console.WriteLine($"[MySQL Warning] {mysqlEx.Message}");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"[SQL Error] {ex.Message}");
+                                }
                             }
                         }
 
                         conn.Close();
                     }
 
-                    Utility.NoterMessage("Import Complete", $"Database successfully imported from:\n{filePath}");
+                    Utility.NoterMessage("Import Complete.", $"Database successfully imported from:\n{filePath}");
                 }
                 catch (Exception ex)
                 {
-                    Utility.NoterMessage("Import Error", $"An error occurred:\n{ex.Message}");
+                    Utility.NoterMessage("Import Error.", $"An error occurred:\n{ex.Message}");
                 }
             }
         }
