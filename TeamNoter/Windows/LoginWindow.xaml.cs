@@ -71,6 +71,28 @@ namespace TeamNoter
             }
         }
 
+        private void whiteout()
+        {
+            serverBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            portBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            dbUsernameBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            dbPasswordPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            emailBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            userpassPassbox.Foreground = Utility.HexConvert("#FFFFFFFF");
+            caPathBox.Foreground = Utility.HexConvert("#FFFFFFFF");
+        }
+
+        private void greyout()
+        {
+            serverBox.Foreground = Utility.HexConvert("#FF777777");
+            portBox.Foreground = Utility.HexConvert("#FF777777");
+            dbUsernameBox.Foreground = Utility.HexConvert("#FF777777");
+            dbPasswordPassbox.Foreground = Utility.HexConvert("#FF777777");
+            emailBox.Foreground = Utility.HexConvert("#FF777777");
+            userpassPassbox.Foreground = Utility.HexConvert("#FF777777");
+            caPathBox.Foreground = Utility.HexConvert("#FF777777");
+        }
+
         private void serverBox_Placeholder(object sender, RoutedEventArgs e)
         {
             Utility.PlaceholderText(sender, "Server", e);
@@ -222,7 +244,7 @@ namespace TeamNoter
                     dbPasswordPassbox.Password,
                     emailBox.Text,
                     userpassPassbox.Password,
-                    sslMode
+                    sslCB.SelectedIndex.ToString()
                 });
             }
             else
@@ -236,7 +258,7 @@ namespace TeamNoter
                     dbPasswordPassbox.Password,
                     emailBox.Text,
                     userpassPassbox.Password,
-                    sslMode,
+                    sslCB.SelectedIndex.ToString(),
                     caPathBox.Text
                 });
             }
@@ -249,17 +271,23 @@ namespace TeamNoter
                 string[] lines = File.ReadAllLines(savePath);
                 if (lines.Length >= 8 && lines[0] == "True")
                 {
+                    remCheck.IsChecked = true;
                     serverBox.Text = lines[1];
                     portBox.Text = lines[2];
                     dbUsernameBox.Text = lines[3];
                     dbPasswordPassbox.Password = lines[4];
                     emailBox.Text = lines[5];
                     userpassPassbox.Password = lines[6];
-                    sslMode = lines[7];
+                    sslCB.SelectedIndex = int.Parse(lines[7]);
 
-                    
-                    
+                    if (lines[7] == "2")
+                    {
+                        mainBorderHandler("expand");
+                        caPathBox.Text = lines[8];
+                    }
+
                     proceedBtn.IsEnabled = true;
+                    whiteout();
                 }
             }
         }
@@ -311,6 +339,7 @@ namespace TeamNoter
             userpassPassbox.Password = "TEAMNOTER";
             sslCB.SelectedIndex = 1;
             proceedBtn.IsEnabled = true;
+            whiteout();
         }
 
         private void noterLogo_TouchLeave(object sender, TouchEventArgs e)
@@ -355,9 +384,14 @@ namespace TeamNoter
 
                 case 2:
                     sslMode = "VerifyCA";
-                    mainBorderHandler("expanded");
+                    mainBorderHandler("expand");
                     break;
             }
+        }
+
+        private void remCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            File.Delete(savePath);
         }
     }
 }

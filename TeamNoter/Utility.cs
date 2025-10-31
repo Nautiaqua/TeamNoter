@@ -98,9 +98,9 @@ namespace TeamNoter
             switch (mode)
             {
                 case "save":
-                    //string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    //string savePath = @$"{basePath}\logincache.txt";
-                    string savePath = @"D:\logincache.txt";
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                    string savePath = @$"{basePath}\logincache.txt";
+                    //string savePath = @"D:\logincache.txt";
                     return savePath;
                 default:
                     return AppDomain.CurrentDomain.BaseDirectory;
