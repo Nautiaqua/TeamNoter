@@ -67,16 +67,16 @@ namespace TeamNoter.Windows.UserControls
         {
             try
             {
-                var openDialog = new Microsoft.Win32.OpenFileDialog
+                var saveDialog = new Microsoft.Win32.SaveFileDialog
                 {
                     Filter = "SQL files (*.sql)|*.sql",
-                    Title = "Export SQL File from TeamNoter Database"
+                    Title = "Export TeamNoter Database to SQL File"
                 };
 
-                if (openDialog.ShowDialog() != true)
+                if (saveDialog.ShowDialog() != true)
                     return;
 
-                string filePath = openDialog.FileName;
+                string filePath = saveDialog.FileName;
 
                 using (var conn = dbConnect.GetConnection())
                 using (var cmd = conn.CreateCommand())
@@ -89,7 +89,6 @@ namespace TeamNoter.Windows.UserControls
                     });
 
                 }
-
                 Utility.NoterMessage("Export Complete", $"Database successfully exported from:\n{filePath}");
             }
             catch (Exception ex)

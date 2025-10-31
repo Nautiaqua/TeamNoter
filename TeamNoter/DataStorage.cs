@@ -12,6 +12,10 @@ namespace TeamNoter
 {
     public class DataStorage
     {
+        public DataStorage()
+        {
+            _ = DataGather();
+        }
         public class TaskItem
         {
             public int TaskID { get; set; }
@@ -39,13 +43,13 @@ namespace TeamNoter
         public ObservableCollection<TaskItem> tasks { get; set; } = new ObservableCollection<TaskItem>();
         public ObservableCollection<UserItem> users { get; set; } = new ObservableCollection<UserItem>();
 
-        public DataStorage()
+        public async Task DataGather()
         {
             using (MySqlConnection conn = dbConnect.GetConnection())
             {
                 if (conn != null)
                 {
-                    conn.Open();
+                    await conn.OpenAsync();
 
                     // Sets up the tasks table
                     string queryString = "SELECT t.TASK_ID, t.DEADLINE, t.TASK_NAME, t.TASK_DESCRIPTION, t.IS_COMPLETED, t.PRIORITY, " +
@@ -57,7 +61,7 @@ namespace TeamNoter
                     MySqlCommand query = new MySqlCommand(queryString, conn);
 
                     MySqlDataReader resultset = query.ExecuteReader();
-                    while (resultset.Read())
+                    while (await resultset.ReadAsync())
                     {
                         var item = new TaskItem
                         {
@@ -119,6 +123,7 @@ namespace TeamNoter
                     Utility.NoterMessage("Task error", "Empty connection. Cannot display tasks.");
             }
         }
+
         public CollectionView getTaskView()
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(tasks);
