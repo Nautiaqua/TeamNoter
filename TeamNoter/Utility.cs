@@ -93,9 +93,18 @@ namespace TeamNoter
             message.Show();
         }
         
-        public static string getBaseDirectory()
+        public static string getDirectory(string mode = "base")
         {
-            return AppDomain.CurrentDomain.BaseDirectory;
+            switch (mode)
+            {
+                case "save":
+                    //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                    //string savePath = @$"{basePath}\logincache.txt";
+                    string savePath = @"D:\logincache.txt";
+                    return savePath;
+                default:
+                    return AppDomain.CurrentDomain.BaseDirectory;
+            }
         }
     }
 }

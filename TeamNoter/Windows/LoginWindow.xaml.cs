@@ -45,6 +45,28 @@ namespace TeamNoter
 
             attemptRemember();
         }
+        private void mainBorderHandler(string state)
+        {
+            const int borderSize = 659;
+            const int expandedBorderSize = borderSize + 40;
+            if (state == "base")
+            {
+                mainBorder.Height = borderSize;
+                mainBorder.MinHeight = borderSize;
+                mainBorder.MaxHeight = borderSize;
+                caPathBox.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            
+            if (state == "expand")
+            {
+                mainBorder.Height = expandedBorderSize;
+                mainBorder.MinHeight = expandedBorderSize;
+                mainBorder.MaxHeight = expandedBorderSize;
+                caPathBox.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
+        }
 
         private void caFilterHandler(object sender, RoutedEventArgs e)
         {
@@ -59,11 +81,7 @@ namespace TeamNoter
                     verifyca.IsChecked = false;
                     sslMode = "None";
 
-                    mainBorder.Height = 650;
-                    mainBorder.MinHeight = 650;
-                    mainBorder.MaxHeight = 650;
-                    caPathBox.Visibility = System.Windows.Visibility.Collapsed;
-                    caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
+                    mainBorderHandler("base");
                 }
                 if (checkbox == required)
                 {
@@ -72,11 +90,7 @@ namespace TeamNoter
                     verifyca.IsChecked = false;
                     sslMode = "Required";
 
-                    mainBorder.Height = 650;
-                    mainBorder.MinHeight = 650;
-                    mainBorder.MaxHeight = 650;
-                    caPathBox.Visibility = System.Windows.Visibility.Collapsed;
-                    caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
+                    mainBorderHandler("base");
                 }
                 if (checkbox == verifyca)
                 {
@@ -85,11 +99,7 @@ namespace TeamNoter
                     none.IsChecked = false;
                     sslMode = "VerifyCA";
 
-                    mainBorder.Height = 680;
-                    mainBorder.MinHeight = 680;
-                    mainBorder.MaxHeight = 680;
-                    caPathBox.Visibility = System.Windows.Visibility.Visible;
-                    caPathBox.Text = "ca.pem Filepath (Example: D:\\ca.pem)";
+                    mainBorderHandler("expand");
                 }
 
                 proceedUnlock();
@@ -230,14 +240,15 @@ namespace TeamNoter
 
         }
 
+        string savePath = Utility.getDirectory("save");
         private void rememberLastLogin()
         {
             string remValue = (remCheck.IsChecked == true).ToString();
-            string basePath = Utility.getBaseDirectory();
 
             // MessageBox.Show(@$"{basePath}\testfile.txt");
-
-            File.WriteAllLines(@"D:\testfile.txt", new string[]
+            if (sslMode != "VerifyCA")
+            {
+                File.WriteAllLines(savePath, new string[]
                 {
                     remValue,
                     serverBox.Text,
@@ -245,13 +256,56 @@ namespace TeamNoter
                     dbUsernameBox.Text,
                     dbPasswordPassbox.Password,
                     emailBox.Text,
-                    userpassPassbox.Password
+                    userpassPassbox.Password,
+                    sslMode
                 });
+            }
+            else
+            {
+                File.WriteAllLines(savePath, new string[]
+                {
+                    remValue,
+                    serverBox.Text,
+                    portBox.Text,
+                    dbUsernameBox.Text,
+                    dbPasswordPassbox.Password,
+                    emailBox.Text,
+                    userpassPassbox.Password,
+                    sslMode,
+                    caPathBox.Text
+                });
+            }
         }
 
         private void attemptRemember()
         {
-            
+            if (File.Exists(savePath))
+            {
+                string[] lines = File.ReadAllLines(savePath);
+                if (lines.Length >= 8 && lines[0] == "True")
+                {
+                    serverBox.Text = lines[1];
+                    portBox.Text = lines[2];
+                    dbUsernameBox.Text = lines[3];
+                    dbPasswordPassbox.Password = lines[4];
+                    emailBox.Text = lines[5];
+                    userpassPassbox.Password = lines[6];
+                    sslMode = lines[7];
+
+                    switch (lines[7])
+                    {
+                        case "None":
+                            none.IsChecked = true;
+                            break;
+
+                        case "Required":
+                            required.IsChecked = true;
+                            break;
+                    }
+                    
+                    proceedBtn.IsEnabled = true;
+                }
+            }
         }
         private void proceedUnlock()
         {

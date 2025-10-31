@@ -12,7 +12,7 @@
     <Window.Background>
         <ImageBrush ImageSource="/Images/TeamNoterDarkBG.png"/>
     </Window.Background>
-    <Border x:Name="mainBorder" BorderBrush="Black" Background="#FF333131" CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Height="666" MinWidth="460" MinHeight="650" MaxHeight="700" MaxWidth="460">
+    <Border x:Name="mainBorder" BorderBrush="Black" Background="#FF333131" CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Height="659" MinWidth="460" MinHeight="650" MaxHeight="700" MaxWidth="460">
         <StackPanel>
             <StackPanel x:Name="titleStack" Orientation="Horizontal" Margin="50,40,0,0">
                 <Image x:Name="noterLogo" Source="{svgc:SvgImage AppName=TeamNoter, Source=/Images/Icons/NoterLogo.svg}" Height="50" Width="50" MouseLeftButtonDown="noterLogo_MouseLeftButtonDown"/>
