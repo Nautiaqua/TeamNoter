@@ -62,9 +62,9 @@ namespace TeamNoter.Windows.CustomPopups
 
            
             string accountType = "";
-            if (typeCB.SelectedIndex == 0)
+            if (typeCB.SelectedIndex == 1)
                 accountType = "ADMIN";
-            else if (typeCB.SelectedIndex == 1)
+            else if (typeCB.SelectedIndex == 2)
                 accountType = "USER";
             
             if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskEmail) || string.IsNullOrEmpty(taskPass))
